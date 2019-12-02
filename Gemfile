@@ -11,6 +11,9 @@ gem 'devise'
 gem 'dotenv-rails'
 gem 'stripe'
 gem "aws-sdk-s3", require: false
+gem 'stripe'
+
+gem 'dotenv'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
