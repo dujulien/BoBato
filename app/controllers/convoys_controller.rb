@@ -1,0 +1,2 @@
+class ConvoysController < ApplicationController
+end

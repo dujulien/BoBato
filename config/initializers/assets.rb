@@ -16,3 +16,5 @@ Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'ja
 Rails.application.config.assets.paths << Rails.root.join('vendor', 'assets', 'stylesheets')
 Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'images')
 Rails.application.config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+Rails.application.config.assets.precompile += %w( aos.js )
+Rails.application.config.assets.precompile += %w( main.js )
