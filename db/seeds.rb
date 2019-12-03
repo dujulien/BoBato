@@ -51,7 +51,7 @@ end
 
 
 10.times do |i|
-	Application.create(
+	Submission.create(
 										skipper: Skipper.find(i+1), 
 										convoy: Convoy.find((i/2)+1)
 										)

@@ -3,7 +3,7 @@ class Skipper < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  has_many :applications
+  has_many :submissions
   has_many :deliveries
 
   after_create :welcome_send
