@@ -6,6 +6,8 @@ class Skipper < ApplicationRecord
   has_many :submissions
   has_many :deliveries
 
+  has_one_attached :avatar_skipper
+
   after_create :welcome_send
 
   def welcome_send

@@ -1,0 +1,2 @@
+class AvatarBoatOwnerController < ApplicationController
+end

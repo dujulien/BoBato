@@ -1,0 +1,2 @@
+module AvatarBoatOwnerHelper
+end
