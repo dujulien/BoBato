@@ -1,0 +1,59 @@
+<div class="row">
+<br><br><br>
+<%= form_for resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-signin mt-3" } do |f| %>
+<h1 class="h4 text-black mb-3 offset-md-5">Inscription</h1>
+<%= devise_error_messages! %>
+
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-md-6 offset-md-3">
+
+      <div class="row form-group">
+        <div class="col-md-6 mb-3 mb-md-0">
+          <label class="text-black" for="fname">Prénom</label>
+          <input type="text" id="fname" class="form-control">
+        </div>
+        <div class="col-md-6">
+          <label class="text-black" for="lname">Nom</label>
+          <input type="text" id="lname" class="form-control">
+        </div>
+      </div>
+      <div class="row form-group">
+
+        <div class="col-md-12">
+          <%= f.label :email, "Email", class: "text-black" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+
+
+        <div class="col-md-12">
+          <%= f.label :mot_de_passe, class: "text-black" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> caractère minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        </div>
+
+        <div class="col-md-12">
+          <%= f.label :confirmer_le_mot_de_passe, class: "text-black" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        </div>
+        <div class="actions mt-5">
+          <%= f.submit "Sign up", class: "btn btn-lg btn-primary btn-block" %>
+        </div>
+        <% end %>
+
+      </div>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-5">
+
+            <div class="p-4 mb-3 bg-white">
+              <p class="mb-0 font-weight-bold">Clique ici pour ajouter ta photo</p>
+            </div>
+
+          </div>

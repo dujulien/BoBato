@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2019_12_02_220203) do
 
   # These are extensions that must be enabled in order to support this database
@@ -82,6 +83,7 @@ ActiveRecord::Schema.define(version: 2019_12_02_220203) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_skippers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_skippers_on_reset_password_token", unique: true
+
   end
 
 end
