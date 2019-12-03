@@ -13,6 +13,7 @@
 //= require jquery-3.3.1.min
 //= require jquery-ui
 //= require popper.min
+//= require jquery_ujs
 //= require bootstrap.min
 //= require owl.carousel.min
 //= require jquery.countdown.min
@@ -22,4 +23,3 @@
 //= require jquery.fancybox.min
 //= require jquery.sticky
 //= require main
-
