@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   resources :demo, only: [:index]
   resources :charges
 
->>>>>>> development
+
 end
