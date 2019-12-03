@@ -42,7 +42,7 @@
                 <li><a href="#agents-section" class="nav-link">Agents</a></li>
                 <li><a href="#about-section" class="nav-link">About</a></li>
                 <li><a href="#news-section" class="nav-link">News</a></li>
-                <li><a href="#contact-section" class="nav-link">Contact</a></li>
+                <li><a href="#" class="nav-link" data-toggle="modal" data-target="#loginAs">Connexion</a></li>
               </ul>
             </nav>
           </div>
@@ -54,6 +54,40 @@
       </div>
       
     </header>
+
+    <!-- Modal -->
+    <div class="modal fade" id="loginAs" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Se connecter en tant que</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-6">
+                <div class="d-flex justify-content-center">
+                  <button type="button" class="btn btn-secondary">Save changes
+                  </button>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="d-flex justify-content-center">
+                  <button type="button" class="btn btn-primary d-flex justify-content-center">Save changes
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End modal -->
+
+  
+
 
     
     <div class="site-block-wrap">
