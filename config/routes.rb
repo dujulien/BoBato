@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :submissions
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+
 	devise_for :skippers, path: 'skippers'
 	devise_for :boat_owners, path: 'boat_owners'
   resources :convoys
@@ -10,5 +11,6 @@ Rails.application.routes.draw do
   root 'demo#index'
   resources :demo, only: [:index]
   resources :charges
+
 
 end
