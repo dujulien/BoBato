@@ -1,0 +1,29 @@
+
+<h1>Listing convoys</h1>
+
+<h1 class="display-4">Bienvenue chez Bobato</h1>
+  <p class="lead"> Tous les convois proposés</p>
+  <hr class="my-4">
+
+<table>
+  <tr>
+    <th>Boat type:</th>
+    <th>Departure_port:</th>
+    <th colspan="2"></th>
+  </tr>
+
+  <% @convoys.each do |convoy| %>
+    <tr>
+      <td><%= convoy.boat_type %></td>
+      <td><%= convoy.departure_port %></td>
+      <td><%= link_to 'Show', convoy_path(convoy) %></td>
+      <td><%= link_to 'Edit', edit_convoy_path(convoy.id) %></td>
+      <td><%= link_to 'Destroy', convoy_path(convoy),
+        method: :delete,
+        data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<%= link_to 'New convoy', new_convoy_path %>
