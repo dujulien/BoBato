@@ -1,0 +1,2 @@
+class AvatarSkipperController < ApplicationController
+end

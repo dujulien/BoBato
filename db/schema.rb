@@ -12,10 +12,8 @@
 
 ActiveRecord::Schema.define(version: 2019_12_03_140904) do
 
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -110,5 +108,5 @@ ActiveRecord::Schema.define(version: 2019_12_03_140904) do
     t.index ["skipper_id"], name: "index_submissions_on_skipper_id"
   end
 
-
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
 end
