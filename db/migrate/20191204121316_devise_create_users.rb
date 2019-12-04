@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class DeviseCreateBoatOwners < ActiveRecord::Migration[5.2]
+class DeviseCreateUsers < ActiveRecord::Migration[5.2]
   def change
-    create_table :boat_owners do |t|
+    create_table :users do |t|
       t.string :first_name
       t.string :last_name
       t.datetime :birthdate
@@ -41,9 +41,9 @@ class DeviseCreateBoatOwners < ActiveRecord::Migration[5.2]
       t.timestamps null: false
     end
 
-    add_index :boat_owners, :email,                unique: true
-    add_index :boat_owners, :reset_password_token, unique: true
-    # add_index :boat_owners, :confirmation_token,   unique: true
-    # add_index :boat_owners, :unlock_token,         unique: true
+    add_index :users, :email,                unique: true
+    add_index :users, :reset_password_token, unique: true
+    # add_index :users, :confirmation_token,   unique: true
+    # add_index :users, :unlock_token,         unique: true
   end
 end

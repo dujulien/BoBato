@@ -1,14 +1,15 @@
-class BoatOwner < ApplicationRecord
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one_attached :avatar_boat_owner
-  
   after_create :welcome_send
+  has_many :convoys, foreign_key: 'convoy_id', class_name: "Convoy"
+  has_many :submissions, foreign_key: 'submission_id', class_name: "Submission"
+  has_many :deliveries, foreign_key: 'submission_id', class_name: "Submission"
 
-  def welcome_send
+ 	def welcome_send
     UserMailer.welcome_boatowner_email(self).deliver_now
   end
 
