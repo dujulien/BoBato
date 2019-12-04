@@ -4,7 +4,8 @@ class BoatOwner < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-
+  has_one_attached :avatar_boat_owner
+  
   after_create :welcome_send
 
   def welcome_send

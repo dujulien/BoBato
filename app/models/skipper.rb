@@ -5,8 +5,11 @@ class Skipper < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :submissions
   has_many :deliveries
+  has_one_attached :avatar_skipper
+
 
   after_create :welcome_send
+
 
   def welcome_send
     UserMailer.welcome_skipper_email(self).deliver_now

@@ -10,11 +10,6 @@
 /storage/*
 /storage/.keep
 
-
-# Ignore uploaded files in development
-/storage/*
-/storage/.keep
-
 /node_modules
 /yarn-error.log
 /public/assets
@@ -22,5 +17,4 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
- .env
-
+.env
