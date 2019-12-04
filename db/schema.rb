@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2019_12_03_140904) do
 
   # These are extensions that must be enabled in order to support this database
@@ -37,6 +36,14 @@ ActiveRecord::Schema.define(version: 2019_12_03_140904) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "applications", force: :cascade do |t|
+    t.bigint "skipper_id"
+    t.bigint "convoy_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["convoy_id"], name: "index_applications_on_convoy_id"
+    t.index ["skipper_id"], name: "index_applications_on_skipper_id"
+  end
 
   create_table "boat_owners", force: :cascade do |t|
     t.string "first_name"
@@ -107,6 +114,18 @@ ActiveRecord::Schema.define(version: 2019_12_03_140904) do
     t.datetime "updated_at", null: false
     t.index ["convoy_id"], name: "index_submissions_on_convoy_id"
     t.index ["skipper_id"], name: "index_submissions_on_skipper_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
