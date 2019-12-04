@@ -1,0 +1,63 @@
+<%= form_with model: @convoy, local: true do |form| %>
+
+  <% if @convoy.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@convoy.errors.count, "error") %> prohibited
+        this convoy from being saved:
+      </h2>
+      <ul>
+        <% @convoy.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% end %>
+
+<%= form_for :convoy, url: convoys_path do |form| %>
+  <p>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+  </p>
+  <p>
+    <%= form.label :boat_type %><br>
+    <%= form.text_field :boat_type %>
+  </p>
+
+  <p>
+    <%= form.label :boat_owner_id %><br>
+    <%= form.text_field :boat_owner_id %>
+  </p>
+  <p>
+    <%= form.label :required_license %><br>
+    <%= form.text_field :required_license %>
+  </p>
+  <p>
+    <%= form.label :description %><br>
+    <%= form.text_field :description %>
+  </p>
+  <p>
+    <%= form.label :departure_port %><br>
+    <%= form.text_field :departure_port %>
+  </p>
+  <p>
+    <%= form.label :arrival_port %><br>
+    <%= form.text_field :arrival_port %>
+  </p>
+  <p>
+    <%= form.label :date_of_departure %><br>
+    <%= form.text_field :date_of_departure %>
+  </p>
+  <p>
+    <%= form.label :date_of_arrival %><br>
+    <%= form.text_field :date_of_arrival %>
+  </p>
+  <p>
+    <%= form.label :convoy_price %><br>
+    <%= form.text_field :convoy_price %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

@@ -1,0 +1,49 @@
+<p>
+  <strong>title:</strong>
+  <%= @convoy.title %>
+</p>
+
+<p>
+  <strong>description:</strong>
+  <%= @convoy.description %>
+</p>
+<p>
+<strong>boat_owner_id:</strong>
+<%= @convoy.boat_owner_id %>
+</p>
+<p>
+<strong>boat_type:</strong>
+<%= @convoy.boat_type %>
+</p>
+<p>
+<strong>description:</strong>
+<%= @convoy.required_license %>
+</p>
+<p>
+<strong>Departure_port:</strong>
+<%= @convoy.description %>
+</p>
+<p>
+<strong>departure_port:</strong>
+<%= @convoy.departure_port %>
+</p>
+<p>
+<strong>arrival_port:</strong>
+<%= @convoy.arrival_port %>
+</p>
+<p>
+<strong>date_of_departure:</strong>
+<%= @convoy.date_of_departure %>
+</p>
+<p>
+<strong>date_of_arrival:</strong>
+<%= @convoy.date_of_arrival %>
+</p>
+<p>
+<strong>convoy_price:</strong>
+<%= @convoy.convoy_price %>
+</p>
+
+
+<%= link_to 'Edit', edit_convoy_path(@convoy) %>
+<%= link_to 'Back', convoys_path %>

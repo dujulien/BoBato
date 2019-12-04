@@ -1,8 +1,8 @@
 class CreateDeliveries < ActiveRecord::Migration[5.2]
   def change
     create_table :deliveries do |t|
-    	t.belongs_to :skipper
-    	t.belongs_to :convoy
+    	t.references :skipper, index: true
+    	t.references :convoy
     	t.string :stripe_id
       t.timestamps
     end
