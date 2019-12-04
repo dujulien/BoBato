@@ -12,6 +12,7 @@ gem 'dotenv-rails'
 gem 'stripe'
 gem "aws-sdk-s3", require: false
 gem 'stripe'
+gem 'mailjet'
 
 gem 'dotenv'
 
