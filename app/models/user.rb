@@ -6,13 +6,15 @@ class User < ApplicationRecord
   after_create :create_profile       
 
   after_create :welcome_send
-  has_many :convoys, foreign_key: 'convoy_id', class_name: "Convoy"
-  has_many :submissions, foreign_key: 'submission_id', class_name: "Submission"
-  has_many :deliveries, foreign_key: 'submission_id', class_name: "Submission"
+
   has_one :profile
 
+  has_many :convoys, foreign_key: 'boat_owner_id', class_name: "Convoy"
+  has_many :submissions, foreign_key: 'skipper_id', class_name: "Submission"
+  has_many :deliveries, foreign_key: 'skipper_id', class_name: "Delivery"
+
  	def welcome_send
-    UserMailer.welcome_boatowner_email(self).deliver_now
+    UserMailer.welcome_email(self).deliver_now
   end
 
 end
