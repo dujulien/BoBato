@@ -5,9 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   after_create :welcome_send
-  has_many :convoys, foreign_key: 'convoy_id', class_name: "Convoy"
-  has_many :submissions, foreign_key: 'submission_id', class_name: "Submission"
-  has_many :deliveries, foreign_key: 'submission_id', class_name: "Submission"
+  has_many :convoys, foreign_key: 'boat_owner_id', class_name: "Convoy"
+  has_many :submissions, foreign_key: 'skipper_id', class_name: "Submission"
+  has_many :deliveries, foreign_key: 'skipper_id', class_name: "Delivery"
 
  	def welcome_send
     UserMailer.welcome_boatowner_email(self).deliver_now
