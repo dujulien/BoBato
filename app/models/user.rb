@@ -10,7 +10,7 @@ class User < ApplicationRecord
   has_many :deliveries, foreign_key: 'skipper_id', class_name: "Delivery"
 
  	def welcome_send
-    UserMailer.welcome_boatowner_email(self).deliver_now
+    UserMailer.welcome_email(self).deliver_now
   end
 
 end
