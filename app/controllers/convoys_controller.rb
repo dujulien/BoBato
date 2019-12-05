@@ -2,7 +2,7 @@ class ConvoysController < ApplicationController
 
 
 	def index
-	  	@convoys = Convoy.page
+	  @convoys = Convoy.page
 	end
 
 	def show
