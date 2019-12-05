@@ -13,6 +13,8 @@ gem 'stripe'
 gem "aws-sdk-s3", require: false
 gem 'stripe'
 gem 'kaminari'
+gem 'mailjet'
+
 gem 'dotenv'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

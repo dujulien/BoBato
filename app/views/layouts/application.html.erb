@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>FinalProject</title>
+    <title> <%= yield(:title) %> </title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900|Oswald:300,400,700" rel="stylesheet">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
@@ -9,94 +10,28 @@
   </head>
   <body>
 
-    <!--------------------NAVBAR-------------------------------------------------->
-    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
 
-      <div class="container">
-        <div class="row align-items-center">
-          
-          <div class="col-6 col-xl-2">
-            <h1 class="mb-0 site-logo m-0 p-0"><a href="index.html" class="mb-0"> <img src="/assets/logo-bobato-dark.png" alt="logo du site web bobato" height="142" width="142"></h1>
-          </div>
-
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
-
-              <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="#home-section" class="btn btn-primary mr-2 mb-2">Proposer un convoyage</a></li>
-                <li><a href="#about-section" class="nav-link">Comment ça marche</a></li>
-                <li><a href="#properties-section" class="nav-link">Se connecter</a></li>
-                <li><a href="#news-section" class="nav-link">Qui sommes nous</a></li>
-
-
-              </ul>
-            </nav>
-          </div>
-
-
-          <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white float-right"><span class="icon-menu h3"></span></a></div>
-
-        </div>
-      </div>
-      
-    </header>
+  <!---------------------------NAVBAR END--------------------------------------------------->
+  <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+    <%= render 'layouts/navbar' %>
+  </header>
   <!---------------------------NAVBAR END--------------------------------------------------->
 
 
-    <%= yield %>
+  <!---------------------------LOGIN MODAL ------------------------------------------------->
+  <div class="modal fade" id="loginAs" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <%= render 'layouts/login_modal' %>
+  </div>
+  <!---------------------------END LOGIN MODAL --------------------------------------------->
 
-    <!----------------------------FOOTER------------------------------->
-    <footer class="site-footer">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="row">
-              <div class="col-md-5">
-                <h2 class="footer-heading mb-4">À propos de Nous </h2>
-                <p>Les voiles de Bobato ont été lancées par cinq mousaillons en passe de devenir corsaires.  </p>
-              </div>
-              <div class="col-md-3 mx-auto">
-                <h2 class="footer-heading mb-4"></h2>
-                <ul class="list-unstyled">
-                  <li><a href="#"></a></li>
-                  <li><a href="#"></a></li>
-                  <li><a href="#"></a></li>
-                  <li><a href="#"></a></li>
-                </ul>
-              </div>
+  <%= yield %>
 
-              <div class="col-md-1 mx-4">
-                 <a href="/"><img src="/assets/logo-bobato.png" alt="logo du site web bobato" height="242" width="242"></a>
-              </div>
 
-              
-            </div>
-          </div>
-          <div class="col-md-1">
-            <div class="mb-4">
-              <h2 class="footer-heading mb-4"></h2>
-            <form action="#" method="post" class="footer-subscribe">
-              
-            </form>  
-            </div>
-            
+  <!----------------------------FOOTER------------------------------->
+  <%= render 'layouts/footer' %>
+  <!----------------------------FOOTER END------------------------------->
 
-          </div>
-        </div>
-        <div class="row pt-5 mt-5 text-center">
-          <div class="col-md-12">
-            <div class="border-top pt-5">
-            <p class="copyright">
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart text-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" >Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-            </p>
-            </div>
-          </div>
-          
-        </div>
-      </div>
-    </footer>
-<!----------------------------FOOTER END------------------------------->
+  <a href="#top" class="gototop"><span class="icon-angle-double-up"></span></a>
+
   </body>
 </html>

@@ -1,7 +1,7 @@
 class CreateSubmissions < ActiveRecord::Migration[5.2]
   def change
     create_table :submissions do |t|
-    	t.belongs_to :skipper
+    	t.references :skipper, index: true
     	t.belongs_to :convoy
       t.timestamps
     end

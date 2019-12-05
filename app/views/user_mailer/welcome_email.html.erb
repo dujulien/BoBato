@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900|Oswald:300,400,700" rel="stylesheet">
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', async: true, defer: true %>
+
+  </head>
+  
+  <body>
+    
+    <div class="container">
+
+      
+      <br>
+      <h1 style="color: #21A0BF">Bonjour <%= @user.first_name %> <br> bienvenue sur Bobato !</h1>
+      <br>
+
+      <p>
+        Tu t'es inscrit sur <a href="https://bobato.herokuapp.com/">Bobato</a> en utilisant l'e-mail suivant : <%= @user.email %>.
+      </p>
+
+      <p>
+        Pour accéder à ton espace client, connecte-toi sur : <a href="https://bobato.herokuapp.com/">Bobato</a>.
+      </p>
+
+      <p> À très vite !</p><br>
+
+      <div  style="font-size: 12px;" >
+        Vous recevez ce mail car vous venez de vous inscrire sur BoBato.com. Le site qui a de beaux bateaux avec de beaux skippers.
+      </div>
+
+    </div>
+
+  
+  
+  </body>
+
+</html>
+

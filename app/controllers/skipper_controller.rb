@@ -1,2 +1,0 @@
-class SkipperController < ApplicationController
-end

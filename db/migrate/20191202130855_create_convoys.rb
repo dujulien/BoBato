@@ -1,7 +1,7 @@
 class CreateConvoys < ActiveRecord::Migration[5.2]
   def change
     create_table :convoys do |t|
-    	t.belongs_to :boat_owner
+    	t.references :boat_owner, index: true
       t.string :title
     	t.string :boat_type
     	t.string :required_license

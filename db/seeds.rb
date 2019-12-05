@@ -8,37 +8,22 @@
 
 require 'faker'
 
-10.times do 
-	Skipper.create(
+15.times do 
+	User.create(
 								first_name: Faker::Name.first_name, 
 								last_name: Faker::Name.last_name, 
 								birthdate: DateTime.new(rand(1970..2000), rand(1..12), rand(1..28)),
 								city: Faker::Address.state, 
 								description: Faker::ChuckNorris.fact, 
-								experience: Faker::Movies::VForVendetta.quote, 
-								licence: "Tous permis", 
 								email: Faker::Internet.email, 
 								password: 'AZERTY'
 								)
 end
 
 
-5.times do 
-	BoatOwner.create(
-									first_name: Faker::Name.first_name , 
-									last_name: Faker::Name.last_name, 
-									birthdate: DateTime.new(rand(1970..2000), rand(1..12), rand(1..28)),
-									city: Faker::Address.state, 
-									description: Faker::ChuckNorris.fact, 
-									email: Faker::Internet.email, 
-									password: 'AZERTY'
-									)
-end
-
-
 5.times do |i|
 	Convoy.create(
-								boat_owner: BoatOwner.find(i+1), 
+								boat_owner: User.find(i+1), 
 								boat_type: ["Yacht", "Catamaran", "Sail Boat"].sample, 
 								required_license: "Tous permis",
 								departure_port: ["Marseille", "Mykonos", "Barcelone", "Athènes", "Tanger", "Genes"].sample,
@@ -52,7 +37,7 @@ end
 
 10.times do |i|
 	Submission.create(
-										skipper: Skipper.find(i+1), 
+										skipper: User.find(i+6), 
 										convoy: Convoy.find((i/2)+1)
 										)
 end
@@ -60,7 +45,7 @@ end
 
 5.times do |i|
 	Delivery.create(
-									skipper: Skipper.find(rand((2*i)+1..2*(i+1))), 
+									skipper: User.find(rand((2*(i+3)..2*(i+3)+1))), 
 									convoy: Convoy.find(i+1),
 									stripe_id: (i+1)*rand(1..23134)
 									)
