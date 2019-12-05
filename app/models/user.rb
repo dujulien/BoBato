@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   after_create :create_profile       
 
-  after_create :welcome_send
+  # after_create :welcome_send
 
   has_one :profile
 
