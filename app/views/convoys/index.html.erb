@@ -49,18 +49,25 @@
       <a href="#listings-section" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>    
     <div class="site-section" id="listings-section">
       <div class="container">
+
+<!------------------------------- BANNER ------------------------> 
+<%= render 'banner' %>
+<!------------------------------- END BANNER ------------------------>
+
+
         <div class="row">
+          <!------------------------------- FILTER BAR ------------------------>
           <div class="col-md-3 order-1 order-md-2">
           <div class="mb-5">
-            <h3 class="text-black mb-4 h5 font-family-2">Filtrer</h3>
+            <h3 class="text-black mb-4 h5 font-family-2">Filter</h3>
             <form action="#">
               <div class="form-group">
                 <div class="select-wrap">
                   <span class="icon icon-keyboard_arrow_down"></span>
                   <select class="form-control px-3">
-                    <option value="">Par port de départ </option>
-                    <option value="">Par port d'arrivé</option>
-                    <option value="">Par dates de départ </option>
+                    <option value="">By Date</option>
+                    <option value="">Trending</option>
+                    <option value="">Best</option>
                   </select>
                 </div>
               </div>
@@ -68,9 +75,9 @@
                 <div class="select-wrap">
                   <span class="icon icon-keyboard_arrow_down"></span>
                   <select class="form-control px-3">
-                    <option value=""> Licence A </option>
-                    <option value="">Licence B </option>
-                    <option value="">Licence C </option>
+                    <option value="">1 Bath, 1 Bedroom</option>
+                    <option value="">2 Bath, 2 Bedroom</option>
+                    <option value="">3+ Bath, 3+ Bedroom</option>
                   </select>
                 </div>
               </div>
@@ -78,9 +85,9 @@
                 <div class="select-wrap">
                   <span class="icon icon-keyboard_arrow_down"></span>
                   <select class="form-control px-3">
-                    <option value="">Bateau A</option>
-                    <option value="">Bateau B</option>
-                    <option value="">Bateau C</option>
+                    <option value="">For Sale</option>
+                    <option value="">For Rent</option>
+                    <option value="">For Lease</option>
                   </select>
                 </div>
               </div>
@@ -88,7 +95,7 @@
           </div>
 
             <div class="mb-5">
-              <h3 class="text-black mb-4 h5 font-family-2">Filtrer par prix</h3>
+              <h3 class="text-black mb-4 h5 font-family-2">Filter by Price</h3>
               <div id="slider-range" class="border-primary"></div>
               <input type="text" name="text" id="amount" class="form-control border-0 pl-0 bg-white" disabled="" />
             </div>
@@ -121,6 +128,9 @@
 
 
 
+        <!------------------------------- PAGINATION ------------------------>
+
+        <div class="row mt-4">
           <div class="col-md-9">
             <div class="custom-pagination text-center">
               <span>1</span>
@@ -151,3 +161,6 @@
 
   </body>
 </html>
+
+        <!------------------------------- END PAGINATION ------------------------>
+
