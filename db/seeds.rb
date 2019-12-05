@@ -10,11 +10,6 @@ require 'faker'
 
 15.times do 
 	User.create(
-								first_name: Faker::Name.first_name, 
-								last_name: Faker::Name.last_name, 
-								birthdate: DateTime.new(rand(1970..2000), rand(1..12), rand(1..28)),
-								city: Faker::Address.state, 
-								description: Faker::ChuckNorris.fact, 
 								email: Faker::Internet.email, 
 								password: 'AZERTY'
 								)
