@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
 
   resources :convoys do
-  	resources :pictures 
+  	resources :pictures
   end
 
   resources :deliveries
