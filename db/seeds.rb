@@ -8,18 +8,19 @@
 
 require 'faker'
 
-15.times do 
+15.times do |i|
 	User.create(
-								email: Faker::Internet.email, 
-								password: 'AZERTY'
-								)
+							email: Faker::Internet.email, 
+							password: 'AZERTY'
+							)
+	puts "User #{i+1} seeded"
 end
 
 
 5.times do |i|
 	Convoy.create(
 								boat_owner: User.find(i+1), 
-								boat_type: ["Yacht", "Catamaran", "Sail Boat"].sample, 
+								boat_type: ["Yacht", "Catamaran", "Voilier"].sample, 
 								required_license: "Tous permis",
 								departure_port: ["Marseille", "Mykonos", "Barcelone", "Athènes", "Tanger", "Genes"].sample,
 								arrival_port: ["Toulon", "Ajaccio", "Bonifacio", "Split", "Palerme", "Dubrovnik"].sample, 
@@ -27,6 +28,7 @@ end
 								date_of_arrival: DateTime.new(2020, rand(5..9), rand(1..28)), 
 								convoy_price: rand(2000..10000)
 								)
+	puts "Convoy #{i+1} seeded"
 end
 
 
@@ -35,6 +37,7 @@ end
 										skipper: User.find(i+6), 
 										convoy: Convoy.find((i/2)+1)
 										)
+	puts "Submission #{i+1} seeded"
 end
 
 
@@ -44,6 +47,7 @@ end
 									convoy: Convoy.find(i+1),
 									stripe_id: (i+1)*rand(1..23134)
 									)
+	puts "Delivery #{i+1} seeded"
 end
 
 

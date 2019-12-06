@@ -2,4 +2,9 @@
 
 <%= render 'form' %>
 
+<%= form_tag convoy_pictures_path(@convoy), multipart: true do %>
+  <%= file_field_tag :picture %>
+  <%= submit_tag "mettre à jour" %>
+<% end %>
+
 <%= link_to 'Back', convoys_path %>
