@@ -9,7 +9,7 @@ class ConvoysController < ApplicationController
 
   def show
     @convoy = Convoy.find(params[:id])
-    #@participation = Participation.new
+    @id = params[:id]
   end
 
   def new
@@ -38,7 +38,7 @@ class ConvoysController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def destroy
     @convoy = Convoy.find(params[:id])
     @convoy.destroy
@@ -52,7 +52,7 @@ class ConvoysController < ApplicationController
   # end
 
   def convoy_params
-    params.require(:convoy).permit(:title, :description, :boat_owner_id, :title, :boat_type, :required_license, :description, :departure_port, :arrival_port, :date_of_departure, :date_of_arrival, :convoy_price)
+    params.require(:convoy).permit(:title, :description, :boat_owner_id, :title, :boat_type, :required_license, :description, :departure_port, :arrival_port, :date_of_departure, :date_of_arrival, :convoy_price, pictures: [])
   end
 
 end

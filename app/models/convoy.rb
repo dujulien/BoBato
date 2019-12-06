@@ -1,7 +1,6 @@
 class Convoy < ApplicationRecord
-
-
-  has_one_attached :picture
+	
+  has_many_attached :pictures
 
 	belongs_to :boat_owner, class_name: 'User'
 	has_one :delivery
@@ -14,7 +13,6 @@ class Convoy < ApplicationRecord
   validates :convoy_price, numericality: { greater_than: 0 , message: "Le prix doit être supérieur à 0"}
   validate :departure_must_be_in_future
   validate :departure_must_be_before_arrival
-
 
 	private
 

@@ -20,6 +20,11 @@ end
 5.times do |i|
 	Convoy.create(
 								boat_owner: User.find(i+1), 
+<<<<<<< HEAD
+=======
+								title: Faker::Movies::HitchhikersGuideToTheGalaxy.starship, 
+								description: Faker::Lorem.paragraph,
+>>>>>>> 6cbbab63aae66ea520a311ad68887991458b2a1b
 								boat_type: ["Yacht", "Catamaran", "Voilier"].sample, 
 								required_license: "Tous permis",
 								departure_port: ["Marseille", "Mykonos", "Barcelone", "Athènes", "Tanger", "Genes"].sample,

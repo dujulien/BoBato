@@ -1,10 +1,6 @@
 class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
-  def duration
-    self.date_of_arrival - self.date_of_departure + 1
-  end
-
 
   def check_skipper_availability
 
