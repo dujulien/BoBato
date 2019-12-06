@@ -1,8 +1,5 @@
 class Convoy < ApplicationRecord
-
-
-  has_one_attached :picture
-
+	has_one_attached :picture
 	belongs_to :boat_owner, class_name: 'User'
 	has_one :delivery
 	has_many :submissions
@@ -15,12 +12,23 @@ class Convoy < ApplicationRecord
   validate :departure_must_be_in_future
   validate :departure_must_be_before_arrival
 
+  after_create :convoy_conf_email_send,
 
-	private
+
+  def duration
+    ((self.date_of_arrival - self.date_of_departure + 1)/(60*60*24)).to_i
+  end
+
+
+  def convoy_conf_email_send
+    UserMailer.convoy_conf_email(self).deliver_now
+  end
+
 
 	def departure_must_be_in_future
     errors.add(:date_of_departure, "La date de départ doit être supérieure à la date du jour") if date_of_departure < Time.now
   end
+
 
 	def departure_must_be_before_arrival
 	  return unless date_of_departure and date_of_arrival

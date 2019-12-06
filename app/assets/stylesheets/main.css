@@ -5,6 +5,14 @@
 }
 
 
+.text-label {
+	font-family:'Oswald', sans-serif; 
+	text-transform: uppercase; 
+	font-weight: 300 !important;
+	margin-bottom: 0rem;
+}
+
+
 .form-sm-text {
 	font-size: 0.9rem; 
 	margin-bottom: 0.5rem;
