@@ -20,7 +20,7 @@ end
 5.times do |i|
 	Convoy.create(
 								boat_owner: User.find(i+1), 
-								boat_type: ["Yacht", "Catamaran", "Sail Boat"].sample, 
+								boat_type: ["Yacht", "Catamaran", "Voilier"].sample, 
 								required_license: "Tous permis",
 								departure_port: ["Marseille", "Mykonos", "Barcelone", "Athènes", "Tanger", "Genes"].sample,
 								arrival_port: ["Toulon", "Ajaccio", "Bonifacio", "Split", "Palerme", "Dubrovnik"].sample, 
