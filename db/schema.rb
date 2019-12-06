@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2019_12_05_151516) do
 
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -36,7 +35,6 @@ ActiveRecord::Schema.define(version: 2019_12_05_151516) do
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
-
 
   create_table "convoys", force: :cascade do |t|
     t.bigint "boat_owner_id"
