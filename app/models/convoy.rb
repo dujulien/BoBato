@@ -14,9 +14,11 @@ class Convoy < ApplicationRecord
 
   after_create :convoy_conf_email_send,
 
+
   def duration
     ((self.date_of_arrival - self.date_of_departure + 1)/(60*60*24)).to_i
   end
+
 
   def convoy_conf_email_send
     UserMailer.convoy_conf_email(self).deliver_now
