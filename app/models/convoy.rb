@@ -16,7 +16,9 @@ class Convoy < ApplicationRecord
   validate :departure_must_be_before_arrival
 
 
-	private
+  def duration
+    ((self.date_of_arrival - self.date_of_departure + 1)/(60*60*24)).to_i
+  end
 
 	def departure_must_be_in_future
     errors.add(:date_of_departure, "La date de départ doit être supérieure à la date du jour") if date_of_departure < Time.now

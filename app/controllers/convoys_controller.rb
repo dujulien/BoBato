@@ -9,7 +9,7 @@ class ConvoysController < ApplicationController
 
   def show
     @convoy = Convoy.find(params[:id])
-    #@participation = Participation.new
+    @id = params[:id]
   end
 
   def new
