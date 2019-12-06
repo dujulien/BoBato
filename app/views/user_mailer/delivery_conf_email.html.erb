@@ -15,16 +15,29 @@
 
     <div class="container">
 
-      <div style="width: 20%" class="text-center">
+      <div class="w-25 p-3 float-center">
         <%= image_tag attachments['logo-bobato-dark.png'].url %>
       </div>
 
-      <h1 class="form-label text-black">Bonjour bienvenue sur BoBato !</h1>
+      <h1 class="form-label text-black">Bravo votre convoyage est confirmé !</h1>
       <br>
+      <p> Résumé du convoyage : </p>
 
-      <p>
-        Tu t'es inscrit sur BoBato en utilisant l'e-mail suivant : <%= @user.email %>.
-      </p>
+      <table>
+        <tr> <th> Résumé du convoyage : </th> </tr>
+        <tr> <td><%= @delivery.convoy.title %></td> </tr>
+        <tr> <td><%= @delivery.convoy.description %> </td> </tr>
+        <tr> <td><%= @delivery.convoy.boat_type %> </td> </tr>
+        <tr> <td><%= @delivery.convoy.date_of_departure %> </td> </tr>
+        <tr> <td><%= @delivery.convoy.date_of_arrival %> </td> </tr>
+        <tr> <td><%= @delivery.convoy.departure_port %> </td> </tr>
+        <tr> <td><%= @delivery.convoy.arrival_port %> </td> </tr>
+      </table>
+
+      Voici les coordonnées qui vont serviront pour organiser les détails du convoyage:
+
+      Propriétaire du convoi : <%= @delivery.convoy.boat_owner.email %>
+      Skipper du convoi : <%= @delivery.skipper.email%>
 
       <p>
         Pour accéder à ton espace client, connecte-toi sur : <a href="https://bobato.herokuapp.com/">Bobato</a>.
