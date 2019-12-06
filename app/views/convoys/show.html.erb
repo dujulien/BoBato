@@ -46,13 +46,15 @@
 
 <h1>Page Profil</h1>
 
-<p>Bienvenue sur la page d'ajout d'un avatar pour le User portant l'id : <%=@convoy.id%></p>
-<h3>Avatar actuel</h3>
+<p>Bienvenue sur la page d'ajout d'un convoy pour le User portant l'id : <%=@convoy.id%></p>
+<h3>convoy actuel</h3>
 <%if @convoy.picture.attached?%>
-  <%= image_tag @convoy.picture, alt: 'avatar' %>
+  <%= image_tag @convoy.picture, alt: 'convoy' %>
 <%else%>
-  <p>=== Il n'y a pas encore d'avatar lié à cet utilisateur ===</p>
+  <p>=== Il n'y a pas encore d'convoy lié à cet utilisateur ===</p>
 <%end%>
+
+<%= link_to 'upload image', edit_convoy_path(@convoy) %>
 
 
 <%= link_to 'Edit', edit_convoy_path(@convoy) %>
