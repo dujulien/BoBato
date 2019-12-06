@@ -7,7 +7,7 @@ class User < ApplicationRecord
 
   # after_create :welcome_send
 
-  has_one :profile
+  has_one :profile, dependent: :destroy
 
   has_many :convoys, foreign_key: 'boat_owner_id', class_name: "Convoy"
   has_many :submissions, foreign_key: 'skipper_id', class_name: "Submission"
