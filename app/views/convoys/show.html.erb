@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <p>
   <strong>title:</strong>
   <%= @convoy.title %>
@@ -66,3 +67,83 @@
 
 <%= link_to 'Edit', edit_convoy_path(@convoy) %>
 <%= link_to 'Back', convoys_path %>
+=======
+<!----------------- BANNER ----------------->
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(<%= asset_path('hero_1.jpg') %>);" data-aos="fade">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-10 mx-auto mt-lg-5 text-center">
+        <h1><%= @convoy.title %></h1>
+        <p class="mb-5"><%= @convoy.description %>.</p>
+      </div>
+    </div>
+  </div>
+  <a href="#convoy-details" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+</div>
+<!----------------- BANNER ----------------->
+
+
+
+<!----------------- SHOW CONVOY ----------------->
+<div class="site-section" id="convoy-details">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="owl-carousel slide-one-item with-dots">
+          <div><img src=<%= asset_path("convoy_#{@id}.png") %> alt="Image" class="img-fluid"></div>
+        </div>
+      </div>
+      <div class="col-lg-5 pl-lg-5 ml-auto">
+        <div class="mb-5">
+          <h3 class="text-black mb-4"> Détails du convoyage</h3>
+
+          <p class="text-label">Trajet</p>
+          	<p>Du port de <%= @convoy.departure_port %> au port de <%= @convoy.arrival_port %>
+          	</p>
+
+          <p class="text-label">Date de départ - date d'arrivée</p>
+          	<p><%= @convoy.date_of_departure.strftime("%d/%m/%Y") %> - <%= @convoy.date_of_arrival.strftime("%d/%m/%Y") %> <br/>
+          		<strong>Durée du convoyage :</strong> <%= @convoy.duration %> jours
+          	</p>
+
+          <p class="text-label">Description</p>
+          	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa tempore repudiandae optio aliquam perspiciatis est quae enim quaerat eos hic dolorem accusamus molestias repellat consequatur velit, officiis nihil magnam placeat!
+          	</p>
+
+          <p class="text-label">Type de bâteau</p>
+          	<p><%= @convoy.boat_type %>
+          	</p>
+
+          <p class="text-label">Permis requis</p>
+          	<p><%= @convoy.required_license %>
+          	</p>
+
+          <p class="text-label">Rémunération</p>
+          	<p class="mb-4"><%=  number_with_delimiter(@convoy.convoy_price.round(0), delimiter: " ") %> €
+          	</p>			
+      	  <% if current_user && @convoy.applicants.include?(current_user)  %>
+          		<p><a href="#" class="btn btn-secondary">Candature envoyée</a></p>
+          <% else %>
+          		<p><a href="#" class="btn btn-primary">Candidater</a></p>
+          <% end %>
+        </div>
+
+        <div class="mb-5">
+          
+          <div class="mt-5">
+            <img src=<%= asset_path("person_#{rand(1..3)}.jpg") %> alt="Image" class="w-25 mb-3 rounded-circle">
+            <h4 class="text-black">Kyla Stewart</h4>
+            <p class="text-muted mb-4">Propriétaire du bâteau</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, iure atque sit ratione vitae neque! Laborum voluptate eius, laboriosam explicabo!</p>
+            <% if current_user && @convoy.delivery.skipper == current_user %>
+            	<p><a href="#" class="btn btn-primary btn-sm">Contacter le propriétaire</a></p>
+            <% end %>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<!----------------- SHOW CONVOY ----------------->
+>>>>>>> 6cbbab63aae66ea520a311ad68887991458b2a1b
