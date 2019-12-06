@@ -19,12 +19,20 @@
         <%= image_tag attachments['logo-bobato-dark.png'].url %>
       </div>
 
-      <h1 class="form-label text-black">Bonjour bienvenue sur BoBato !</h1>
+      <h1 class="form-label text-black">Nouvelle souscription pour un convoyage !</h1>
       <br>
+      <p> Résumé du convoyage : </p>
 
-      <p>
-        Tu t'es inscrit sur BoBato en utilisant l'e-mail suivant : <%= @user.email %>.
-      </p>
+      <table>
+        <tr> <th> Résumé du convoyage : </th> </tr>
+        <tr> <td><%= @submission.convoy.title %></td> </tr>
+        <tr> <td><%= @submission.convoy.description %> </td> </tr>
+        <tr> <td><%= @submission.convoy.boat_type %> </td> </tr>
+        <tr> <td><%= @submission.convoy.date_of_departure %> </td> </tr>
+        <tr> <td><%= @submission.convoy.date_of_arrival %> </td> </tr>
+        <tr> <td><%= @submission.convoy.departure_port %> </td> </tr>
+        <tr> <td><%= @submission.convoy.arrival_port %> </td> </tr>
+      </table>
 
       <p>
         Pour accéder à ton espace client, connecte-toi sur : <a href="https://bobato.herokuapp.com/">Bobato</a>.
