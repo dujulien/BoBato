@@ -76,3 +76,13 @@
   </div>
 </div>
 <!----------------- SHOW CONVOY ----------------->
+
+<% if @convoy.pictures.attached? %>
+<p>
+  <% @convoy.pictures.each do |picture| %>
+    <%= image_tag picture %>
+<%end%>
+</p>
+<%else%>
+  <p>=== Il n'y a pas encore de convoy lié à cet utilisateur ===</p>
+<%end%>
