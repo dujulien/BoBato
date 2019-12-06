@@ -8,16 +8,12 @@
 
 require 'faker'
 
-15.times do 
+15.times do |i|
 	User.create(
-								first_name: Faker::Name.first_name, 
-								last_name: Faker::Name.last_name, 
-								birthdate: DateTime.new(rand(1970..2000), rand(1..12), rand(1..28)),
-								city: Faker::Address.state, 
-								description: Faker::ChuckNorris.fact, 
-								email: Faker::Internet.email, 
-								password: 'AZERTY'
-								)
+							email: Faker::Internet.email, 
+							password: 'AZERTY'
+							)
+	puts "User #{i+1} seeded"
 end
 
 
@@ -32,6 +28,7 @@ end
 								date_of_arrival: DateTime.new(2020, rand(5..9), rand(1..28)), 
 								convoy_price: rand(2000..10000)
 								)
+	puts "Convoy #{i+1} seeded"
 end
 
 
@@ -40,6 +37,7 @@ end
 										skipper: User.find(i+6), 
 										convoy: Convoy.find((i/2)+1)
 										)
+	puts "Submission #{i+1} seeded"
 end
 
 
@@ -49,6 +47,7 @@ end
 									convoy: Convoy.find(i+1),
 									stripe_id: (i+1)*rand(1..23134)
 									)
+	puts "Delivery #{i+1} seeded"
 end
 
 

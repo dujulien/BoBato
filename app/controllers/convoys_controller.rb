@@ -1,21 +1,25 @@
 class ConvoysController < ApplicationController
 
-  # before_action :set_user
+	# before_action :set_user
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
     @convoys = Convoy.all
   end
+
   def show
     @convoy = Convoy.find(params[:id])
     #@participation = Participation.new
   end
+
   def new
     @convoy = Convoy.new
   end
+
   def edit
     @convoy = Convoy.find(params[:id])
   end
+
   def create
     @convoy = Convoy.new(convoy_params)
     if @convoy.save
@@ -25,6 +29,7 @@ class ConvoysController < ApplicationController
       render 'new'
     end
   end
+
   def update
     @convoy = Convoy.find(params[:id])
     if @convoy.update(convoy_params)
@@ -33,6 +38,7 @@ class ConvoysController < ApplicationController
       render 'edit'
     end
   end
+  
   def destroy
     @convoy = Convoy.find(params[:id])
     @convoy.destroy

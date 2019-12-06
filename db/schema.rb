@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_04_121316) do
+ActiveRecord::Schema.define(version: 2019_12_05_151516) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,23 +34,6 @@ ActiveRecord::Schema.define(version: 2019_12_04_121316) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
-  end
-
-  create_table "boat_owners", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.datetime "birthdate"
-    t.string "city"
-    t.text "description"
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_boat_owners_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_boat_owners_on_reset_password_token", unique: true
   end
 
   create_table "convoys", force: :cascade do |t|
@@ -79,23 +62,16 @@ ActiveRecord::Schema.define(version: 2019_12_04_121316) do
     t.index ["skipper_id"], name: "index_deliveries_on_skipper_id"
   end
 
-  create_table "skippers", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
     t.datetime "birthdate"
     t.string "city"
     t.text "description"
-    t.text "experience"
-    t.text "licence"
-    t.string "email", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["email"], name: "index_skippers_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_skippers_on_reset_password_token", unique: true
+    t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
   create_table "submissions", force: :cascade do |t|
