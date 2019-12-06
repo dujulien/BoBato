@@ -1,7 +1,16 @@
 class AvatarsController < ApplicationController
   def create
-  	@user = User.find(params[:user_id])
-    @user.avatar.attach(params.permit(:avatar))
-    redirect_to(user_path(@user))
+  	@profile = Profile.find(params[:profile_id])
+    @profile.avatar.attach(params[:avatar])
+    redirect_to(edit_profile_path(@profile))
   end
+
+  private
+
+  def profile_params
+   params.permit(:avatar)
+
+  end
+
+ 
 end
