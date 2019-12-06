@@ -26,8 +26,7 @@
 [class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
   font-family: Flaticon;
         font-size: 57px;
-font-style: normal;
-margin-left: 20px;
+        font-style: normal;
 }
 
 .flaticon-find:before { content: "\f100"; }
