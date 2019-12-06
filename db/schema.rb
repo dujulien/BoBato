@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
 ActiveRecord::Schema.define(version: 2019_12_05_151516) do
 
   # These are extensions that must be enabled in order to support this database
@@ -63,8 +62,6 @@ ActiveRecord::Schema.define(version: 2019_12_05_151516) do
     t.index ["skipper_id"], name: "index_deliveries_on_skipper_id"
   end
 
-<<<<<<< HEAD
-=======
   create_table "profiles", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -77,7 +74,6 @@ ActiveRecord::Schema.define(version: 2019_12_05_151516) do
     t.index ["user_id"], name: "index_profiles_on_user_id"
   end
 
->>>>>>> development
   create_table "submissions", force: :cascade do |t|
     t.bigint "skipper_id"
     t.bigint "convoy_id"
@@ -88,6 +84,11 @@ ActiveRecord::Schema.define(version: 2019_12_05_151516) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.datetime "birthdate"
+    t.string "city"
+    t.text "description"
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
