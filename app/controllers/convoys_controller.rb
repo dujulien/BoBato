@@ -42,7 +42,7 @@ class ConvoysController < ApplicationController
   def destroy
     @convoy = Convoy.find(params[:id])
     @convoy.destroy
-    redirect_to convoys_path
+    redirect_to user_my_convoys_path(current_user.id)
   end
 
   private

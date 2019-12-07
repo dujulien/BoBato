@@ -13,14 +13,13 @@
 <!----------------- BANNER ----------------->
 
 
-
 <!----------------- SHOW CONVOY ----------------->
 <div class="site-section" id="convoy-details">
   <div class="container">
     <div class="row">
       <div class="col-lg-7">
         <div class="owl-carousel slide-one-item with-dots">
-          <div><img src=<%= asset_path("convoy_#{@id}.png") %> alt="Image" class="img-fluid"></div>
+          <div><img src=<%= asset_path("convoy_#{(@id.to_i)%6}.png") %> alt="Image" class="img-fluid"></div>
         </div>
       </div>
       <div class="col-lg-5 pl-lg-5 ml-auto">

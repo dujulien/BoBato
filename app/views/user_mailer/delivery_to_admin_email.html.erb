@@ -33,7 +33,7 @@
         <tr> <td><%= @delivery.convoy.departure_port %> </td> </tr>
         <tr> <td><%= @delivery.convoy.arrival_port %> </td> </tr>
         <tr> <td><%= @delivery.convoy.duration %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.price %> </td> </tr>
+        <tr> <td><%= @delivery.convoy.convoy_price %> </td> </tr>
       </table>
 
       Voici les coordonnées des personnes qui organisent le convoyage:
@@ -42,8 +42,8 @@
         <tr> <th> Propriétaire du convoi : </th> </tr>
         <tr> <td><%= @delivery.convoy.boat_owner_id %></td> </tr>
         <tr> <td><%= @delivery.convoy.boat_owner.email %></td> </tr>
-        <tr> <td><%= @delivery.convoy.boat_owner.first_name %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.boat_owner.last_name %> </td> </tr>
+        <tr> <td><%= @delivery.convoy.boat_owner.profile.first_name %> </td> </tr>
+        <tr> <td><%= @delivery.convoy.boat_owner.profile.last_name %> </td> </tr>
       </table>
 
       <br>
@@ -52,8 +52,8 @@
         <tr> <th> Skipper du convoi : </th> </tr>
         <tr> <td><%= @delivery.skipper_id %></td> </tr>
         <tr> <td><%= @delivery.skipper.email %></td> </tr>
-        <tr> <td><%= @delivery.skipper.first_name %> </td> </tr>
-        <tr> <td><%= @delivery.skipper.last_name %> </td> </tr>
+        <tr> <td><%= @delivery.skipper.profile.first_name %> </td> </tr>
+        <tr> <td><%= @delivery.skipper.profile.last_name %> </td> </tr>
       </table>
 
       <p>

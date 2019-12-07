@@ -1,0 +1,79 @@
+<!----------------- BANNER ----------------->
+<div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(<%= asset_path('hero_1.jpg') %>);" data-aos="fade">
+  <div class="container">
+    <div class="row align-items-center justify-content-center">
+      <div class="col-md-10 mx-auto mt-lg-5 text-center">
+        <h1><%= @my_convoy.title %></h1>
+        <p class="mb-5"><%= @my_convoy.description %>.</p>
+      </div>
+    </div>
+  </div>
+  <a href="#convoy-details" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
+</div>
+<!----------------- BANNER ----------------->
+
+
+<!----------------- SHOW CONVOY ----------------->
+<div class="site-section" id="convoy-details">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="owl-carousel slide-one-item with-dots">
+          <div><img src=<%= asset_path("convoy_#{(@id.to_i) % 6}.png") %> alt="Image" class="img-fluid"></div>
+        </div>
+      </div>
+      
+      <div class="col-lg-8 pl-lg-8">
+
+        <div class="row pl-lg-5">
+          <h3 class="text-black mb-4"> Détails du convoyage</h3>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-5 pl-lg-5">
+            <div class="mb-5">
+              <p class="text-label">Trajet</p>
+              	<p>Du port de <%= @my_convoy.departure_port %> au port de <%= @my_convoy.arrival_port %>
+              	</p>
+
+              <p class="text-label">Date de départ - date d'arrivée</p>
+              	<p><%= @my_convoy.date_of_departure.strftime("%d/%m/%Y") %> - <%= @my_convoy.date_of_arrival.strftime("%d/%m/%Y") %> <br/>
+              		<strong>Durée du convoyage :</strong> <%= @my_convoy.duration %> jours
+              	</p>
+
+              <p class="text-label">Type de bâteau</p>
+                <p><%= @my_convoy.boat_type %>
+                </p>
+
+              <p class="text-label">Permis requis</p>
+                <p><%= @my_convoy.required_license %>
+                </p>
+
+            </div>
+          </div>
+
+          <div class="col-lg-7 pl-lg-7">
+            <div class="mb-5">
+              <p class="text-label">Description</p>
+              	<p>Ipsa tempore repudiandae optio aliquam perspiciatis est quae enim quaerat eos hic dolorem accusamus molestias repellat consequatur velit, officiis nihil magnam placeat!
+              	</p>
+              <p class="text-label">Rémunération</p>
+                <p class="mb-4"><%=  number_with_delimiter(@my_convoy.convoy_price.round(0), delimiter: " ") %> €
+                </p>
+          	  <% if @my_convoy.delivery  %>
+                  <p><%= link_to "Modifier les informations", edit_convoy_path(@my_convoy.id), class:"btn btn-warning", style:"width:250px;" %></p>
+              		<p><%= link_to "Supprimer le convoyage", convoy_path(@my_convoy.id), :method => 'delete', class:"btn btn-danger", style:"width:250px;" %></p>
+              <% else %>
+              		<p><a href="#" class="btn btn-secondary noHover">Convoyage validé</a></p>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</div>
+<!----------------- SHOW CONVOY ----------------->
