@@ -1,6 +1,6 @@
 class ConvoysController < ApplicationController
 
-	# before_action :set_user
+  # before_action :set_user
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
@@ -38,11 +38,11 @@ class ConvoysController < ApplicationController
       render 'edit'
     end
   end
-  
+
   def destroy
     @convoy = Convoy.find(params[:id])
     @convoy.destroy
-    redirect_to convoys_path
+    redirect_to user_my_convoys_path(current_user.id)
   end
 
   private
@@ -52,7 +52,7 @@ class ConvoysController < ApplicationController
   # end
 
   def convoy_params
-    params.require(:convoy).permit(:title, :description, :boat_owner_id, :title, :boat_type, :required_license, :description, :departure_port, :arrival_port, :date_of_departure, :date_of_arrival, :convoy_price)
+    params.require(:convoy).permit(:title, :description, :boat_owner_id, :title, :boat_type, :required_license, :description, :departure_port, :arrival_port, :date_of_departure, :date_of_arrival, :convoy_price, pictures: [])
   end
 
 end
