@@ -1,11 +1,8 @@
-<h1>New Article</h1>
+<%= content_for :title, "Créer un convoyage" %>
 
-  <%= render 'form' %>
 
-  <%= form_with model: @convoy, local: true  do |form| %>
-    <%= form.text_area :content %><br><br>
-    <%= form.file_field :pictures, multiple: true %><br>
-    <%= form.submit %>
-  <% end %>
+<!------------------------------- BANNER ------------------------> 
+<%= render 'banner_new_convoy' %>
+<!------------------------------- END BANNER ------------------------>
 
-<%= link_to 'Back', convoys_path %>
+<%= render 'form' %>
