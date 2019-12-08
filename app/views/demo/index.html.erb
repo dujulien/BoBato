@@ -25,7 +25,8 @@
           <div class="col-md-6 mt-lg-5 text-center">
             <h1 class="text-shadow"> Trouvez facilement votre prochain convoyage </h1>
             <p class="mb-5 text-shadow"> BoBato permet aux skippers professionnels de trouver le convoyage qui leur correspond parmi des milliers d'offres </p> 
-            <a href="#" target="_blank" class="btn btn-primary px-5 py-3 form-label">Voir les offres</a>
+
+            <%= link_to "Voir les offres", convoys_path, class: "btn btn-primary px-5 py-3 form-label", style:"font-size:14pt;" %>
           </div>
         </div>
       </div>
@@ -40,6 +41,7 @@
 
     <div class="site-section" id="properties-section">
       <div class="container">
+
         <div class="row mb-5 align-items-center">
           <div class="col-md-7 text-left">
             <h2 class="section-title mb-3">Les derniers convoyages proposés</h2>
@@ -52,61 +54,23 @@
         </div>
 
         <div class="owl-carousel nonloop-block-13 mb-5">
-<!------------------- ITEM 1----------------------------->
+              <% @convoys.sort_by(&:id).each_with_index do |convoy, i| %> 
 
-            <div class="ftco-media-1">
-                <div class="ftco-media-1-inner">
-                <a href="property-single.html" class="d-inline-block mb-4"> <%= image_tag ("1.png")%></a>
-                  <div class="ftco-media-details">
-                    <h3>Depuis Barcelone</h3>
-                    <p>Yacht</p>
-                    <strong> Offre à 9 500 €</strong>
-                  </div>
-    
-                </div> 
-              </div>
-<!------------------- ITEM 2----------------------------->
-  <div class="ftco-media-1">
-                <div class="ftco-media-1-inner">
-                <a href="property-single.html" class="d-inline-block mb-4"> <%= image_tag ("2.png")%></a>
-                  <div class="ftco-media-details">
-                    <h3> Depuis Marseille</h3>
-                    <p>Catamaran</p>
-                    <strong>Offre à 5 600 €</strong>
-                  </div>
-    
-                </div> 
-              </div>
+<!------------------- ITEM LIST----------------------------->
 
-<!------------------- ITEM 3----------------------------->
+        <div class="ftco-media-1">
+          <div class="ftco-media-1-inner">
+            <a href=" <%= convoys_path(convoy.id)%>" class="d-inline-block mb-4"> <%= image_tag ("#{(i+1)}.png") %></a>
+            <div class="ftco-media-details">
+              <h3><%= convoy.boat_type %></h3>
+              <p><%= convoy.departure_port %></p>
+              <strong> <%= convoy.convoy_price %> €</strong>
+            </div>
+          </div> 
+        </div>
+<!------------------- ITEM LIST END----------------------------->
 
-
-      <div class="ftco-media-1">
-                <div class="ftco-media-1-inner">
-                <a href="property-single.html" class="d-inline-block mb-4"> <%= image_tag ("3.png")%></a>
-                  <div class="ftco-media-details">
-                    <h3>Depuis Mykonos</h3>
-                    <p>Voilier</p>
-                    <strong> Offre à 3 200 €</strong>
-                  </div>
-    
-                </div> 
-              </div>
-
-<!------------------- ITEM 4----------------------------->
-
-      <div class="ftco-media-1">
-                <div class="ftco-media-1-inner">
-                <a href="property-single.html" class="d-inline-block mb-4"> <%= image_tag ("6.png")%></a>
-                  <div class="ftco-media-details">
-                    <h3>Depuis Tanger</h3>
-                    <p>Yacht</p>
-                    <strong> Offre à 8 700 €</strong>
-                  </div>
-    
-                </div> 
-              </div>
-
+    <% end %>
         </div>
         
       </div>

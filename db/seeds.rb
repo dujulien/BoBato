@@ -14,6 +14,15 @@ require 'faker'
 							password: 'AZERTY'
 							)
 	puts "User #{i+1} seeded"
+
+	Profile.find(i+1).update(
+													first_name: Faker::Name.first_name,
+													last_name: Faker::Name.last_name,
+													birthdate: DateTime.new(rand(1974..2000), rand(1..12), rand(1..28)),
+													city: ["Toulouse", "Lorient", "Nice", "Paris", "Bordeaux", "Lyon"].sample,
+													description: Faker::Lorem.paragraph,
+													)
+	puts "Profile #{i+1} seeded"
 end
 
 
