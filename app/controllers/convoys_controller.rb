@@ -4,7 +4,7 @@ class ConvoysController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @convoys = Convoy.all
+    @convoys = Convoy.where("date_of_departure >= ?", Time.current)
   end
 
   def show
@@ -13,7 +13,9 @@ class ConvoysController < ApplicationController
   end
 
   def new
+    @user = current_user
     @convoy = Convoy.new
+    @convoy.boat_owner_id=@user.id
   end
 
   def edit
@@ -21,11 +23,14 @@ class ConvoysController < ApplicationController
   end
 
   def create
+    @user = current_user
     @convoy = Convoy.new(convoy_params)
+    @convoy.boat_owner_id=@user.id
+
     if @convoy.save
-        redirect_to @convoy, notice: 'Proposition de convoi créé'          
+       redirect_to @convoy, notice: 'Proposition de convoi créé'
     else
-      flash.now[:danger] = 'Erreur dans la création du convoi'
+      flash[:errors] = @convoy.errors.full_messages
       render 'new'
     end
   end
@@ -52,7 +57,7 @@ class ConvoysController < ApplicationController
   # end
 
   def convoy_params
-    params.permit(:title,:boat_type,:boat_owner_id,:required_license,:description,:departure_port,:arrival_port,:date_of_departure, :date_of_arrival,:convoy_price, pictures:[])
+    params.permit(:title,:boat_type,:required_license,:description,:departure_port,:arrival_port,:date_of_departure, :date_of_arrival,:convoy_price, pictures:[])
   end
 
 end
