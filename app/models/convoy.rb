@@ -22,21 +22,22 @@ class Convoy < ApplicationRecord
   	(self.date_of_arrival - self.date_of_departure)/(60*60*24).round(0)
   end
 
+
+  def outdated_convoy
+    return true if self.date_of_departure < Time.now
+  end
+
+
+  def good_convoy
+    return true if self.date_of_departure > Time.now
+  end
+
+
   def convoy_conf_email_send
     UserMailer.convoy_conf_email(self).deliver_now
   end
 
-  def update_submissions_status_after_checkout(skipper)
-  	self.submissions.each do |submission|
-	  	if submission.skipper == skipper
-	  		submission.update(status: true)
-	  	else
-	  		submission.update(status: false)
-	  	end
-	  end
-  end
 
-	private
 
   def update_submissions_status_after_checkout(skipper)
   	self.submissions.each do |submission|
