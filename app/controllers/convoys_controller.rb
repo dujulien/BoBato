@@ -28,7 +28,8 @@ class ConvoysController < ApplicationController
     @convoy.boat_owner_id=@user.id
 
     if @convoy.save
-        redirect_to @convoy, notice: 'Proposition de convoi créé'       
+      flash[:success] = "Votre proposition de convoi est enregistrée avec succés"
+      redirect_to @convoy   
     else
       flash[:errors] = @convoy.errors.full_messages
       render 'new'
@@ -38,6 +39,7 @@ class ConvoysController < ApplicationController
   def update
     @convoy = Convoy.find(params[:id])
     if @convoy.update(convoy_params)
+      flash[:success] = "La mise à jour de votre convoi est bien enregistrée"
       redirect_to @convoy
     else
       render 'edit'
@@ -47,6 +49,7 @@ class ConvoysController < ApplicationController
   def destroy
     @convoy = Convoy.find(params[:id])
     @convoy.destroy
+    flash[:success] = "Votre convoi a été supprimé"
     redirect_to user_my_convoys_path(current_user.id)
   end
 

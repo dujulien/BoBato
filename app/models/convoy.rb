@@ -12,6 +12,7 @@ class Convoy < ApplicationRecord
   validates :date_of_arrival, presence: { message: "Il n'y a pas de date d'arrivée"}
   validates :convoy_price, presence: { message: "Il n'y a pas de prix"}
   validates :convoy_price, numericality: { greater_than: 0 , message: "Le prix doit être supérieur à 0"}
+  validates :boat_type, presence: { message: "Il faut spécifier le type de votre bateau"}
   validate :departure_must_be_in_future
   validate :departure_must_be_before_arrival
   after_create :convoy_conf_email_send,
