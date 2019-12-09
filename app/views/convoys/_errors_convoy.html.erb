@@ -1,12 +1,15 @@
-<% if @convoy.errors.any? %>
-  <div class = "alert alert-warning">
-    <div>
-      La création du convoi a rencontré <%= pluralize(@convoy.errors.count, "erreur") %> :
+  <% if flash[:errors] %>
+    <div class = "alert alert-warning">
+      La création du convoi a rencontré <%= pluralize(flash[:errors].length, "erreur") %> :
+      <ul>
+        <% flash[:errors].each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+      </ul>
     </div>
-    <ul>
-      <% @convoy.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+  <% elsif flash[:success] %>
+    <div class = "alert alert-success"><%= flash[:success] %></div>
+  <% end %>
+
+
+

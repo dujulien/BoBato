@@ -5,16 +5,12 @@ class SubmissionsController < ApplicationController
 	end
 
   def create
-  	puts "$"*40
-  	puts params.inspect
-  	puts "$"*40
-
  		@submission = Submission.new(submission_params)
  		@submission.skipper = current_user
 	  if @submission.save
 	    redirect_to request.referrer, notice: 'Candidature envoyée'
 	  else
-	    flash[:danger] = 'Erreur dans la création de la candidature'
+	    flash[:errors] = 'Erreur dans la création de la candidature'
 	    redirect_to request.referrer
 	  end
 	end
