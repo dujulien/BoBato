@@ -68,6 +68,7 @@
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, iure atque sit ratione vitae neque! Laborum voluptate eius, laboriosam explicabo!</p>
             <% if current_user && @convoy.delivery %>
               <% if @convoy.delivery.skipper == current_user %>
+
                 <p><a href="#" class="btn btn-primary btn-sm">Contacter le propriétaire</a></p>
               <% end %>
             <% end %>
