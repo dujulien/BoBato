@@ -1,0 +1,46 @@
+<%= content_for :title, "Mes propositions de convoyage" %>
+
+<!------------------------ BANNER ----------------------------------------------------->
+<%= render 'banner' %>
+<!------------------------ END BANNER ----------------------------------------------------->
+
+
+<!------------------------ LOGIN FORM ----------------------------------------------------->
+<section class="site-section bg-light bg-image", id="login">
+  	<div class="row d-flex justify-content-center">  
+
+		<% @my_convoys.each_with_index do |convoy,i| %>
+			<div class="card mb-6" style="max-width: 800px; margin-bottom: 2rem">
+			  	<div class="row no-gutters">
+			   		<div class="col-md-2">
+			   			<%= image_tag("convoy_#{1}.png", class:'card-img') %>
+			    	</div>
+				    <div class="col-md-10">
+					    <div class="card-body", style="padding-bottom: 0;">
+					    	<div class="row">
+						    	<div class="col-6">
+						    		<a href="<%= user_my_convoy_path(current_user, convoy) %>">
+								    	<h5 class="card-title"><%= convoy.title %></h5>
+								    </a>
+								    <p class="card-title"><%= convoy.departure_port %> - <%= convoy.arrival_port %></p>
+								    <p class="card-title">Date de départ : <%= convoy.date_of_departure.strftime("%d/%m/%Y") %></p>
+								    <p class="card-text"> <strong>Nombre de candidatures : <%= convoy.submissions.size %></strong></p>
+								    <p class="card-text"><small class="text-muted">Last update <%= time_ago_in_words(convoy.updated_at) %></small></p>
+							    </div>
+							    <div class="col-6 text-right">
+							    	<% if convoy.delivery %>
+										<button class="btn btn-secondary btn-sm noHover text-sm">Verrouillé</button>
+									<% else %>
+										<button class="btn btn-primary btn-sm noHover text-sm">En cours</button>
+									<% end %>
+							    </div>
+							</div>
+					    </div>
+				    </div>
+			 	</div>
+			</div>
+		<% end %>
+
+  </div>
+</section>
+<!------------------------ END LOGIN FORM ----------------------------------------------------->

@@ -14,6 +14,10 @@ class Convoy < ApplicationRecord
   validate :departure_must_be_in_future
   validate :departure_must_be_before_arrival
 
+  def duration
+  	(self.date_of_arrival - self.date_of_departure)/(60*60*24).round(0)
+  end
+
 	private
 
 	def departure_must_be_in_future
