@@ -1,4 +1,4 @@
-<!----------------- BANNER ----------------->
+g<!----------------- BANNER ----------------->
 <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(<%= asset_path('hero_1.jpg') %>);" data-aos="fade">
   <div class="container">
     <div class="row align-items-center justify-content-center">
@@ -51,7 +51,7 @@
           	<p class="mb-4"><%=  number_with_delimiter(@convoy.convoy_price.round(0), delimiter: " ") %> €
           	</p>
       	  <% if current_user && @convoy.applicants.include?(current_user)  %>
-          		<p><a href="#" class="btn btn-secondary">Candature envoyée</a></p>
+          		<p><a href="#" class="btn btn-secondary">Candidature envoyée</a></p>
           <% else %>
           		<p>
                 <%= link_to "Candidater", {:controller => "submissions", :action => "create", :convoy_id => @convoy.id, :skipper_id => current_user.id}, method: :post, class: "btn btn-primary" %>
