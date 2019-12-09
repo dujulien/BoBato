@@ -4,7 +4,7 @@ class ConvoysController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @convoys = Convoy.all
+    @convoys = Convoy.where("date_of_departure >= ?", Time.current)
   end
 
   def show
@@ -31,7 +31,7 @@ class ConvoysController < ApplicationController
     @convoy.boat_owner_id=@user.id
 
     if @convoy.save
-        redirect_to @convoy, notice: 'Proposition de convoi créé'          
+        redirect_to @convoy, notice: 'Proposition de convoi créé'
     else
       flash.now[:danger] = 'Erreur dans la création du convoi'
       render 'new'

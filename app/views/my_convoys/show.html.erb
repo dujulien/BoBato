@@ -22,7 +22,7 @@
           <div><img src=<%= asset_path("convoy_#{((@id.to_i-1)%6)+1}.png") %> alt="Image" class="img-fluid"></div>
         </div>
       </div>
-      
+
       <div class="col-lg-8 pl-lg-8">
 
         <div class="row">
@@ -82,7 +82,7 @@
 
 
 <!------------------------ CONVOY SUBMISSIONS ----------------------------------------------------->
-    <div class="container">  
+    <div class="container">
         <div class="row">
           <div class="col-12">
             <div class="my-3 p-3 bg-grey rounded box-shadow">
@@ -94,6 +94,7 @@
                   <div class="col-lg-7 pl-lg-7">
                     <p class="media-body pb-3 mb-0 lh-125 offset-md-1", style="min-height:155px;">
                       <strong class="d-block text-gray-dark form-label"><%= submission.skipper.profile.first_name + " " + submission.skipper.profile.last_name %></strong>
+                      <%= link_to "Voir le profil du Skipper", profile_path(submission.skipper.id)%><br/>
                       <%= submission.cover_text %>
                       <br/>
                       <button class="btn btn-outline-secondary btn-sm noHover text-sm" style="margin-top:1rem;"><%= submission.skipper.profile.city %></button>
@@ -108,7 +109,7 @@
                                     data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                                     data-description="The purchase of your life"
                                     data-amount="<%= @my_convoy.convoy_price * 100 %>"
-                                    data-locale="auto">        
+                                    data-locale="auto">
                             </script>
                             <script>
                                 // Hide default stripe button, be careful there if you
