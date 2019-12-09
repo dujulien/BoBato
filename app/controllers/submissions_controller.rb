@@ -16,9 +16,10 @@ class SubmissionsController < ApplicationController
 		if @submission.save
 		redirect_to request.referrer, notice: 'Candidature envoyée'
 		else
-		flash[:danger] = 'Erreur dans la création de la candidature'
+		flash[:errors] = 'Erreur dans la création de la candidature'
 		redirect_to request.referrer
 		end
+
 	end
 
 	private

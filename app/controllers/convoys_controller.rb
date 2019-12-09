@@ -23,17 +23,14 @@ class ConvoysController < ApplicationController
   end
 
   def create
-    puts "$"*60
-    puts params.inspect
-    puts "$"*60
     @user = current_user
     @convoy = Convoy.new(convoy_params)
     @convoy.boat_owner_id=@user.id
 
     if @convoy.save
-        redirect_to @convoy, notice: 'Proposition de convoi créé'
+       redirect_to @convoy, notice: 'Proposition de convoi créé'
     else
-      flash.now[:danger] = 'Erreur dans la création du convoi'
+      flash[:errors] = @convoy.errors.full_messages
       render 'new'
     end
   end
