@@ -1,23 +1,4 @@
 
-<!----------------------------------- ERRORS MESSAGES --------------------------------------->
-<% if @convoy.invalid? %>
-  <div class = "alert alert-warning">
-    <div>
-      La création du convoi a rencontré <%= pluralize(@convoy.errors.count, "erreur") %> :
-    </div>
-    <ul>
-      <% @convoy.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% else %>
-  <div><%= flash[:success] %></div>
-<% end %>
-<!------------------------------------------------------------------------------------------->
-
-
-
 <div class="container" id="new_convoy">
   <div class="row"> 
     <div class="col-sm-9 col-md-7 col-lg-7 mx-auto">      
