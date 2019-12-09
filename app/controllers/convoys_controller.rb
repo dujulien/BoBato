@@ -1,6 +1,6 @@
 class ConvoysController < ApplicationController
 
-	# before_action :set_user
+  # before_action :set_user
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
@@ -23,7 +23,7 @@ class ConvoysController < ApplicationController
   def create
     @convoy = Convoy.new(convoy_params)
     if @convoy.save
-        redirect_to @convoy, notice: 'Proposition de convoi créé'
+        redirect_to @convoy, notice: 'Proposition de convoi créé'          
     else
       flash.now[:danger] = 'Erreur dans la création du convoi'
       render 'new'
@@ -52,7 +52,7 @@ class ConvoysController < ApplicationController
   # end
 
   def convoy_params
-    params.require(:convoy).permit(:title, :description, :boat_owner_id, :title, :boat_type, :required_license, :description, :departure_port, :arrival_port, :date_of_departure, :date_of_arrival, :convoy_price, pictures: [])
+    params.permit(:title,:boat_type,:boat_owner_id,:required_license,:description,:departure_port,:arrival_port,:date_of_departure, :date_of_arrival,:convoy_price, pictures:[])
   end
 
 end
