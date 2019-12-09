@@ -24,7 +24,18 @@ class Convoy < ApplicationRecord
   def convoy_conf_email_send
     UserMailer.convoy_conf_email(self).deliver_now
   end
+  
+  def update_submissions_status_after_checkout(skipper)
+  	self.submissions.each do |submission|
+	  	if submission.skipper == skipper
+	  		submission.update(status: true)
+	  	else
+	  		submission.update(status: false)
+	  	end
+	  end
+  end
 
+	private
 
 	def departure_must_be_in_future
     if date_of_departure.nil?
