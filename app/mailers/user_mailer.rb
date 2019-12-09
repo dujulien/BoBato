@@ -36,5 +36,11 @@ class UserMailer < ApplicationMailer
     attachments.inline['logo-bobato-dark.png'] = File.read(Rails.application.assets['logo-bobato-dark.png'].pathname)
     mail(to: "bobato.thp@gmail.com", subject: "Nouvelle commande de #{@delivery.convoy.boat_owner.profile.first_name}")     
   end
+
+  def submission_fail_email(submission)
+    @submission = submission
+    attachments.inline['logo-bobato-dark.png'] = File.read(Rails.application.assets['logo-bobato-dark.png'].pathname)
+    mail(to: @submission.skipper.email, subject: "Votre candidature au convoi #{@submission.convoy.title}")     
+  end
  
 end

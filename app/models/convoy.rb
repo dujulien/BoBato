@@ -25,6 +25,20 @@ class Convoy < ApplicationRecord
   end
 
 
+  def update_submissions_status_after_checkout(skipper)
+  	self.submissions.each do |submission|
+	  	if submission.skipper == skipper
+	  		submission.update(status: true)
+	  	else
+	  		submission.update(status: false)
+        UserMailer.submission_fail_email(submission).deliver_now
+	  	end
+	  end
+  end
+
+	private
+
+
 	def departure_must_be_in_future
     errors.add(:date_of_departure, "La date de départ doit être supérieure à la date du jour") if date_of_departure < Time.now
   end
