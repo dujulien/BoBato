@@ -10,6 +10,7 @@ class Delivery < ApplicationRecord
 	  errors.add(:skipper_id, "Le skipper choisi n'est pas disponible pour les dates selectionnées") unless check_skipper_availability
 	end
 
+
 	def delivery_conf_email_send
     UserMailer.delivery_conf_email(self, self.skipper).deliver_now
     UserMailer.delivery_conf_email(self, self.convoy.boat_owner).deliver_now
