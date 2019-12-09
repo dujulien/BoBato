@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   devise_for :users
   resources :user do
     resources :my_convoys, only: [:index, :show]
+    resources :submissions, only: [:index]
   end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root 'demo#index'
   resources :demo, only: [:index]
@@ -15,8 +17,8 @@ Rails.application.routes.draw do
 
   resources :deliveries
   resources :charges
-  resources :submissions
-  
+  resources :submissions, only: [:create]
+
   resources :profiles do
     resources :avatars, only: [:create]
   end

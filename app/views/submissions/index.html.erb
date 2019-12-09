@@ -1,54 +1,55 @@
-    <div class="site-block-wrap">
+<%= content_for :title, "Mes candidatures" %>
 
-<div class="p-4 mb-3 bg-white">
-
-    <section class="site-section" id="news-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-12">
-            <h2 class="section-title mb-3"> Vos candidatures </h2>
-          </div>
-        </div>
+<!------------------------ BANNER ----------------------------------------------------->
+<%= render 'banner' %>
+<!------------------------ END BANNER ----------------------------------------------------->
 
 
-        <div class="row">
-<!--------------------------------------------------------------------------------------->
+<!------------------------ MY CONVOYS LIST ----------------------------------------------------->
+<section class="site-section bg-light bg-image", id="login">
+    <div class="row d-flex justify-content-center">  
 
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-            <div class="h-entry">
-              <a href="single.html"><img src="images/img_1.jpg" alt="Image" class="img-fluid"></a>
-              <h2 class="font-size-regular"><a href="single.html" class="text-dark">Popular Real Estate Properties for 2019</a></h2>
-              <div class="meta mb-4"> <span class="mx-2">&bullet;</span> Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="single.html">News</a></div>
-            </div> 
-          </div>
-<!------------------------------------------------------------------------------------------->
-
-
-
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-            <div class="h-entry">
-              <a href="single.html"><img src="images/img_2.jpg" alt="Image" class="img-fluid"></a>
-              <h2 class="font-size-regular"><a href="single.html" class="text-dark">Popular Real Estate Properties for 2019</a></h2>
-              <div class="meta mb-4">James Phelps <span class="mx-2">&bullet;</span> Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="single.html">News</a></div>
+    <% @submissions.each_with_index do |submission,i| %>
+      <div class="card mb-6" style="max-width: 900px; margin-bottom: 2rem">
+          <div class="row no-gutters">
+            <div class="col-md-2">
+              <%= image_tag("convoy_#{1}.png", class:'card-img') %>
+            </div>
+          <div class="col-md-10">
+            <div class="card-body", style="padding-bottom: 0;">
               
+              <div class="row">
+
+                <div class="col-6">
+                  <a href="<%= convoy_path(submission.convoy.id) %>">
+                    <h5 class="card-title"><%= submission.convoy.title %></h5>
+                  </a>
+                  <p class="card-title"><%= submission.convoy.departure_port %> - <%= submission.convoy.arrival_port %></p>
+                  <p class="card-title">Date de départ : <%= submission.convoy.date_of_departure.strftime("%d/%m/%Y") %></p>
+                  <p class="card-text"> <strong>Nombre de candidatures : <%= submission.convoy.submissions.size %></strong></p>
+                  <p class="card-text"><small class="text-muted">Last update <%= time_ago_in_words(submission.convoy.updated_at) %></small></p>
+                </div>
+
+                <div class="col-6 text-right">
+                  <% if !submission.convoy.delivery %>
+                    <button class="btn btn-primary btn-sm noHover text-sm">Candidature envoyée</button>
+                  <% elsif submission.convoy.delivery %>              
+                      <% if submission.status == true %>
+                        <button class="btn btn-success btn-sm noHover text-sm">Candidature acceptée</button>
+                      <% else %>
+                        <button class="btn btn-warning btn-sm noHover text-sm">Candidature refusée</button>
+                      <% end %>
+                  <% end %>
+                </div>
+
+              </div>
+
             </div>
           </div>
-
- <!---------------------------------------------------------------------------------------------->
-
-          <div class="col-md-6 col-lg-4 mb-4 mb-lg-4">
-            <div class="h-entry">
-              <a href="single.html"><img src="images/img_3.jpg" alt="Image" class="img-fluid"></a>
-              <h2 class="font-size-regular"><a href="single.html" class="text-dark">Popular Real Estate Properties for 2019</a></h2>
-              <div class="meta mb-4">Allison Holmes <span class="mx-2">&bullet;</span> Jan 18, 2019<span class="mx-2">&bullet;</span> <a href="single.html">News</a></div>
-            </div> 
-          </div>
-
-<!--------------------------------------------------------------------------------------------------->
-
-          
         </div>
       </div>
-    </section>
-</div>
-</div>
+    <% end %>
+
+  </div>
+</section>
+<!------------------------ END MY CONVOY LIST ----------------------------------------------------->
