@@ -4,8 +4,10 @@ class ChargesController < ApplicationController
 	end
 
 	def create
+	  @convoy = Convoy.find(params[:convoy_id])
+	  @skipper = User.find(params[:skipper_id])
 	  # Amount in cents
-	  @amount = 500
+	  @amount = (@convoy.convoy_price * 100).to_i
 
 	  customer = Stripe::Customer.create({
 	    email: params[:stripeEmail],
@@ -27,6 +29,7 @@ class ChargesController < ApplicationController
 	  # Create new delivery for the considered convoy, with the selected skipper
 		@delivery = Delivery.new.create_after_checkout(@convoy, @skipper, params[:stripeToken])
 
+		## A TESTER Avec des cas défaillants
 	  if @delivery.save
       flash[:success] = "Votre convoi est maintenant entièrement validé"
       redirect_to request.referrer

@@ -14,19 +14,21 @@
 
 
 <!----------------- SHOW CONVOY ----------------->
-<div class="site-section" id="convoy-details">
+<div class="site-section bg-light bg-image" id="convoy-details" style="padding-bottom:0;">
   <div class="container">
     <div class="row">
       <div class="col-lg-3">
         <div class="owl-carousel slide-one-item with-dots">
-          <div><img src=<%= asset_path("convoy_#{(@id.to_i) % 6}.png") %> alt="Image" class="img-fluid"></div>
+          <div><img src=<%= asset_path("convoy_#{((@id.to_i-1)%6)+1}.png") %> alt="Image" class="img-fluid"></div>
         </div>
       </div>
-      
+
       <div class="col-lg-8 pl-lg-8">
 
-        <div class="row pl-lg-5">
-          <h3 class="text-black mb-4"> Détails du convoyage</h3>
+        <div class="row">
+          <div class="col-lg-5 pl-lg-5">
+            <h3 class="text-black mb-4"> Détails du convoyage</h3>
+          </div>
         </div>
 
         <div class="row">
@@ -38,7 +40,7 @@
 
               <p class="text-label">Date de départ - date d'arrivée</p>
               	<p><%= @my_convoy.date_of_departure.strftime("%d/%m/%Y") %> - <%= @my_convoy.date_of_arrival.strftime("%d/%m/%Y") %> <br/>
-              		<strong>Durée du convoyage :</strong> <%= @my_convoy.duration %> jours
+              		<strong>Durée du convoyage :</strong> <%= @my_convoy.duration.round(0) %> jours
               	</p>
 
               <p class="text-label">Type de bâteau</p>
@@ -60,7 +62,7 @@
               <p class="text-label">Rémunération</p>
                 <p class="mb-4"><%=  number_with_delimiter(@my_convoy.convoy_price.round(0), delimiter: " ") %> €
                 </p>
-          	  <% if @my_convoy.delivery  %>
+          	  <% if !@my_convoy.delivery  %>
                   <p><%= link_to "Modifier les informations", edit_convoy_path(@my_convoy.id), class:"btn btn-warning", style:"width:250px;" %></p>
               		<p><%= link_to "Supprimer le convoyage", convoy_path(@my_convoy.id), :method => 'delete', class:"btn btn-danger", style:"width:250px;" %></p>
               <% else %>

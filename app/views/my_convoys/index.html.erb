@@ -5,12 +5,12 @@
 <!------------------------ END BANNER ----------------------------------------------------->
 
 
-<!------------------------ LOGIN FORM ----------------------------------------------------->
+<!------------------------ MY CONVOYS LIST ----------------------------------------------------->
 <section class="site-section bg-light bg-image", id="login">
   	<div class="row d-flex justify-content-center">  
 
 		<% @my_convoys.each_with_index do |convoy,i| %>
-			<div class="card mb-6" style="max-width: 800px; margin-bottom: 2rem">
+			<div class="card mb-6" style="max-width: 900px; margin-bottom: 2rem">
 			  	<div class="row no-gutters">
 			   		<div class="col-md-2">
 			   			<%= image_tag("convoy_#{1}.png", class:'card-img') %>
@@ -43,4 +43,6 @@
 
   </div>
 </section>
-<!------------------------ END LOGIN FORM ----------------------------------------------------->
+<!------------------------ END MY CONVOY LIST ----------------------------------------------------->
+
+
