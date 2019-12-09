@@ -1,5 +1,5 @@
 class SubmissionsController < ApplicationController
-    
+	before_action :authenticate_user!, only: [:index, :create]   
 	def index
 	  @submissions = Submission.all
 	end
@@ -17,6 +17,12 @@ class SubmissionsController < ApplicationController
 	    flash[:danger] = 'Erreur dans la création de la candidature'
 	    redirect_to request.referrer
 	  end
+	end
+
+	def destroy
+		@submission = Submission.find_by(submission_params)
+		@submission.destroy
+		redirect_to request.referrer
 	end
 
   private

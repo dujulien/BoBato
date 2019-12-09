@@ -18,7 +18,7 @@ class MyConvoysController < ApplicationController
 	def user_restriction
 		@user = User.find(params[:user_id])
 		if @user != current_user
-			redirect_to root_path, notice: "Sorry, but you are not allowed to see this page."
+			redirect_to root_path, notice: "Désolé, mais vous n'êtes pas autorisé à autorisé à voir cette page."
 		end
 	end
 
