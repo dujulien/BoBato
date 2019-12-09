@@ -50,13 +50,33 @@
           <p class="text-label">Rémunération</p>
           	<p class="mb-4"><%=  number_with_delimiter(@convoy.convoy_price.round(0), delimiter: " ") %> €
           	</p>
-      	  <% if current_user && @convoy.applicants.include?(current_user)  %>
-          		<p><a href="#" class="btn btn-secondary">Candidature envoyée</a></p>
-          <% else %>
+
+      	  <% if current_user && !@convoy.delivery %>
+            <% if @convoy.applicants.include?(current_user) %>
           		<p>
+                 <%= link_to "Annuler ma candidature", {:controller => "submissions", :action => "destroy", :convoy_id => @convoy.id, :skipper_id => current_user.id}, method: :delete, class: "btn btn-danger" %>
+              </p>
+            <% else %>
+              <p>
                 <%= link_to "Candidater", {:controller => "submissions", :action => "create", :convoy_id => @convoy.id, :skipper_id => current_user.id}, method: :post, class: "btn btn-primary" %>
               </p>
+            <% end %>
+          <% elsif current_user && @convoy.delivery %>
+            <% if @convoy.applicants.include?(current_user) %>
+              <% if @convoy.delivery.skipper == current_user %>
+                <p><a href="#" class="btn btn-success noHover">Candidature acceptée</a></p>
+              <% else %> 
+                <p><a href="#" class="btn btn-warning noHover">Candidature rejetée</a></p>           
+              <% end %>
+            <% else %>
+              <p><a href="#" class="btn btn-secondary noHover">Candidature fermée</a></p>           
+            <% end %>
+          <% else %>
+            <p>
+              <%= link_to "Candidater", new_user_session_path, method: :get, class: "btn btn-primary" %>
+            </p>
           <% end %>
+
         </div>
 
         <div class="mb-5">

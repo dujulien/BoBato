@@ -1,4 +1,5 @@
 class SubmissionsController < ApplicationController
+
 	before_action :user_restriction,  only: [:index]
 	before_action :authenticate_user!, only: [:index, :create]
 
@@ -16,10 +17,15 @@ class SubmissionsController < ApplicationController
 		flash[:errors] = @submission.errors.full_messages
 		redirect_to request.referrer
 		end
-
 	end
 
-	private
+	def destroy
+		@submission = Submission.find_by(submission_params)
+		@submission.destroy
+		redirect_to request.referrer
+	end
+
+  private
 
 	def submission_params
 		params.permit(:convoy_id, :skipper_id)
