@@ -27,7 +27,11 @@ class Convoy < ApplicationRecord
 
 
 	def departure_must_be_in_future
-    errors.add(:date_of_departure, "La date de départ doit être supérieure à la date du jour") if date_of_departure < Time.now
+    if date_of_departure.nil?
+      errors.add(:date_of_departure, "La date de départ doit être renseignée")
+    elsif date_of_departure < Time.now
+      errors.add(:date_of_departure, "La date de départ doit être supérieure à la date du jour")
+    end
   end
 
 
@@ -35,6 +39,7 @@ class Convoy < ApplicationRecord
 	  return unless date_of_departure and date_of_arrival
 	  errors.add(:date_of_departure, "La date de départ doit être avant la date d'arrivée") unless date_of_departure < date_of_arrival
 	end
+
 
 
 end

@@ -1,5 +1,7 @@
 <h1>Edit convoy</h1>
 
+<div><%= flash[:success] %></div>
+
 <%= render 'form' %>
 
   <%= form_with model: @convoy, local: true  do |form| %>
