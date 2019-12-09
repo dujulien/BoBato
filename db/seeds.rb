@@ -29,11 +29,8 @@ end
 5.times do |i|
 	Convoy.create(
 								boat_owner: User.find(i+1), 
-<<<<<<< HEAD
-=======
 								title: Faker::Movies::HitchhikersGuideToTheGalaxy.starship, 
 								description: Faker::Lorem.paragraph,
->>>>>>> 6cbbab63aae66ea520a311ad68887991458b2a1b
 								boat_type: ["Yacht", "Catamaran", "Voilier"].sample, 
 								required_license: "Tous permis",
 								departure_port: ["Marseille", "Mykonos", "Barcelone", "Athènes", "Tanger", "Genes"].sample,
@@ -49,7 +46,8 @@ end
 10.times do |i|
 	Submission.create(
 										skipper: User.find(i+6), 
-										convoy: Convoy.find((i/2)+1)
+										convoy: Convoy.find((i/2)+1),
+										cover_text: "Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus."
 										)
 	puts "Submission #{i+1} seeded"
 end
@@ -57,10 +55,12 @@ end
 
 5.times do |i|
 	Delivery.create(
-									skipper: User.find(rand((2*(i+3)..2*(i+3)+1))), 
+									skipper: User.find(2*(i+3)+1), 
 									convoy: Convoy.find(i+1),
 									stripe_id: (i+1)*rand(1..23134)
 									)
+	Submission.find((2*i)+1).update(status: false)
+	Submission.find(2*(i+1)).update(status: true)
 	puts "Delivery #{i+1} seeded"
 end
 

@@ -19,7 +19,7 @@
     <div class="row">
       <div class="col-lg-7">
         <div class="owl-carousel slide-one-item with-dots">
-          <div><img src=<%= asset_path("convoy_#{(@id.to_i)%6}.png") %> alt="Image" class="img-fluid"></div>
+          <div><img src=<%= asset_path("convoy_#{(@id.to_i%6)+1}.png") %> alt="Image" class="img-fluid"></div>
         </div>
       </div>
       <div class="col-lg-5 pl-lg-5 ml-auto">
@@ -32,7 +32,7 @@
 
           <p class="text-label">Date de départ - date d'arrivée</p>
           	<p><%= @convoy.date_of_departure.strftime("%d/%m/%Y") %> - <%= @convoy.date_of_arrival.strftime("%d/%m/%Y") %> <br/>
-          		<!-- <strong>Durée du convoyage :</strong> < @convoy.duration %> jours -->
+          		<strong>Durée du convoyage :</strong> <%= @convoy.duration.round(0) %> jours
           	</p>
 
           <p class="text-label">Description</p>
@@ -53,7 +53,9 @@
       	  <% if current_user && @convoy.applicants.include?(current_user)  %>
           		<p><a href="#" class="btn btn-secondary">Candature envoyée</a></p>
           <% else %>
-          		<p><a href="#" class="btn btn-primary">Candidater</a></p>
+          		<p>
+                <%= link_to "Candidater", {:controller => "submissions", :action => "create", :convoy_id => @convoy.id, :skipper_id => current_user.id}, method: :post, class: "btn btn-primary" %>
+              </p>
           <% end %>
         </div>
 
@@ -64,8 +66,10 @@
             <h4 class="text-black">Kyla Stewart</h4>
             <p class="text-muted mb-4">Propriétaire du bâteau</p>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, iure atque sit ratione vitae neque! Laborum voluptate eius, laboriosam explicabo!</p>
-            <% if current_user && @convoy.delivery.skipper == current_user %>
-            	<p><a href="#" class="btn btn-primary btn-sm">Contacter le propriétaire</a></p>
+            <% if current_user && @convoy.delivery %>
+              <% if @convoy.delivery.skipper == current_user %>
+                <p><a href="#" class="btn btn-primary btn-sm">Contacter le propriétaire</a></p>
+              <% end %>
             <% end %>
           </div>
         </div>
@@ -77,11 +81,11 @@
 <!----------------- SHOW CONVOY ----------------->
 
 <% if @convoy.pictures.attached? %>
-<p>
-  <% @convoy.pictures.each do |picture| %>
-    <%= image_tag picture %>
-<%end%>
-</p>
+  <p>
+    <% @convoy.pictures.each do |picture| %>
+      <%= image_tag picture %>
+    <%end%>
+  </p>
 <%else%>
   <p>=== Il n'y a pas encore de convoy lié à cet utilisateur ===</p>
 <%end%>
