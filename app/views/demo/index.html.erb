@@ -60,7 +60,7 @@
 
         <div class="ftco-media-1">
           <div class="ftco-media-1-inner">
-            <a href=" <%= convoys_path(convoy.id)%>" class="d-inline-block mb-4"> <%= image_tag ("#{(i+1)}.png") %></a>
+            <a href=" <%= convoys_path(convoy.id)%>" class="d-inline-block mb-4"> <%= image_tag ("#{((i%16)+1)}.png") %></a>
             <div class="ftco-media-details">
               <h3><%= convoy.boat_type %></h3>
               <p><%= convoy.departure_port %></p>

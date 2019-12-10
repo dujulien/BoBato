@@ -13,9 +13,9 @@ class ConvoysController < ApplicationController
   end
 
   def new
-    @user = current_user
+    
     @convoy = Convoy.new
-    @convoy.boat_owner_id=@user.id
+  
   end
 
   def edit
@@ -23,12 +23,12 @@ class ConvoysController < ApplicationController
   end
 
   def create
-    puts "$"*60
-    puts params.inspect
-    puts "$"*60
-    @user = current_user
+    # @convoy = Convoy.new
     @convoy = Convoy.new(convoy_params)
-    @convoy.boat_owner_id=@user.id
+    @convoy.boat_owner_id=current_user.id
+    # @convoy.pictures.attach(params[pictures:[]])
+    # @convoy.update(boat_owner: @user)
+    # title: params[:title],boat_type: params[:boat_type],required_license: params[:required_license],description: params[:description],departure_port: params[:departure_port],arrival_port:params[:arrival_port],date_of_departure: params[:date_of_departure],date_of_arrival: params[:date_of_arrival],convoy_price: params[:convoy_price])
 
     if @convoy.save
         redirect_to @convoy, notice: 'Proposition de convoi créé'          
@@ -60,7 +60,7 @@ class ConvoysController < ApplicationController
   # end
 
   def convoy_params
-    params.permit(:title,:boat_type,:required_license,:description,:departure_port,:arrival_port,:date_of_departure, :date_of_arrival,:convoy_price, pictures:[])
+    params.permit(:title,:boat_type,:required_license,:description,:departure_port,:arrival_port,:date_of_departure, :date_of_arrival,:convoy_price,pictures:[])
   end
 
 end
