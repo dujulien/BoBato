@@ -1,3 +1,9 @@
+<% if @profile.first_name %>
+	<%= content_for :title, "Profil de #{@profile.first_name}"%>
+<% else %>
+	<%= content_for :title, "Profil" %>
+<% end %>
+
 <!------------------------ BANNER ----------------------------------------------------->
 <%= render 'show_profile_banner' %>
 <!------------------------ END BANNER ----------------------------------------------------->

@@ -1,3 +1,5 @@
+<%= content_for :title, @my_convoy.title %>
+
 <!----------------- BANNER ----------------->
 <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(<%= asset_path('hero_1.jpg') %>);" data-aos="fade">
   <div class="container">
@@ -94,71 +96,75 @@
           <div class="col-12">
             <div class="my-3 p-3 bg-grey rounded box-shadow">
               <h4 class="border-bottom border-gray pb-2 mb-0">Candidatures</h4>
-              <!---------------------- LOOP ON CONVOY SUBMISSIONS --------------------------------->
-              <% @submissions.each_with_index do |submission, i| %>
-                <div class="media pt-3 border-bottom border-gray">
-                  <% if submission.skipper.profile.avatar.attached? %>
-                    <%= image_tag(submission.skipper.profile.avatar, class:"w-15 mb-3 rounded-circle") %>
-                  <% else %>
-                    <%= image_tag('no-avatar.png', class:"w-15 mb-3 rounded-circle") %>
-                  <% end %>
-                  <div class="col-lg-7 pl-lg-7">
-                    <div class="media-body pb-3 mb-0 lh-125 offset-md-1", style="min-height:155px;">
-                      <strong class="d-block text-gray-dark form-label"><%= submission.skipper.profile.first_name %> <%= submission.skipper.profile.last_name %></strong>
-                      <a href="#profileModal<%= i %>" data-toggle="modal" data-target="#profileModal<%= i %>">Voir le profile du skipper</a>
-                      <br/>
-                      <!-------------- SKIPPER PROFILE MODAL --------------------->
-                        <div class="modal fade" id="profileModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                          <div class="modal-dialog modal-dialog-centered big-modal" role="document">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle">Profile du skipper</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                  <span aria-hidden="true">&times;</span>
-                                </button>
-                              </div>
-                              <div class="modal-body">
-                                <%= render 'profiles/show', profile: submission.skipper.profile %>
+              <% if @submissions.size == 0 %>
+                <p>Aucune candidature pour l'instant</p>
+              <% else %>
+                <!---------------------- LOOP ON CONVOY SUBMISSIONS --------------------------------->
+                <% @submissions.each_with_index do |submission, i| %>
+                  <div class="media pt-3 border-bottom border-gray">
+                    <% if submission.skipper.profile.avatar.attached? %>
+                      <%= image_tag(submission.skipper.profile.avatar, class:"w-15 mb-3 rounded-circle") %>
+                    <% else %>
+                      <%= image_tag('no-avatar.png', class:"w-15 mb-3 rounded-circle") %>
+                    <% end %>
+                    <div class="col-lg-7 pl-lg-7">
+                      <div class="media-body pb-3 mb-0 lh-125 offset-md-1", style="min-height:155px;">
+                        <strong class="d-block text-gray-dark form-label"><%= submission.skipper.profile.first_name %> <%= submission.skipper.profile.last_name %></strong>
+                        <a href="#profileModal<%= i %>" data-toggle="modal" data-target="#profileModal<%= i %>">Voir le profil du skipper</a>
+                        <br/>
+                        <!-------------- SKIPPER PROFILE MODAL --------------------->
+                          <div class="modal fade" id="profileModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered big-modal" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalCenterTitle">Profile du skipper</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <%= render 'profiles/show', profile: submission.skipper.profile %>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      <!-------------- END SKIPPER PROFILE MODAL --------------------->
-                      <%= submission.cover_text %>
-                      <br/>
-                      <button class="btn btn-outline-secondary btn-sm noHover text-sm" style="margin-top:1rem;"><%= submission.skipper.profile.city %>
-                      </button>
+                        <!-------------- END SKIPPER PROFILE MODAL --------------------->
+                        <%= submission.cover_text %>
+                        <br/>
+                        <button class="btn btn-outline-secondary btn-sm noHover text-sm" style="margin-top:1rem;"><%= submission.skipper.profile.city %>
+                        </button>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 pl-lg-3 text-right">
+                      <% if !@my_convoy.delivery %>
+                        <span class="my-auto">
+                          <%= form_tag charges_path do %>
+                              <%= hidden_field_tag :skipper_id , submission.skipper.id %>
+                              <%= hidden_field_tag :convoy_id , submission.convoy.id %>
+                              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                      data-description="The purchase of your life"
+                                      data-amount="<%= @my_convoy.convoy_price * 100 %>"
+                                      data-locale="auto">
+                              </script>
+                              <script>
+                                  // Hide default stripe button, be careful there if you
+                                  // have more than 1 button of that class
+                                  document.getElementsByClassName("stripe-button-el")[<%=i%>].style.display = 'none';
+                              </script>
+                              <button type="submit" class="btn btn-primary">Sélectionner et payer</button>
+                          <% end %>
+                        </span>
+                      <% elsif submission.status == true %>
+                        <button class="btn btn-primary btn-sm noHover text-sm" style="margin-top:1rem;">Sélectionné</button>
+                      <% elsif submission.status == false %>
+                        <button class="btn btn-secondary btn-sm noHover text-sm" style="margin-top:1rem;">Refusé</button>
+                      <% end %>
                     </div>
                   </div>
-                  <div class="col-lg-3 pl-lg-3 text-right">
-                    <% if !@my_convoy.delivery %>
-                      <span class="my-auto">
-                        <%= form_tag charges_path do %>
-                            <%= hidden_field_tag :skipper_id , submission.skipper.id %>
-                            <%= hidden_field_tag :convoy_id , submission.convoy.id %>
-                            <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                                    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-                                    data-description="The purchase of your life"
-                                    data-amount="<%= @my_convoy.convoy_price * 100 %>"
-                                    data-locale="auto">
-                            </script>
-                            <script>
-                                // Hide default stripe button, be careful there if you
-                                // have more than 1 button of that class
-                                document.getElementsByClassName("stripe-button-el")[<%=i%>].style.display = 'none';
-                            </script>
-                            <button type="submit" class="btn btn-primary">Sélectionner et payer</button>
-                        <% end %>
-                      </span>
-                    <% elsif submission.status == true %>
-                      <button class="btn btn-primary btn-sm noHover text-sm" style="margin-top:1rem;">Sélectionné</button>
-                    <% elsif submission.status == false %>
-                      <button class="btn btn-secondary btn-sm noHover text-sm" style="margin-top:1rem;">Refusé</button>
-                    <% end %>
-                  </div>
-                </div>
+                <% end %>
+                <!---------------------- END LOOP ON CONVOY SUBMISSIONS --------------------------------->
               <% end %>
-              <!---------------------- END LOOP ON CONVOY SUBMISSIONS --------------------------------->
             </div>
           </div>
         </div>
