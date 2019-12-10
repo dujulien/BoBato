@@ -27,7 +27,7 @@ class SubmissionsController < ApplicationController
   private
 
 	def submission_params
-		params.permit(:convoy_id, :skipper_id)
+		params.permit(:convoy_id, :skipper_id, :cover_text)
 	end
 
 	def user_restriction
