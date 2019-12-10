@@ -98,17 +98,37 @@
               <% @submissions.each_with_index do |submission, i| %>
                 <div class="media pt-3 border-bottom border-gray">
                   <% if submission.skipper.profile.avatar.attached? %>
-                    <%= image_tag(submission.skipper.profile.avatar, class:"w-15 mb-3 rounded-circle", style:"max-width=150px;") %>
+                    <%= image_tag(submission.skipper.profile.avatar, class:"w-15 mb-3 rounded-circle") %>
                   <% else %>
-                    <%= image_tag('no-avatar.png', class:"card-img-top", style:"height:350px; width:350px") %>
+                    <%= image_tag('no-avatar.png', class:"w-15 mb-3 rounded-circle") %>
                   <% end %>
                   <div class="col-lg-7 pl-lg-7">
-                    <p class="media-body pb-3 mb-0 lh-125 offset-md-1", style="min-height:155px;">
+                    <div class="media-body pb-3 mb-0 lh-125 offset-md-1", style="min-height:155px;">
                       <strong class="d-block text-gray-dark form-label"><%= submission.skipper.profile.first_name %> <%= submission.skipper.profile.last_name %></strong>
-                      <%= link_to "Voir le profil du Skipper", profile_path(submission.skipper.id)%><br/>
+                      <a href="#profileModal<%= i %>" data-toggle="modal" data-target="#profileModal<%= i %>">Voir le profile du skipper</a>
+                      <br/>
+                      <!-------------- SKIPPER PROFILE MODAL --------------------->
+                        <div class="modal fade" id="profileModal<%= i %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                          <div class="modal-dialog modal-dialog-centered big-modal" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle">Profile du skipper</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body">
+                                <%= render 'profiles/show', profile: submission.skipper.profile %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      <!-------------- END SKIPPER PROFILE MODAL --------------------->
                       <%= submission.cover_text %>
                       <br/>
-                      <button class="btn btn-outline-secondary btn-sm noHover text-sm" style="margin-top:1rem;"><%= submission.skipper.profile.city %></button>
+                      <button class="btn btn-outline-secondary btn-sm noHover text-sm" style="margin-top:1rem;"><%= submission.skipper.profile.city %>
+                      </button>
+                    </div>
                   </div>
                   <div class="col-lg-3 pl-lg-3 text-right">
                     <% if !@my_convoy.delivery %>
@@ -144,3 +164,4 @@
         </div>
      </div>
 <!------------------------ END CONVOY SUBMISSIONS ----------------------------------------------------->
+

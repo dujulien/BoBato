@@ -1,79 +1,8 @@
-    <!------------------------ BANNER ----------------------------------------------------->
+<!------------------------ BANNER ----------------------------------------------------->
 <%= render 'show_profile_banner' %>
 <!------------------------ END BANNER ----------------------------------------------------->
 
+
 <!------------------------ USER PROFILE ----------------------------------------------------->
-<div class="site-section bg-light bg-image" id="show_profile">
-  <div class="container">
-    <div class="row">
-
-      <div class="col-md-6 col-lg-4 mb-4 offset-md-1">
-        <div class="card" style="width: 22rem;">
-          <figure style="margin: 0">
-            <%if @profile.avatar.attached?%>
-              <%= image_tag @profile.avatar, style:"height:350px;width:350px"%>
-            <%else%>
-              <%= image_tag('no-avatar.png', class:"card-img-top", style:"height:350px; width:350px") %>
-            <%end%> 
-          </figure>
-          <% if current_user && current_user.id == @profile.id %>
-            <div class="card-body form-label-tiny" style="padding:0.3rem 0rem 0.5rem 0rem; text-align: center; font-size: 1rem">
-              <%= link_to "Mettre à jour la photo" %>
-            </div>
-          <% end %>
-
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item"><i class="fas fa-home" style="margin-right:1rem;"></i> Habite à <%= @profile.city %></li>
-            <li class="list-group-item"><i class="fas fa-birthday-cake" style="margin:0rem 1.3rem 0rem 0.2rem;"></i>Né(e) le <%= @profile.birthdate.strftime("%d/%m/%Y") %></li>
-            <li class="list-group-item"><i class="far fa-id-badge" style="margin:0rem 1.3rem 0rem 0.3rem;"></i>Tous permis</li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="col-md-5 col-lg-6 mb-4 pl-lg-5">
-        <h4 class="text-black">Profile de <%= @profile.first_name + " " + @profile.last_name %></h4>
-        <p class="text-black">Membre depuis <%= @profile.user.created_at.strftime("%Y") %>  
-          <% if current_user && current_user.id == @profile.id %>
-             · <%= link_to "Modifier le profil", edit_profile_path(current_user.id), class: "form-label-tiny", style:"font-size:1rem;"%>
-          <% end %>
-        </p>
-        <p><%= @profile.description %></p>
-
-        <div style="padding: 1rem 0rem 1rem 0rem">
-          <hr/>
-        </div>
-
-        <div class="row mb-5">
-          <div class="col-md-7 text-left">
-            <h4 class="text-black">Convoyages effectués</h2>
-          </div>
-        
-          <p>
-            <a class="" data-toggle="collapse" href="#performed-convoys" role="button" aria-expanded="false" aria-controls="collapseExample">
-              Voir les convoyages effectués
-            </a>
-          </p>
-          <div class="collapse" id="performed-convoys">
-            <div class="card card-body" style="min-width: 550px;">
-              <ul>
-                <% @profile.user.deliveries.each do |delivery| %>
-                  <li><%= delivery.convoy.title %></li>
-                <% end %> 
-              </ul>
-            </div>
-          </div>
-
-
-        </div>
-
-
-        <div style="padding: 0rem 0rem 1rem 0rem">
-          <hr/>
-        </div>
-        <h4 class="text-black">Commentaires</h4>
-      </div>
-
-    </div>
-  </div>
-</div>
+<%= render 'show', profile: @profile %> 
 <!------------------------ END USER PROFILE ----------------------------------------------------->

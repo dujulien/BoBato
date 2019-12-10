@@ -1,5 +1,5 @@
 <% if resource.errors.any? %>
-  <div class = "alert alert-warning" id="error_explanation">
+  <div class = "alert alert-warning alert-dismissible fade show" role="alert" id="error_explanation">
     <h2>
       <%= I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,
@@ -13,3 +13,11 @@
     </ul>
   </div>
 <% end %>
+
+<script type="text/javascript">
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 5000);
+</script>
