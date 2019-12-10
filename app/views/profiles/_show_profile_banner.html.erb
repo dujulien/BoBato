@@ -2,9 +2,12 @@
   <div class="container">
     <div class="row align-items-center justify-content-center">
       <div class="col-md-10 mx-auto mt-lg-5 text-center">
-        <h1>Mon profil</h1>
+      	<% if @profile.first_name %>
+        	<h1>Bonjour, je m'appelle <%= @profile.first_name%></h1>
+        <% else %>
+        	<h1>Bonjour, voici mon profil</h1>
+        <% end %>
         <p class="mb-5"><strong class="text-white"></strong></p>
-        
       </div>
     </div>
   </div>

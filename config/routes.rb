@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
   resources :deliveries
   resources :charges
-  resources :submissions, only: [:create]
+  resources :submissions, only: [:create, :destroy]
 
   resources :profiles do
     resources :avatars, only: [:create]

@@ -69,7 +69,9 @@
               </p>
             <% else %>
               <p>
-                <%= link_to "Candidater", {:controller => "submissions", :action => "create", :convoy_id => @convoy.id, :skipper_id => current_user.id}, method: :post, class: "btn btn-primary" %>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submissionModal">
+                  Candidater
+                </button>
               </p>
             <% end %>
           <% elsif current_user && @convoy.delivery %>
@@ -108,4 +110,43 @@
   </div>
 </div>
 <!----------------- SHOW CONVOY ----------------->
+
+
+<!--------------- SUBMISSION MODAL -------------->
+<div class="modal fade" id="submissionModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Ecrivez un message au propriétaire du bateau</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_tag submissions_path, method: "post" do %>
+          <%= hidden_field_tag :skipper_id , current_user.id %>
+          <%= hidden_field_tag :convoy_id , @convoy.id %>
+          <%= text_area_tag 'cover_text', nil, class: "form-control", rows:"5", placeholder: "Exprimez votre motivation" %>
+      </div>
+      <div class="modal-footer">
+        <%= submit_tag "Envoyer la candidature", class: "btn btn-primary btn-lg btn-block" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<!--------------- SUBMISSION MODAL -------------->
+
+
+
+
+<% if @convoy.pictures.attached? %>
+  <p>
+    <% @convoy.pictures.each do |picture| %>
+      <%= image_tag picture %>
+    <%end%>
+  </p>
+<%else%>
+  <p>=== Il n'y a pas encore de convoy lié à cet utilisateur ===</p>
+<%end%>
 

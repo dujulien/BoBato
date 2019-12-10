@@ -13,9 +13,9 @@
             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
               <li><%= link_to 'Proposer un convoyage', new_convoy_path, class: "btn btn-primary mr-2 mb-2" %></li>
               <% if current_user %>
-                <li><%= link_to "Mes candidatures", user_submissions_path(current_user.id), :method => :get, class: "nav-link" %></li>
-                <li><%= link_to "Mes convoyages proposés", user_my_convoys_path(current_user.id), :method => :get, class: "nav-link" %></li>
-                <li><%= link_to "Se déconnecter", destroy_user_session_path, :method => :delete, class: "nav-link" %></li>
+                <li><%= link_to "Mes candidatures", user_submissions_path(current_user.id), :method => :get, class: "nav-link swing" %></li>
+                <li><%= link_to "Mes convoyages proposés", user_my_convoys_path(current_user.id), :method => :get, class: "nav-link swing" %></li>
+                <li><%= link_to "Se déconnecter", destroy_user_session_path, :method => :delete, class: "nav-link swing" %></li>
               <% else %>  
                 <li><a href="#" class="nav-link" data-toggle="modal" data-target="#loginAs">Se connecter</a></li>
               <% end %>
