@@ -103,7 +103,6 @@
             <p><%= @convoy.boat_owner.profile.description %></p>
             <% if current_user && @convoy.delivery %>
               <% if @convoy.delivery.skipper == current_user %>
-
                 <p><a href="#" class="btn btn-primary btn-sm">Contacter le propriétaire</a></p>
               <% end %>
             <% end %>
