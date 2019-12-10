@@ -10,11 +10,13 @@
     <!-- left column --------------------------------> 
     <div class="col-md-3">
       <div class="text-center">
-        <%if @profile.avatar.attached?%>
-          <%= image_tag @profile.avatar,style:"height:170px;width:170px",class:"rounded-circle"%>
-        <%else%>
-          <img src="https://images.assetsdelivery.com/compings_v2/kritchanut/kritchanut1406/kritchanut140600088.jpg"class="card-img-top" alt="Cinque Terre" style="height:170px;width:170px" class="rounded-circle">
-        <%end%>       
+          <figure style="margin: 0">
+            <%if @profile.avatar.attached?%>
+              <%= image_tag @profile.avatar, style:"height:350px;width:350px"%>
+            <%else%>
+              <%= image_tag('no-avatar.png', class:"card-img-top", style:"height:350px; width:350px") %>
+            <%end%> 
+          </figure>     
         <%= form_tag profile_avatars_path(@profile), multipart: true do %>
           <div>
             <%= file_field_tag :avatar%>
