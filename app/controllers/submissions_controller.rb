@@ -11,9 +11,10 @@ class SubmissionsController < ApplicationController
 		@submission = Submission.new(submission_params)
 		@submission.skipper = current_user
 		if @submission.save
-		redirect_to request.referrer, notice: 'Candidature envoyée'
+		flash[:success] = "Votre candidature est bien enregistrée"
+		redirect_to request.referrer
 		else
-		flash[:errors] = 'Erreur dans la création de la candidature'
+		flash[:errors] = @submission.errors.full_messages
 		redirect_to request.referrer
 		end
 	end
@@ -33,7 +34,8 @@ class SubmissionsController < ApplicationController
 	def user_restriction
 		@user = User.find(params[:user_id])
 		if @user != current_user
-			redirect_to root_path, notice: "Désolé, vous ne pouvez pas accéder à cette page."
+			flash[:errors] = 'Désolé, vous ne pouvez pas accéder à cette page.'
+			redirect_to root_path
 		end
 	end
 

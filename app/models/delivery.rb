@@ -7,7 +7,7 @@ class Delivery < ApplicationRecord
 
 
 	def skipper_must_be_available_for_this_convoy
-	  errors.add(:skipper_id, "Le skipper choisi n'est pas disponible pour les dates selectionnées") unless check_skipper_availability
+	  errors.add(:skipper_id, "Le skipper choisi n'est plus disponible pour les dates selectionnées") unless check_skipper_availability
 	end
 
 

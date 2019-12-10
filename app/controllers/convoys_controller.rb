@@ -13,9 +13,9 @@ class ConvoysController < ApplicationController
   end
 
   def new
-    @user = current_user
+    
     @convoy = Convoy.new
-    @convoy.boat_owner_id=@user.id
+  
   end
 
   def edit
@@ -23,12 +23,17 @@ class ConvoysController < ApplicationController
   end
 
   def create
+
     @user = current_user
     @convoy = Convoy.new(convoy_params)
-    @convoy.boat_owner_id=@user.id
+    @convoy.boat_owner_id=current_user.id
+    # @convoy.pictures.attach(params[pictures:[]])
+    # @convoy.update(boat_owner: @user)
+    # title: params[:title],boat_type: params[:boat_type],required_license: params[:required_license],description: params[:description],departure_port: params[:departure_port],arrival_port:params[:arrival_port],date_of_departure: params[:date_of_departure],date_of_arrival: params[:date_of_arrival],convoy_price: params[:convoy_price])
 
     if @convoy.save
-       redirect_to @convoy, notice: 'Proposition de convoi créé'
+      flash[:success] = "Votre proposition de convoi est enregistrée avec succés"
+      redirect_to @convoy   
     else
       flash[:errors] = @convoy.errors.full_messages
       render 'new'
@@ -38,6 +43,7 @@ class ConvoysController < ApplicationController
   def update
     @convoy = Convoy.find(params[:id])
     if @convoy.update(convoy_params)
+      flash[:success] = "La mise à jour de votre convoi est bien enregistrée"
       redirect_to @convoy
     else
       render 'edit'
@@ -47,6 +53,7 @@ class ConvoysController < ApplicationController
   def destroy
     @convoy = Convoy.find(params[:id])
     @convoy.destroy
+    flash[:success] = "Votre convoi a été supprimé"
     redirect_to user_my_convoys_path(current_user.id)
   end
 
@@ -57,7 +64,7 @@ class ConvoysController < ApplicationController
   # end
 
   def convoy_params
-    params.permit(:title,:boat_type,:required_license,:description,:departure_port,:arrival_port,:date_of_departure, :date_of_arrival,:convoy_price, pictures:[])
+    params.permit(:title,:boat_type,:required_license,:description,:departure_port,:arrival_port,:date_of_departure, :date_of_arrival,:convoy_price,pictures:[])
   end
 
 end

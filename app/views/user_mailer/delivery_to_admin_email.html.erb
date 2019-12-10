@@ -24,40 +24,39 @@
       <p> Résumé du convoyage : </p>
 
       <table>
-        <tr> <th> Résumé du convoyage : </th> </tr>
-        <tr> <td><%= @delivery.convoy.title %></td> </tr>
+        <tr> <th><%= @delivery.convoy.title %></th> </tr>
         <tr> <td><%= @delivery.convoy.description %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.boat_type %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.date_of_departure %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.date_of_arrival %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.departure_port %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.arrival_port %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.duration %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.convoy_price %> </td> </tr>
+        <tr> <td>Type de bateau : <%= @delivery.convoy.boat_type %> </td> </tr>
+        <tr> <td>Date de départ :<%= @delivery.convoy.date_of_departure.strftime("%d/%m/%Y") %> </td> </tr>
+        <tr> <td>Date d'arrivée :<%= @delivery.convoy.date_of_arrival.strftime("%d/%m/%Y") %> </td> </tr>
+        <tr> <td>Port de départ : <%= @delivery.convoy.departure_port %> </td> </tr>
+        <tr> <td>Port d'arrivée : <%= @delivery.convoy.arrival_port %> </td> </tr>
+        <tr> <td>Durée du convoi : <%= @delivery.convoy.duration %> </td> </tr>
+        <tr> <td>Prix : <%= @delivery.convoy.convoy_price %> €</td> </tr>
       </table>
 
       Voici les coordonnées des personnes qui organisent le convoyage:
 
       <table>
-        <tr> <th> Propriétaire du convoi : </th> </tr>
+        <tr> <th>Propriétaire du convoi : </th> </tr>
         <tr> <td><%= @delivery.convoy.boat_owner_id %></td> </tr>
         <tr> <td><%= @delivery.convoy.boat_owner.email %></td> </tr>
-        <tr> <td><%= @delivery.convoy.boat_owner.profile.first_name %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.boat_owner.profile.last_name %> </td> </tr>
+        <tr> <td>Prénom : <%= @delivery.convoy.boat_owner.profile.first_name %> </td> </tr>
+        <tr> <td>Nom : <%= @delivery.convoy.boat_owner.profile.last_name %> </td> </tr>
       </table>
 
       <br>
       
       <table>
-        <tr> <th> Skipper du convoi : </th> </tr>
+        <tr> <th>Skipper du convoi : </th> </tr>
         <tr> <td><%= @delivery.skipper_id %></td> </tr>
         <tr> <td><%= @delivery.skipper.email %></td> </tr>
-        <tr> <td><%= @delivery.skipper.profile.first_name %> </td> </tr>
-        <tr> <td><%= @delivery.skipper.profile.last_name %> </td> </tr>
+        <tr> <td>Prénom : <%= @delivery.skipper.profile.first_name %> </td> </tr>
+        <tr> <td>Nom : <%= @delivery.skipper.profile.last_name %> </td> </tr>
       </table>
 
       <p>
-        Pour accéder à ton espace client, connecte-toi sur : <a href="https://bobato.herokuapp.com/">Bobato</a>.
+        Pour accéder à votre espace client, connectez-vous sur : <a href="https://bobato.herokuapp.com/">Bobato</a>.
       </p>
 
       <p> À très vite !</p><br>
