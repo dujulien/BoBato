@@ -13,19 +13,7 @@
   <a href="#edit_convoy" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
 </div>
 <!------------------------------- END BANNER ------------------------>
-  <% if @convoy.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@convoy.errors.count, "error") %> prohibited
-        this convoy from being saved:
-      </h2>
-      <ul>
-        <% @convoy.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%= render :partial => "shared/errors" %>
 
 <!-- edit convoy -------------------------------->
 <section class="site-section bg-light bg-image" id="edit_convoy">
@@ -58,8 +46,6 @@
     <div class="col-md-6 personal-info">
       <div class="p-5 bg-white">
         <div class="card">
-
-          <%= render :partial => "shared/errors" %>
 
           <h1>Edit convoy</h1>
 
