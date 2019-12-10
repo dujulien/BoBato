@@ -1,15 +1,28 @@
 <% if flash[:errors] %>
-  <div class = "alert alert-warning">
-    Cette étape a rencontré <%= pluralize(flash[:errors].length, "erreur") %> :
-    <ul>
-      <% flash[:errors].each do |message| %>
-          <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
+
+	<div class = "alert alert-warning alert-dismissible fade show" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		Cette étape a rencontré <%= pluralize(flash[:errors].length, "erreur") %> :
+		<ul>
+		  <% flash[:errors].each do |message| %>
+		      <li><%= message %></li>
+		  <% end %>
+		</ul>
+	</div>
+
 <% elsif flash[:success] %>
-  <div class = "alert alert-success"><%= flash[:success] %></div>
+
+  	<div class = "alert alert-success alert-dismissible fade show" role="alert">
+  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<ul>
+  			<%= flash[:success].each do |message|  %>
+  				<li><%= message %></li>
+		  	<% end %>
+		</ul>
+  	</div>
+
 <% end %>
-
-
-
