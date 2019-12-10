@@ -4,7 +4,7 @@ class ConvoysController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @convoys = Convoy.all
+    @convoys = Convoy.where("date_of_departure >= ?", Time.current)
   end
 
   def show
@@ -23,7 +23,8 @@ class ConvoysController < ApplicationController
   end
 
   def create
-    # @convoy = Convoy.new
+
+    @user = current_user
     @convoy = Convoy.new(convoy_params)
     @convoy.boat_owner_id=current_user.id
     # @convoy.pictures.attach(params[pictures:[]])
@@ -31,9 +32,10 @@ class ConvoysController < ApplicationController
     # title: params[:title],boat_type: params[:boat_type],required_license: params[:required_license],description: params[:description],departure_port: params[:departure_port],arrival_port:params[:arrival_port],date_of_departure: params[:date_of_departure],date_of_arrival: params[:date_of_arrival],convoy_price: params[:convoy_price])
 
     if @convoy.save
-        redirect_to @convoy, notice: 'Proposition de convoi créé'          
+      flash[:success] = "Votre proposition de convoi est enregistrée avec succés"
+      redirect_to @convoy   
     else
-      flash.now[:danger] = 'Erreur dans la création du convoi'
+      flash[:errors] = @convoy.errors.full_messages
       render 'new'
     end
   end
@@ -41,6 +43,7 @@ class ConvoysController < ApplicationController
   def update
     @convoy = Convoy.find(params[:id])
     if @convoy.update(convoy_params)
+      flash[:success] = "La mise à jour de votre convoi est bien enregistrée"
       redirect_to @convoy
     else
       render 'edit'
@@ -50,6 +53,7 @@ class ConvoysController < ApplicationController
   def destroy
     @convoy = Convoy.find(params[:id])
     @convoy.destroy
+    flash[:success] = "Votre convoi a été supprimé"
     redirect_to user_my_convoys_path(current_user.id)
   end
 
