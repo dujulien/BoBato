@@ -1,0 +1,12 @@
+Nouvelle souscription pour un convoyage !
+=========================================
+
+Résumé du convoyage :
+---------------------
+Résumé du convoyage : <%= @submission.convoy.title %>
+<%= @submission.convoy.description %> 
+Type de bateau : <%= @submission.convoy.boat_type %> 
+Date de départ : <%= @submission.convoy.date_of_departure.strftime("%d/%m/%Y") %> 
+Date d'arrivée : <%= @submission.convoy.date_of_arrival.strftime("%d/%m/%Y") %> 
+Port de départ : <%= @submission.convoy.departure_port %> 
+Port d'arrivée : <%= @submission.convoy.arrival_port %> 

@@ -1,0 +1,32 @@
+Bravo votre convoyage est confirmé !
+====================================
+
+Résumé du convoyage :
+---------------------
+<%= @delivery.convoy.title %>
+<%= @delivery.convoy.description %> 
+Type de bateau : <%= @delivery.convoy.boat_type %> 
+Date de départ : <%= @delivery.convoy.date_of_departure.strftime("%d/%m/%Y") %> 
+Date d'arrivée : <%= @delivery.convoy.date_of_arrival.strftime("%d/%m/%Y") %> 
+Port de départ : <%= @delivery.convoy.departure_port %> 
+Port d'arrivée : <%= @delivery.convoy.arrival_port %> 
+
+
+Voici les coordonnées qui vont serviront pour organiser les détails du convoyage:
+
+Propriétaire du convoi :
+------------------------
+Mail : <%= @delivery.convoy.boat_owner.email %> 
+Nom : <%= @delivery.convoy.boat_owner.profile.first_name %> 
+Prénom : <%= @delivery.convoy.boat_owner.profile.last_name %> 
+Ville : <%= @delivery.convoy.boat_owner.profile.city %> 
+Numéro de téléphone : 
+
+Skipper du convoi :
+-------------------
+Mail : <%= @delivery.skipper.email %> 
+Nom : <%= @delivery.skipper.profile.first_name %> 
+Prénom : <%= @delivery.skipper.profile.last_name %> 
+Ville : <%= @delivery.skipper.profile.city %> 
+Numéro de téléphone : 
+

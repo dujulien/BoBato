@@ -1,73 +1,38 @@
-<!DOCTYPE html>
+<div class="container">
 
-<html>
+  <h1 class="form-label text-black">Bravo votre convoyage est confirmé !</h1>
+  <br>
+  <p> Résumé du convoyage : </p>
 
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900|Oswald:300,400,700" rel="stylesheet">
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', async: true, defer: true %>
-
-  </head>
-
-  <body>
-
-    <div class="container">
-
-      <div class="w-25 p-3 float-center">
-        <%= image_tag attachments['logo-bobato-dark.png'].url %>
-      </div>
-
-      <h1 class="form-label text-black">Bravo votre convoyage est confirmé !</h1>
-      <br>
-      <p> Résumé du convoyage : </p>
-
-      <table>
-        <tr> <th><%= @delivery.convoy.title %></th> </tr>
-        <tr> <td><%= @delivery.convoy.description %> </td> </tr>
-        <tr> <td>Type de bateau : <%= @delivery.convoy.boat_type %> </td> </tr>
-        <tr> <td>Date de départ : <%= @delivery.convoy.date_of_departure.strftime("%d/%m/%Y") %> </td> </tr>
-        <tr> <td>Date d'arrivée : <%= @delivery.convoy.date_of_arrival.strftime("%d/%m/%Y") %> </td> </tr>
-        <tr> <td>Port de départ : <%= @delivery.convoy.departure_port %> </td> </tr>
-        <tr> <td>Port d'arrivée : <%= @delivery.convoy.arrival_port %> </td> </tr>
-      </table>
+  <table>
+    <tr> <th><%= @delivery.convoy.title %></th> </tr>
+    <tr> <td><%= @delivery.convoy.description %> </td> </tr>
+    <tr> <td>Type de bateau : <%= @delivery.convoy.boat_type %> </td> </tr>
+    <tr> <td>Date de départ : <%= @delivery.convoy.date_of_departure.strftime("%d/%m/%Y") %> </td> </tr>
+    <tr> <td>Date d'arrivée : <%= @delivery.convoy.date_of_arrival.strftime("%d/%m/%Y") %> </td> </tr>
+    <tr> <td>Port de départ : <%= @delivery.convoy.departure_port %> </td> </tr>
+    <tr> <td>Port d'arrivée : <%= @delivery.convoy.arrival_port %> </td> </tr>
+  </table>
 
 
-      <p>Voici les coordonnées qui vont serviront pour organiser les détails du convoyage:</p>
-      <p>Propriétaire du convoi :</p>
-      <ul>
-        <li> Mail : <%= @delivery.convoy.boat_owner.email %> </li>
-        <li> Nom : <%= @delivery.convoy.boat_owner.profile.first_name %> </li>
-        <li> Prénom : <%= @delivery.convoy.boat_owner.profile.last_name %> </li>
-        <li> Ville : <%= @delivery.convoy.boat_owner.profile.city %> </li>
-        <li> Numéro de téléphone : </li>
-      </ul>
-      
-      <p>Skipper du convoi : </p>
-      <ul>
-        <li> Mail : <%= @delivery.skipper.email %> </li>
-        <li> Nom : <%= @delivery.skipper.profile.first_name %> </li>
-        <li> Prénom : <%= @delivery.skipper.profile.last_name %> </li>
-        <li> Ville : <%= @delivery.skipper.profile.city %> </li>
-        <li> Numéro de téléphone : </li>
-      </ul>
+  <p>Voici les coordonnées qui vont serviront pour organiser les détails du convoyage:</p>
+  <p>Propriétaire du convoi :</p>
+  <ul>
+    <li> Mail : <%= @delivery.convoy.boat_owner.email %> </li>
+    <li> Nom : <%= @delivery.convoy.boat_owner.profile.first_name %> </li>
+    <li> Prénom : <%= @delivery.convoy.boat_owner.profile.last_name %> </li>
+    <li> Ville : <%= @delivery.convoy.boat_owner.profile.city %> </li>
+    <li> Numéro de téléphone : </li>
+  </ul>
+  
+  <p>Skipper du convoi : </p>
+  <ul>
+    <li> Mail : <%= @delivery.skipper.email %> </li>
+    <li> Nom : <%= @delivery.skipper.profile.first_name %> </li>
+    <li> Prénom : <%= @delivery.skipper.profile.last_name %> </li>
+    <li> Ville : <%= @delivery.skipper.profile.city %> </li>
+    <li> Numéro de téléphone : </li>
+  </ul>
 
-      <p>
-        Pour accéder à votre espace client, connectez-vous sur : <a href="https://bobato.herokuapp.com/">Bobato</a>.
-      </p>
+</div>
 
-      <p> À très vite !</p><br>
-
-      <div  style="font-size: 12px;" >
-        Vous recevez ce mail car vous venez de vous inscrire sur BoBato.com. 
-        <br>Le site qui a de beaux bateaux avec de beaux skippers.
-      </div>
-
-    </div>
-
-
-
-  </body>
-
-</html>

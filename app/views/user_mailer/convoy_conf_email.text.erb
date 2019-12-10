@@ -1,0 +1,13 @@
+Merci d'avoir proposé un nouveau convoyage !
+============================================
+
+Résumé du convoyage :
+---------------------
+<%= @convoy.title %>
+<%= @convoy.description %> 
+Type de bateau : <%= @convoy.boat_type %> 
+Date de départ :<%= @convoy.date_of_departure.strftime("%d/%m/%Y") %> 
+Date d'arrivée :<%= @convoy.date_of_arrival.strftime("%d/%m/%Y") %> 
+Port de départ : <%= @convoy.departure_port %> 
+Port d'arrivée : <%= @convoy.arrival_port %> 
+

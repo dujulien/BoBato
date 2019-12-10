@@ -1,70 +1,57 @@
     <!------------------------ BANNER ----------------------------------------------------->
 <%= render 'show_profile_banner' %>
 <!------------------------ END BANNER ----------------------------------------------------->
-<!------------------------ EDIT USER ACCOUNT FORM ----------------------------------------------------->  
 
-<section class="site-section bg-light bg-image" id="show_profile">
-    <div class="row d-flex justify-content-center">
-      <div class="col-sm-7 col-md-7 col-lg-5 mx-auto">      
-        <div class="card">
-          <div>
-            <div class="form-group">
-            <br>
-              <div class="text-center">
-                <%if @profile.avatar.attached?%>
-                   <%= image_tag @profile.avatar,style:"height:170px;width:170px",class:"rounded-circle"%>
-                <%else%>
-                  <img src="https://images.assetsdelivery.com/compings_v2/kritchanut/kritchanut1406/kritchanut140600088.jpg"class="card-img-top" alt="Cinque Terre"style="height:170px;width:170px" class="rounded-circle">
-                <%end%>       
-              </div>
-              <br>
-              <div class="p-3 bg-white">
-                <div class="col-md-12"> 
-                  <div class="col-12">
-                    <p class="text-black">Nom : <span><%=@profile.last_name%></span></p>
-                  </div>
-                </div>
+<!------------------------ USER PROFILE ----------------------------------------------------->
+<div class="site-section bg-light bg-image" id="show_profile">
+  <div class="container">
+    <div class="row">
 
-              <div class="col-md-12"> 
-                <div class="col-12">
-                  <p class="text-black">Prénom : <span><%=@profile.first_name%></span></p>
-                </div>
-              </div>
-
-              <div class="col-md-12"> 
-                <div class="col-12">
-                  <p class="text-black">Date de Naissance : <span><%=@profile.birthdate.strftime("%d/%m/%Y")%></span></p>
-                </div>
-              </div>
-
-              <div class="col-md-12"> 
-                <div class="col-12">
-                  <p class="text-black">Ville : <span><%=@profile.city%></span></p>
-                </div>
-              </div>
-
-              <div class="col-md-12"> 
-                <div class="col-12">
-                  <p class="text-black">Description : <span><%=@profile.description%></span></p>
-                </div>
-              </div>
-              <br> 
-            
-              <div class="text-center">
-                <div class="col-md-12">
-                  <div class="text-center">   
-                    <div class="form-group">
-                      <%= link_to "Edit mon profil",edit_profile_path(@profile), class:"btn btn-primary btn-lg btn-block text-white form-label", style:"margin-top:1rem; margin-bottom:1rem;"%>
-                    </div>
-                  </div>
-                </div>                           
-              </div>
-              </div>  
-            </div>
+      <div class="col-md-6 col-lg-4 mb-4 offset-md-1">
+        <div class="card" style="width: 22rem;">
+          <figure style="margin: 0">
+            <%if @profile.avatar.attached?%>
+              <%= image_tag @profile.avatar, style:"height:350px;width:350px"%>
+            <%else%>
+              <%= image_tag('no-avatar.png', class:"card-img-top", style:"height:350px; width:350px") %>
+            <%end%> 
+          </figure>
+          <div class="card-body form-label-tiny" style="padding:0.3rem 0rem 0.5rem 0rem; text-align: center; font-size: 1rem">
+            <%= link_to "Mettre à jour la photo" %>
           </div>
+
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item"><i class="fas fa-home" style="margin-right:1rem;"></i> Habite à <%= @profile.city %></li>
+            <li class="list-group-item"><i class="fas fa-birthday-cake" style="margin:0rem 1.3rem 0rem 0.2rem;"></i>Né(e) le <%= @profile.birthdate.strftime("%d/%m/%Y") %></li>
+            <li class="list-group-item"><i class="far fa-id-badge" style="margin:0rem 1.3rem 0rem 0.3rem;"></i>Tous permis</li>
+          </ul>
         </div>
       </div>
-    </div>
-</section>
 
-        
+      <div class="col-md-5 col-lg-6 mb-4 pl-lg-5">
+        <h4 class="text-black">Profile de <%= @profile.first_name + " " + @profile.last_name %></h4>
+        <p class="text-black">Membre depuis <%= @profile.user.created_at.strftime("%Y") %> · <%= link_to "Modifier le profil", edit_profile_path(current_user.id), class: "form-label-tiny", style:"font-size:1rem;" %></p>
+        <p><%= @profile.description %></p>
+
+        <div style="padding: 1rem 0rem 1rem 0rem">
+          <hr/>
+        </div>
+
+        <div class="row mb-5 align-items-center">
+          <div class="col-md-7 text-left">
+            <h4 class="text-black">Convoyages effectués</h2>
+          </div>
+        <!------------------------ INSERER LES CONVOYAGES ICI ---------------------------->
+        </div>
+
+
+        <div style="padding: 0rem 0rem 1rem 0rem">
+          <hr/>
+        </div>
+        <h4 class="text-black">Commentaires</h4>
+      </div>
+
+    </div>
+  </div>
+</div>
+<!------------------------ END USER PROFILE ----------------------------------------------------->
