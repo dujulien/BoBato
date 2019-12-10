@@ -11,7 +11,6 @@
   <a href="#convoy-details" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
 </div>
 <!----------------- BANNER ----------------->
-
 <%= render :partial => "shared/errors" %>
 
 <!----------------- SHOW CONVOY ----------------->
@@ -98,7 +97,7 @@
             <%else%>
               <%= image_tag('no-avatar.png', class:"w-25 mb-3 rounded-circle") %>
             <%end%> 
-            <h4 class="text-black"><%= @convoy.boat_owner.profile.first_name + " " + @convoy.boat_owner.profile.last_name %></h4>
+            <h4 class="text-black"><%= @convoy.boat_owner.profile.first_name %> <%= @convoy.boat_owner.profile.last_name %></h4>
             <p class="text-muted mb-4">Propriétaire du bâteau</p>
             <p><%= @convoy.boat_owner.profile.description %></p>
             <% if current_user && @convoy.delivery %>
