@@ -1,0 +1,35 @@
+Nouvelle commande sur BoBato !
+==============================
+
+Résumé du convoyage :
+---------------------
+<%= @delivery.convoy.title %>
+<%= @delivery.convoy.description %> 
+Type de bateau : <%= @delivery.convoy.boat_type %> 
+Date de départ :<%= @delivery.convoy.date_of_departure.strftime("%d/%m/%Y") %> 
+Date d'arrivée :<%= @delivery.convoy.date_of_arrival.strftime("%d/%m/%Y") %>
+Port de départ : <%= @delivery.convoy.departure_port %> 
+Port d'arrivée : <%= @delivery.convoy.arrival_port %> 
+Durée du convoi : <%= @delivery.convoy.duration %> 
+*
+Prix : <%= @delivery.convoy.convoy_price %> €
+*
+
+Voici les coordonnées des personnes qui organisent le convoyage :
+
+Propriétaire du convoi : 
+------------------------
+<%= @delivery.convoy.boat_owner_id %>
+<%= @delivery.convoy.boat_owner.email %>
+Prénom : <%= @delivery.convoy.boat_owner.profile.first_name %> 
+Nom : <%= @delivery.convoy.boat_owner.profile.last_name %> 
+  
+
+Skipper du convoi :
+-------------------
+<%= @delivery.skipper_id %>
+<%= @delivery.skipper.email %>
+Prénom : <%= @delivery.skipper.profile.first_name %> 
+Nom : <%= @delivery.skipper.profile.last_name %> 
+
+
