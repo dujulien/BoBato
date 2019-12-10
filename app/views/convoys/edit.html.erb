@@ -1,5 +1,5 @@
 
-<!------------------------------- BANNER ------------------------> 
+<!------------------------------- BANNER ------------------------>
 
 <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(<%= asset_path('hero_1.jpg') %>);" data-aos="fade">
   <div class="container">
@@ -12,8 +12,7 @@
 
   <a href="#edit_convoy" class="smoothscroll arrow-down"><span class="icon-arrow_downward"></span></a>
 </div>
-<!------------------------------- END BANNER ------------------------> 
-<%= form_with model: @convoy, local: true do |form| %>
+<!------------------------------- END BANNER ------------------------>
   <% if @convoy.errors.any? %>
     <div id="error_explanation">
       <h2>
@@ -27,12 +26,11 @@
       </ul>
     </div>
   <% end %>
-  <% end %>
 
-<!-- edit convoy --------------------------------> 
+<!-- edit convoy -------------------------------->
 <section class="site-section bg-light bg-image" id="edit_convoy">
   <div class="row d-flex justify-content-center">
-    <!-- left column --------------------------------> 
+    <!-- left column -------------------------------->
     <div class="col-md-3">
       <br>
       <div class="text-center">
@@ -44,20 +42,20 @@
           </p>
         <%else%>
           <p>=== Il n'y a pas encore d'images liées à cet convoyage ===</p>
-        <%end%>       
+        <%end%>
         <%= form_tag convoy_pictures_path(@convoy), multipart: true do %>
           <div>
-            <%= file_field_tag :pictures,multiple:true%>
+            <%= file_field_tag :pictures, multiple:true%>
           </div>
           <br>
           <%= submit_tag "Mettre à jour",class:"btn btn-primary btn-block" %>
         <% end %>
       </div>
-    </div>  
+    </div>
 
     <!-- edit form column ----------------------------->
 
-    <div class="col-md-6 personal-info"> 
+    <div class="col-md-6 personal-info">
       <div class="p-5 bg-white">
         <div class="card">
 
@@ -66,17 +64,17 @@
           <h1>Edit convoy</h1>
 
           <div class="container" id="new_convoy">
-            <div class="row"> 
-              <div class="col-sm-9 col-md-7 col-lg-7 mx-auto">      
+            <div class="row">
+              <div class="col-sm-9 col-md-7 col-lg-7 mx-auto">
                 <div class="card">
                   <div class="form-group">
 
-                    <%=form_tag convoys_path(@convoy), method: :put do %>
+                    <%=form_tag convoy_path(@convoy), method: :put do %>
                       <div class="col-12">
                         <h4 class="modal-title text-black text-center" id="exampleModalCenterTitle">Editer le convoyage</h4>
                       </div>
                       <br/>
-                      
+
                       <div class="col-12">
                         <label class="text-black form-label">Titre:</label>
                         <div class="input-group mb-2 mr-sm-2">
@@ -94,9 +92,9 @@
                             <div class="input-group-text" style="width:2.3rem;"></div>
                           </div>
                           <%= text_field_tag 'boat_type',value = @convoy.boat_type,class:"form-control"%>
-                        </div>      
+                        </div>
                       </div>
-                     
+
                       <div class="col-12">
                         <label class="text-black form-label">Licence requise :</label>
                         <div class="input-group mb-2 mr-sm-2">
@@ -166,7 +164,7 @@
                             <%= text_field_tag 'departure_port',value = @convoy.convoy_price,class:"form-control"%>
                         </div>
                       </div>
-                       
+
                       <div class="col-md-12">
                         <%= submit_tag "Editer", class:"btn btn-primary btn-lg btn-block text-white form-label", style:"margin-top:1rem; margin-bottom:1rem;" %>
                       </div>
@@ -175,4 +173,3 @@
                 </div>
               </div>
             </div>
-          

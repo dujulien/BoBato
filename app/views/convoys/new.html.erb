@@ -1,7 +1,7 @@
 <%= content_for :title, "Créer un convoyage" %>
 
 
-<!------------------------------- BANNER ------------------------> 
+<!------------------------------- BANNER ------------------------>
 <%= render 'banner_new_convoy' %>
 <!------------------------------- END BANNER ------------------------>
 
@@ -11,11 +11,11 @@
 <br>
 
 <section class="site-section bg-light bg-image" id="new_convoy">
-  	<div class="row d-flex justify-content-center">  
-    	<div class="col-md-6"> 
+  	<div class="row d-flex justify-content-center">
+    	<div class="col-md-6">
       		<div class="p-5 bg-white">
-        		<div class="col-md-12"> 
-        			<%=form_tag convoys_path,method: :post do %>
+        		<div class="col-md-12">
+        			<%=form_tag convoys_path, multipart: true, method: :post do %>
 
 		          		<div class="col-12">
 		            		<h4 class="modal-title text-black text-center" id="exampleModalCenterTitle">Créer un convoyage</h4>
@@ -30,7 +30,7 @@
 		               			<%= text_field_tag 'title',value = params[:title],class:"form-control"%>
 		            		</div>
 		          		</div>
-		        
+
 		          		<div class="col-12">
 		          			<label class="text-black form-label">Type de bateau:</label>
 		             		<div class="input-group mb-2 mr-sm-2">
@@ -38,9 +38,9 @@
 		                			<div class="input-group-text" style="width:2.3rem;"></div>
 		              			</div>
 		               			<%= text_field_tag 'boat_type',value = params[:boat_type],class:"form-control"%>
-		               		</div>	    
+		               		</div>
 		                </div>
-		         
+
 				        <div class="col-12">
 				            <label class="text-black form-label">Licence requise :</label>
 				            <div class="input-group mb-2 mr-sm-2">
@@ -97,9 +97,9 @@
 			              		<div class="input-group-prepend">
 			                		<div class="input-group-text" style="width:2.3rem;"></div>
 			              		</div>
-			              		<%= text_field_tag 'date_of_arrival',value = params[:date_of_arrival],class:"form-control",placeholder:"JJ-MM-AAAA"%> 
+			              		<%= text_field_tag 'date_of_arrival',value = params[:date_of_arrival],class:"form-control",placeholder:"JJ-MM-AAAA"%>
 			            	</div>
-			          	</div>  
+			          	</div>
 
 			          	<div class="col-12">
 			             	<label class="text-black form-label">Rémunération du convoi:</label>
@@ -107,17 +107,17 @@
 			              		<div class="input-group-prepend">
 			                		<div class="input-group-text" style="width:2.3rem;"></div>
 			              		</div>
-			               		<%= number_field_tag 'convoy_price',value = params[:convoy_price],class:"form-control"%>  
+			               		<%= number_field_tag 'convoy_price',value = params[:convoy_price],class:"form-control"%>
 			            	</div>
-			          	</div>         
+			          	</div>
 
 			          	<div class="col-12">
 			            	<label class="text-black form-label">Ajouter des images:</label>
 		            		<div >
-		               			<%= file_field_tag 'pictures[]',multiple:true%> 
+		               			<%= file_field_tag 'pictures[]', multiple:true%>
 		  					</div>
-		  				</div>	
-			         
+		  				</div>
+
 			         	<div class="col-md-12">
 			            	<%= submit_tag "Créer", class:"btn btn-primary btn-lg btn-block text-white form-label", style:"margin-top:1rem; margin-bottom:1rem;" %>
 			          	</div>
@@ -126,9 +126,4 @@
 		    </div>
 		</div>
 	</div>
-</section>  	
-    
-
-
-
-
+</section>
