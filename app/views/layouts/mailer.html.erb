@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
-      /* Email styles need to be inline */
-    </style>
-  </head>
+	<head>
+		<meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900|Oswald:300,400,700" rel="stylesheet">
 
-  <body>
-    <%= yield %>
-  </body>
+		<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+		<%= javascript_include_tag 'application', async: true, defer: true %>
+
+		<style>
+		  /* Email styles need to be inline */
+		</style>
+
+		<div class="container">
+		  <div style="width: 20%" class="text-center">
+		    <%= image_tag attachments['logo-bobato-dark.png'].url %>
+		  </div>
+		</div>
+	</head>
+
+  	<body>
+	    <%= yield %>
+
+	    <div class="container">
+	        <p>
+	        	Pour accéder à votre espace client, connectez-vous sur : <%= link_to "Bobato", root_url %>.
+	      	</p>
+
+	      	<p> À très vite !</p><br>
+
+	      	<div  style="font-size: 11px;" >
+	        	Vous recevez ce mail car vous venez de vous inscrire sur BoBato. 
+	        	<br>Le site qui a de beaux bateaux avec de beaux skippers.
+	    	</div>
+	    </div>
+  	</body>
 </html>
