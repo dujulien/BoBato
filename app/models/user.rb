@@ -3,9 +3,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  after_create :welcome_send, :create_profile       
+  after_create :welcome_send, :create_profile
 
   has_one :profile, dependent: :destroy
+  has_many :user_feedbacks, dependent: :destroy
 
   has_many :convoys, foreign_key: 'boat_owner_id', class_name: "Convoy"
   has_many :submissions, foreign_key: 'skipper_id', class_name: "Submission"
