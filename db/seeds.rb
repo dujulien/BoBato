@@ -8,7 +8,7 @@
 
 require 'faker'
 
-15.times do |i|
+35.times do |i|
 	User.create(
 							email: Faker::Internet.email, 
 							password: 'AZERTY'
@@ -28,8 +28,9 @@ require 'faker'
 end
 
 
-5.times do |i|
-	c = Convoy.create(
+30.times do |i|
+	Convoy.create(
+
 								boat_owner: User.find(i+1), 
 								title: Faker::Movies::HitchhikersGuideToTheGalaxy.starship, 
 								description: Faker::Lorem.paragraph,

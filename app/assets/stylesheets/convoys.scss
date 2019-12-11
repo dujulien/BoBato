@@ -1,3 +1,13 @@
 // Place all the styles related to the Convoys controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.custom-pagination span {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    display: inline-block;
+    background: ##21A0BF;
+    color: #fff;
+    }

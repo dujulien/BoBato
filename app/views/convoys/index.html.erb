@@ -57,7 +57,7 @@
           </div>
           <!------------------------------- END FILTER BAR ------------------------>
 
-          <!------------------------------- ITEM LIST ------------------------>
+          <!------------------------------- CONVOY LIST ------------------------>
             <div class="col-md-9 order-2 order-md-1">
               <div class="row large-gutters">
                 <% @convoys.each_with_index do |convoy, i| %>
@@ -82,22 +82,16 @@
         </div>
 <!------------------------------- END FILTER AND ITEM LIST SECTION ------------------------>
 
-
         <!------------------------------- PAGINATION ------------------------>
-
-        <div class="row mt-4">
-          <div class="col-md-9">
-            <div class="custom-pagination text-center">
-              <span>1</span>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <span class="more-page">...</span>
-              <a href="#">7</a>
+        <div class="col-md-9 order-2 order-md-1">
+          <div class="row mt-4">
+            <div class="col-md-9">
+              <div class="custom-pagination text-center">
+                  <div class="more-page"><%= paginate @convoys %></div>
+              </div>
             </div>
-            
           </div>
         </div>
-
         <!------------------------------- END PAGINATION ------------------------>
 
       </div>

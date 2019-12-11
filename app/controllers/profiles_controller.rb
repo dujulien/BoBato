@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
       flash[:success] = 'Modifications enregistrées' 
         redirect_to @profile
     else
-      flash[:error] = ["Les modifications n'ont pas pu être enregistrées"]
+      flash[:errors] = ["Les modifications n'ont pas pu être enregistrées"]
         render :edit
     end
 

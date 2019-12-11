@@ -22,7 +22,7 @@
       <div class="col-lg-7">
         <div class="owl-carousel slide-one-item with-dots">
           <div>
-            <%= image_tag(@convoy.picture_attachment_path, class:"img-fluid")%>
+            <%= image_tag @convoy.picture_attachment_path, class:"img-fluid"%>
           </div>
         </div>
       </div>
@@ -93,11 +93,7 @@
         <div class="mb-5">
 
           <div class="mt-5">
-            <%if @convoy.boat_owner.profile.avatar.attached?%>
-              <%= image_tag @convoy.boat_owner.profile.avatar, class:"w-25 mb-3 rounded-circle"%>
-            <%else%>
-              <%= image_tag('no-avatar.png', class:"w-25 mb-3 rounded-circle") %>
-            <%end%> 
+            <%= image_tag @convoy.boat_owner.profile.avatar_attachment_path, class:"w-25 mb-3 rounded-circle"%>
             <h4 class="text-black"><%= @convoy.boat_owner.profile.first_name %> <%= @convoy.boat_owner.profile.last_name %></h4>
             <p class="text-muted mb-4">Propriétaire du bâteau</p>
             <p><%= @convoy.boat_owner.profile.description %></p>
@@ -142,4 +138,3 @@
   </div>
 <% end %>
 <!--------------- SUBMISSION MODAL -------------->
-
