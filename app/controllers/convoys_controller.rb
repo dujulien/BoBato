@@ -4,7 +4,7 @@ class ConvoysController < ApplicationController
   # before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @convoys = Convoy.all
+    @convoys = Convoy.page(params[:page]).per(9)
   end
 
   def show

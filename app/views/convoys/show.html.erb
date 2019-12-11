@@ -46,19 +46,44 @@ g<!----------------- BANNER ----------------->
           <p class="text-label">Permis requis</p>
           	<p><%= @convoy.required_license %>
           	</p>
-
           <p class="text-label">Rémunération</p>
           	<p class="mb-4"><%=  number_with_delimiter(@convoy.convoy_price.round(0), delimiter: " ") %> €
           	</p>
+
+
+
+
+
+
       	  <% if current_user && @convoy.applicants.include?(current_user)  %>
-          		<p><a href="#" class="btn btn-secondary">Candidature envoyée</a></p>
+              <p><a href="#" class="btn btn-danger">Annuler ma candidature</a></p>
+
           <% else %>
+
           		<p>
                 <%= link_to "Candidater", {:controller => "submissions", :action => "create", :convoy_id => @convoy.id, :skipper_id => current_user.id}, method: :post, class: "btn btn-primary" %>
               </p>
-          <% end %>
-        </div>
+           <% end %>
 
+          <% if @convoy.submissions.status == true %>
+                <button class="btn btn-success btn-sm noHover text-sm">Candidature acceptée</button>
+          <% else %>
+                <button class="btn btn-warning btn-sm noHover text-sm">Candidature refusée</button>
+           <% end %>
+
+          <% if !current_user  %>
+             <p><a href="#" class="btn btn-secondary">Connectez-vous pour candidater</a></p>
+          <% end %>
+
+
+
+
+
+
+
+
+
+        </div>
         <div class="mb-5">
 
           <div class="mt-5">
