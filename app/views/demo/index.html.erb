@@ -55,7 +55,7 @@
         </div>
 
         <div class="owl-carousel nonloop-block-13 mb-5">
-        <% @convoys.sort_by(&:id).each_with_index do |convoy, i| %> 
+        <% @convoys.each do |convoy| %> 
 <!------------------- ITEM LIST----------------------------->
           <div class="ftco-media-1">
             <div class="ftco-media-1-inner">

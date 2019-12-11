@@ -20,7 +20,11 @@
             <li><%= link_to "Mes convoyages proposés", user_my_convoys_path(current_user.id), :method => :get, class: "nav-link swing" %></li>
 
               <div class="btn-group right-nav" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
-                  <%= image_tag current_user.profile.avatar, style:"max-height: 40px!important; width: auto", class:"rounded-circle" %>
+                  <% if current_user.profile.avatar.attached? %>
+                    <%= image_tag current_user.profile.avatar, style:"max-height: 40px!important; width: auto", class:"rounded-circle" %>
+                  <% else %>
+                    <%= image_tag('no-avatar.png', class:"w-05 mb-3 rounded-circle") %>
+                  <% end %>
               </div>
 
                 <div class="dropdown-menu dropdown-menu-right">
