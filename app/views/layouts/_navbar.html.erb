@@ -24,7 +24,7 @@
               </div>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                  <button class="dropdown-item" type="button"><%= link_to "Profile", edit_profile_path(current_user.id), :method => :get %></button>
+                  <button class="dropdown-item" type="button"><%= link_to "Profile", profile_path(current_user.id), :method => :get %></button>
                   <button class="dropdown-item" type="button"><%= link_to "Configuration", edit_user_registration_path, :method => :get %></button>
                   <button class="dropdown-item" type="button"><%= link_to "Se déconnecter", destroy_user_session_path, :method => :delete %></button>
                 </div>
