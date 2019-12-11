@@ -8,6 +8,11 @@
 	margin :0;
 }
 
+.card-image {
+    width: 150px;
+    height: 227px;
+}
+
 .text-label {
 	font-family:'Oswald', sans-serif; 
 	text-transform: uppercase; 
@@ -26,6 +31,12 @@
 	font-size: 0.9rem; 
 }
 
+.form-label-sm {
+    font-family:'Oswald', sans-serif; 
+    font-weight: 300 !important;
+    font-size: 1rem; 
+}
+
 .noHover{
     pointer-events: none;
 }
@@ -37,6 +48,22 @@
 
 .w-15{
 	width: 150px;
+}
+
+.w-05{
+    width: 50px;
+}
+
+.footnotesize{
+    font-size: 0.7rem;
+}
+
+p span {
+    display: block;
+}
+
+.big-modal {
+    max-width: 70rem;
 }
 
 @-webkit-keyframes swing
@@ -112,4 +139,5 @@
     -webkit-animation-iteration-count: 1;
     animation-iteration-count: 1;
 }
+
 
