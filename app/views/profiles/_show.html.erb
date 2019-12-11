@@ -6,11 +6,7 @@
       <div class="col-md-6 col-lg-4 mb-4 offset-md-1">
         <div class="card" style="width: 22rem;">
           <figure style="margin: 0">
-            <%if profile.avatar.attached?%>
-              <%= image_tag profile.avatar, style:"height:350px;width:350px"%>
-            <%else%>
-              <%= image_tag('no-avatar.png', class:"card-img-top", style:"height:350px; width:350px") %>
-            <%end%>
+                <%= image_tag profile.avatar_attachment_path, class:"card-img-top", style:"height:350px;width:350px"%>
           </figure>
           <% if current_user && current_user.id == profile.id %>
             <div class="card-body form-label-sm" style="padding:0.3rem 0rem 0.5rem 0rem; text-align: center;">
@@ -20,7 +16,7 @@
 
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><i class="fas fa-home" style="margin-right:1rem;"></i> Habite à <%= profile.city %></li>
-            <li class="list-group-item"><i class="fas fa-birthday-cake" style="margin:0rem 1.3rem 0rem 0.2rem;"></i>Né(e) le <%= profile.birthdate.strftime("%d/%m/%Y") %></li>
+            <li class="list-group-item"><i class="fas fa-birthday-cake" style="margin:0rem 1.3rem 0rem 0.2rem;"></i>Né(e) le <% profile.birthdate ? profile.birthdate.strftime("%d/%m/%Y") : "" %></li>
             <li class="list-group-item"><i class="far fa-id-badge" style="margin:0rem 1.3rem 0rem 0.3rem;"></i>Tous permis</li>
           </ul>
         </div>
@@ -74,11 +70,7 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum velit officiis reiciendis sit nostrum accusantium explicabo, saepe, architecto ea sunt sequi dignissimos beatae aut deserunt maxime! Voluptas, distinctio! Cumque, eum!</p>
         </div>
         <div class="media pt-3 border-bottom border-gray">
-          <% if profile.avatar.attached? %>
-            <%= image_tag(profile.avatar, class:"w-05 mb-3 rounded-circle") %>
-          <% else %>
-            <%= image_tag('no-avatar.png', class:"w-05 mb-3 rounded-circle") %>
-          <% end %>
+          <%= image_tag(profile.avatar_attachment_path, class:"w-05 mb-3 rounded-circle") %>
           <div class="col-lg-7 pl-lg-7">
             <p class="media-body pb-3 mb-0 lh-125 ">
               <span class="form-label-tiny">Firstname Name</span>
@@ -91,11 +83,7 @@
           <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsum velit officiis reiciendis sit nostrum accusantium explicabo, saepe, architecto ea sunt sequi dignissimos beatae aut deserunt maxime! Voluptas, distinctio! Cumque, eum!</p>
         </div>
         <div class="media pt-3 border-bottom border-gray">
-          <% if profile.avatar.attached? %>
-            <%= image_tag(profile.avatar, class:"w-05 mb-3 rounded-circle") %>
-          <% else %>
-            <%= image_tag('no-avatar.png', class:"w-05 mb-3 rounded-circle") %>
-          <% end %>
+          <%= image_tag(profile.avatar_attachment_path, class:"w-05 mb-3 rounded-circle") %>
           <div class="col-lg-7 pl-lg-7">
             <p class="media-body pb-3 mb-0 lh-125 ">
               <span class="form-label-tiny">Firstname Name</span>

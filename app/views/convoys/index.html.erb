@@ -57,7 +57,7 @@
           </div>
           <!------------------------------- END FILTER BAR ------------------------>
 
-          <!------------------------------- ITEM LIST ------------------------>
+          <!------------------------------- CONVOY LIST ------------------------>
             <div class="col-md-9 order-2 order-md-1">
               <div class="row large-gutters">
                 <% @convoys.each_with_index do |convoy, i| %>
@@ -65,11 +65,7 @@
                     <div class="ftco-media-1">
                       <div class="ftco-media-1-inner">
                         <a href="<%= convoy_path(convoy.id) %>" class="d-inline-block mb-4">
-                          <% if convoy.pictures.attached? %>
-                            <%= image_tag convoy.pictures[0], style:"height:346px; width:228px;"%>
-                          <% else %>
-                            <%= image_tag "no-picture.png", style:"height:346px; width:228px;" %>
-                          <% end %>
+                          <%= image_tag(convoy.picture_attachment_path, style:"height:346px; width:228px;")%>
                         </a>
                         <div class="ftco-media-details">
                           <h3><%= convoy.boat_type %></h3>
@@ -86,22 +82,16 @@
         </div>
 <!------------------------------- END FILTER AND ITEM LIST SECTION ------------------------>
 
-
         <!------------------------------- PAGINATION ------------------------>
-
-        <div class="row mt-4">
-          <div class="col-md-9">
-            <div class="custom-pagination text-center">
-              <span>1</span>
-              <a href="#">2</a>
-              <a href="#">3</a>
-              <span class="more-page">...</span>
-              <a href="#">7</a>
+        <div class="col-md-9 order-2 order-md-1">
+          <div class="row mt-4">
+            <div class="col-md-9">
+              <div class="custom-pagination text-center">
+                  <div class="more-page"><%= paginate @convoys %></div>
+              </div>
             </div>
-            
           </div>
         </div>
-
         <!------------------------------- END PAGINATION ------------------------>
 
       </div>

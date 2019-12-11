@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row align-items-center justify-content-center">
       <div class="col-md-10 mx-auto mt-lg-5 text-center">
-      	<% if @profile.first_name %>
+      	<% if (@profile.first_name != nil && @profile.first_name != "") %>
         	<h1>Bonjour, je m'appelle <%= @profile.first_name%></h1>
         <% else %>
         	<h1>Bonjour, voici mon profil</h1>

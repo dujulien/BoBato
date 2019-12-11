@@ -60,11 +60,7 @@
           <div class="ftco-media-1">
             <div class="ftco-media-1-inner">
               <a href=" <%= convoy_path(convoy.id)%>" class="d-inline-block mb-4"> 
-                <% if convoy.pictures.attached? %>
-                  <%= image_tag convoy.pictures[0], class:"img-fluid"%>
-                <% else %>
-                  <%= image_tag "no-picture.png", class:"img-fluid" %>
-                <% end %>
+                <%= image_tag(convoy.picture_attachment_path, class:"img-fluid") %>
               </a>
               <div class="ftco-media-details">
                 <h3><%= convoy.boat_type %></h3>

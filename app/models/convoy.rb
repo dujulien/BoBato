@@ -50,6 +50,10 @@ class Convoy < ApplicationRecord
 	  end
   end
 
+  def picture_attachment_path
+    self.pictures.attached? ? pictures[0] : 'no-picture.png'
+  end
+
 	private
 
 

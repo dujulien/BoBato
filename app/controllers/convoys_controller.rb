@@ -3,7 +3,7 @@ class ConvoysController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @convoys = Convoy.where("date_of_departure >= ?", Time.current)
+    @convoys = Convoy.where("date_of_departure >= ?", Time.current).page(params[:page]).per(5)
   end
 
   def show
@@ -56,7 +56,7 @@ class ConvoysController < ApplicationController
   private
 
   def convoy_params
-    params.permit(:title,:boat_type,:required_license,:description,:departure_port,:arrival_port,:date_of_departure, :date_of_arrival,:convoy_price,pictures:[])
+    params.permit(:title, :boat_type, :required_license, :description, :departure_port, :arrival_port, :date_of_departure, :date_of_arrival, :convoy_price, pictures:[])
   end
 
 end
