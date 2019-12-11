@@ -1,5 +1,7 @@
+<%= content_for :title, "Modifier mes informations de connexion" %>
+
 <!------------------------ BANNER ----------------------------------------------------->
-<%= render 'signup_banner' %>
+<%= render 'edit_registration_banner' %>
 <!------------------------ END BANNER ----------------------------------------------------->
 
 <%= devise_error_messages! %>
@@ -7,6 +9,7 @@
 <!------------------------ EDIT USER ACCOUNT FORM ----------------------------------------------------->
 
 <section class="site-section bg-light bg-image", id="login">
+
   <div class="row d-flex justify-content-center">  
     <div class="col-md-6"> 
       <div class="p-5 bg-white">
@@ -72,18 +75,13 @@
           <div class="col-md-12">
             <%= f.submit "Modifier", class:"btn btn-primary btn-lg btn-block text-white form-label", style:"margin-top:1rem; margin-bottom:1rem;" %>
             <%= render 'devise/shared/links' %>
+            <p class="form-sm-text"> Vous souhaitez supprimer votre compte? <%= link_to "Supprimer mon compte", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
           </div>
         <% end %>
         </div>
       </div>
     </div>
   </div>
-
-  <h3>Cancel my account</h3>
-
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-
-<%= link_to "Back", :back %>
 
 </section>
 

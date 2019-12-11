@@ -1,33 +1,51 @@
-<!--------------------NAVBAR-------------------------------------------------->
+<!-- NAVBAR -->
 
 <div class="container">
   <div class="row align-items-center">
+    
+    <div class="col-6 col-xl-2">
+      <h1 class="mb-0 site-logo m-0 p-0"><%= link_to 'Bobato', root_path, class:"mb-0"%></h1>
+    </div>
 
-        <div class="col-6 col-xl-2">
-          <h1 class="mb-0 site-logo m-0 p-0"><%= link_to 'Bobato', root_path, class:"mb-0"%></h1>
-        </div>
+    <div class="col-12 col-md-10 d-none d-xl-block">
+      <nav class="site-navigation position-relative text-right" role="navigation">
 
-        <div class="col-12 col-md-10 d-none d-xl-block">
-          <nav class="site-navigation position-relative text-right" role="navigation">
+        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+          
+          <li><%= link_to 'Proposer un convoyage', new_convoy_path, class: "btn btn-primary mr-2 mb-2" %></li>
+          
+          <% if current_user %>
+            
+            <li><%= link_to "Mes candidatures", user_submissions_path(current_user.id), :method => :get, class: "nav-link swing" %></li>
+            <li><%= link_to "Mes convoyages proposés", user_my_convoys_path(current_user.id), :method => :get, class: "nav-link swing" %></li>
 
-            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-              <li><%= link_to 'Proposer un convoyage', new_convoy_path, class: "btn btn-primary mr-2 mb-2" %></li>
-              <% if current_user %>
-                <li><%= link_to "Mes candidatures", user_submissions_path(current_user.id), :method => :get, class: "nav-link swing" %></li>
-                <li><%= link_to "Mes convoyages proposés", user_my_convoys_path(current_user.id), :method => :get, class: "nav-link swing" %></li>
-                <li><%= link_to "Se déconnecter", destroy_user_session_path, :method => :delete, class: "nav-link swing" %></li>
-              <% else %>  
-                <li><a href="#" class="nav-link" data-toggle="modal" data-target="#loginAs">Se connecter</a></li>
-              <% end %>
-            </ul>
+              <div class="btn-group right-nav" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
+                  <% if current_user.profile.avatar.attached? %>
+                    <%= image_tag current_user.profile.avatar, style:"max-height: 40px!important; width: auto", class:"rounded-circle" %>
+                  <% else %>
+                    <%= image_tag('no-avatar.png', class:"w-05 mb-3 rounded-circle") %>
+                  <% end %>
+              </div>
 
-          </nav>
-        </div>
+                <div class="dropdown-menu dropdown-menu-right">
+                  <button class="dropdown-item form-label" type="button"><%= link_to "Profile", profile_path(current_user.id), :method => :get, class:"text-black" %></button>
+                  <button class="dropdown-item form-label" type="button"><%= link_to "Configuration", edit_user_registration_path, :method => :get, class:"text-black" %></button>
+                  <button class="dropdown-item form-label" type="button"><%= link_to "Se déconnecter", destroy_user_session_path, :method => :delete, class:"text-black" %></button>
+                </div>
+              </div>
+              
+          <% else %> 
 
-    <div class="col-6 d-inline-block d-xl-none ml-md-0 py-3"><a href="#" class="site-menu-toggle js-menu-toggle text-white float-right"><span class="icon-menu h3"></span></a>
+            <li><a href="#" class="nav-link" data-toggle="modal" data-target="#loginAs">Se connecter</a></li>
+
+          <% end %>
+
+        </ul>
+
+      </nav>
     </div>
 
   </div>
 </div>
 
-<!---------------------------NAVBAR END--------------------------------------------------->
+

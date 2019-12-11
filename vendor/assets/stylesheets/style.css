@@ -29,6 +29,21 @@ h1, h2, h3, h4, h5,
   font-weight: 300 !important;
   text-transform: uppercase; }
 
+/* Custom */
+
+.right-nav{
+  margin-left: 10px;
+  border-radius: 90%;
+}
+
+.rounded-circle {
+  border-radius: 50%!important;
+}
+
+.text-black:hover {
+  color: grey !important; }
+
+/*--------*/
 .border-2 {
   border-width: 2px; }
 
@@ -471,7 +486,7 @@ h1, h2, h3, h4, h5,
       position: relative;
       color: #212529; }
       .site-mobile-menu .site-nav-wrap a:hover {
-        color: #37cfa2; }
+        color: #37cfa2; }/*red; }*/
     .site-mobile-menu .site-nav-wrap li {
       position: relative;
       display: block; }

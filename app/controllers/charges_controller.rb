@@ -21,7 +21,6 @@ class ChargesController < ApplicationController
 	    currency: 'eur',
 	  })
 
-
 	rescue Stripe::CardError => e
 	  flash[:error] = e.message
 	  redirect_to new_charge_path
@@ -31,7 +30,7 @@ class ChargesController < ApplicationController
 
 		## A TESTER Avec des cas défaillants
 	  if @delivery.save
-      flash[:success] = "Votre convoi est maintenant entièrement validé"
+      flash[:success] = "Votre convoyage est maintenant entièrement validé"
       redirect_to request.referrer
     else
       flash[:errors] = @delivery.errors.full_messages
@@ -40,8 +39,6 @@ class ChargesController < ApplicationController
 
     # For the considered convoy, pass all submissions status to false (rejected), except the one with the selected skipper
 	  @convoy.update_submissions_status_after_checkout(@skipper)
-
-
 	end
 
 end

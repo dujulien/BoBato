@@ -1,3 +1,5 @@
+<%= content_for :title, @convoy.title %>
+
 <!----------------- BANNER ----------------->
 <div class="site-blocks-cover inner-page-cover overlay" style="background-image: url(<%= asset_path('hero_1.jpg') %>);" data-aos="fade">
   <div class="container">
@@ -62,6 +64,9 @@
               <p>
                  <%= link_to "Annuler ma candidature", {:controller => "submissions", :action => "destroy", :convoy_id => @convoy.id, :skipper_id => current_user.id}, method: :delete, class: "btn btn-danger" %>
               </p>
+            <% elsif current_user == @convoy.boat_owner %>
+              <p><%= link_to "Modifier les informations", edit_convoy_path(@convoy.id), class:"btn btn-warning", style:"width:250px;" %></p>
+              <p><%= link_to "Supprimer le convoyage", convoy_path(@convoy.id), :method => 'delete', class:"btn btn-danger", style:"width:250px;" %></p>
             <% else %>
               <p>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submissionModal">
@@ -102,7 +107,6 @@
             <p><%= @convoy.boat_owner.profile.description %></p>
             <% if current_user && @convoy.delivery %>
               <% if @convoy.delivery.skipper == current_user %>
-
                 <p><a href="#" class="btn btn-primary btn-sm">Contacter le propriétaire</a></p>
               <% end %>
             <% end %>

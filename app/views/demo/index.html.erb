@@ -1,4 +1,4 @@
-<%= content_for :title, "Accueil" %>
+<%= content_for :title, "Bienvenue sur BoBato" %>
 
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -55,24 +55,26 @@
         </div>
 
         <div class="owl-carousel nonloop-block-13 mb-5">
-              <% @convoys.sort_by(&:id).each_with_index do |convoy, i| %> 
-
+        <% @convoys.each do |convoy| %> 
 <!------------------- ITEM LIST----------------------------->
-
-        <div class="ftco-media-1">
-          <div class="ftco-media-1-inner">
-            <a href=" <%= convoys_path(convoy.id)%>" class="d-inline-block mb-4"> <%= image_tag ("#{((i%16)+1)}.png") %></a>
-
-            <div class="ftco-media-details">
-              <h3><%= convoy.boat_type %></h3>
-              <p><%= convoy.departure_port %></p>
-              <strong> <%= convoy.convoy_price %> €</strong>
-            </div>
-          </div> 
-        </div>
+          <div class="ftco-media-1">
+            <div class="ftco-media-1-inner">
+              <a href=" <%= convoy_path(convoy.id)%>" class="d-inline-block mb-4"> 
+                <% if convoy.pictures.attached? %>
+                  <%= image_tag convoy.pictures[0], class:"img-fluid"%>
+                <% else %>
+                  <%= image_tag "no-picture.png", class:"img-fluid" %>
+                <% end %>
+              </a>
+              <div class="ftco-media-details">
+                <h3><%= convoy.boat_type %></h3>
+                <p><%= convoy.departure_port %></p>
+                <strong> <%= number_with_delimiter(convoy.convoy_price.round(0), delimiter: " ") %> €</strong>
+              </div>
+            </div> 
+          </div>
 <!------------------- ITEM LIST END----------------------------->
-
-    <% end %>
+        <% end %>
         </div>
         
       </div>
@@ -83,44 +85,43 @@
 
 <!------------------- HOW IT WORKS ----------------------------->
 
-  <section id ="about-section" class="py-5 bg-primary site-section how-it-works" id="howitworks-section">
-    <div class="container">
-      <div  class="row mb-5 justify-content-center">
-        <div class="col-md-7 text-center">
-          <h2  class="section-title mb-3 text-black">Comment ça marche</h2>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 text-center">
-          <div class="pr-5 first-step">
-            <span class="text-black">01.</span>
-            <span class="custom-icon  flaticon-find text-black"></span>
-            <h3 class="text-black">Trouvez votre convoyage</h3>
-            <p class="text-black">Définissez vos critères de recherche tels que le permis demandé, la date de départ et le port de départ.</p>
+    <section class="py-5 bg-primary site-section how-it-works" id="howitworks-section">
+      <div class="container">
+        <div class="row mb-5 justify-content-center">
+          <div class="col-md-7 text-center">
+            <h2 class="section-title mb-3 text-black">Comment ça marche</h2>
           </div>
         </div>
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <div class="pr-5 first-step">
+              <span class="text-black">01.</span>
+              <span class="custom-icon flaticon-find text-black"></span>
+              <h3 class="text-black">Trouvez votre convoyage.</h3>
+              <p class="text-black">Définissez vos critères de recherche tels que le permis demandé, la date de départ et le port de départ.</p>
+            </div>
+          </div>
 
-        <div class="col-md-4 text-center">
-          <div class="pr-5 second-step">
-            <span class="text-black">02.</span>
-            <span class="custom-icon flaticon-send text-black"></span>
-            <h3 class="text-black">Candidatez</h3>
-            <p class="text-black"> Postuler aux offres qui remplissent vos critères de sélection.</p>
+          <div class="col-md-4 text-center">
+            <div class="pr-5 second-step">
+              <span class="text-black">02.</span>
+              <span class="custom-icon flaticon-send text-black"></span>
+              <h3 class="text-black">Candidatez.</h3>
+              <p class="text-black">Postuler aux offres qui remplissent vos critères de sélection.</p>
+            </div>
+          </div>
+
+          <div class="col-md-4 text-center">
+            <div class="pr-5">
+              <span class="text-black">03.</span>
+              <span class="custom-icon flaticon-boat text-black"></span>
+              <h3 class="text-black">Naviguez.</h3>
+              <p class="text-black">Lorsque vous êtes choisi par un propriétaire de bateau, vous êtes directement rémunéré pour le trajet à réaliser.</p>
+            </div>
           </div>
         </div>
-
-        <div class="col-md-4 text-center">
-          <div class="pr-5">
-            <span class="text-black">03.</span>
-            <span class="custom-icon flaticon-boat text-black"></span>
-            <h3 class="text-black">Naviguez</h3>
-            <p class="text-black">Lorsque vous êtes choisi par un propriétaire de bateau, vous êtes directement rémunéré pour le trajet à réaliser.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
+      </div>  
+    </section>
 <!------------------- END HOW IT WORKS ----------------------------->
 
 
