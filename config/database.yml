@@ -81,5 +81,5 @@ test:
 production:
   <<: *default
   database: Final_Project_production
-  username: Final_Project
-  password: <%= ENV['FINAL_PROJECT_DATABASE_PASSWORD'] %>
+  # username: Final_Project
+  # password: <%= ENV['FINAL_PROJECT_DATABASE_PASSWORD'] %>

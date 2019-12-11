@@ -22,11 +22,7 @@
       <div class="col-lg-7">
         <div class="owl-carousel slide-one-item with-dots">
           <div>
-            <% if @convoy.pictures.attached? %>
-              <%= image_tag @convoy.pictures[0], class:"img-fluid"%>
-            <% else %>
-              <%= image_tag "no-picture.png", class: "img-fluid" %>
-            <% end %>
+            <%= image_tag(@convoy.picture_attachment_path, class:"img-fluid")%>
           </div>
         </div>
       </div>

@@ -22,11 +22,7 @@
       <div class="col-lg-3">
         <div class="owl-carousel slide-one-item with-dots">
           <div>
-            <% if @my_convoy.pictures.attached? %>
-              <%= image_tag @my_convoy.pictures[0], class: "img-fluid" %>
-            <% else %>
-              <%= image_tag('no-picture.png', class: "img-fluid") %>
-            <% end %>
+            <%= image_tag @my_convoy.picture_attachment_path, class: "img-fluid" %>
           </div>
         </div>
       </div>
@@ -97,16 +93,12 @@
             <div class="my-3 p-3 bg-grey rounded box-shadow">
               <h4 class="border-bottom border-gray pb-2 mb-0">Candidatures</h4>
               <% if @submissions.size == 0 %>
-                <p>Aucune candidature pour l'instant</p>
+                <p>Aucune candidature pour le moment.</p>
               <% else %>
                 <!---------------------- LOOP ON CONVOY SUBMISSIONS --------------------------------->
                 <% @submissions.each_with_index do |submission, i| %>
                   <div class="media pt-3 border-bottom border-gray">
-                    <% if submission.skipper.profile.avatar.attached? %>
-                      <%= image_tag(submission.skipper.profile.avatar, class:"w-15 mb-3 rounded-circle") %>
-                    <% else %>
-                      <%= image_tag('no-avatar.png', class:"w-15 mb-3 rounded-circle") %>
-                    <% end %>
+                    <%= image_tag(submission.skipper.profile.avatar_attachment_path, class:"w-15 mb-3 rounded-circle") %>
                     <div class="col-lg-7 pl-lg-7">
                       <div class="media-body pb-3 mb-0 lh-125 offset-md-1", style="min-height:155px;">
                         <strong class="d-block text-gray-dark form-label"><%= submission.skipper.profile.first_name %> <%= submission.skipper.profile.last_name %></strong>

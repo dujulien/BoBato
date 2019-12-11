@@ -4,10 +4,14 @@ class ChargesController < ApplicationController
 	end
 
 	def create
-	  @convoy = Convoy.find(params[:convoy_id])
+		puts '$'*40
+		puts params.inspect
+		puts '$'*40
+	  @my_convoy = Convoy.find(params[:convoy_id])
 	  @skipper = User.find(params[:skipper_id])
+		@submissions = Submission.where(convoy: @my_convoy)
 	  # Amount in cents
-	  @amount = (@convoy.convoy_price * 100).to_i
+	  @amount = (@my_convoy.convoy_price * 100).to_i
 
 	  customer = Stripe::Customer.create({
 	    email: params[:stripeEmail],
@@ -21,24 +25,12 @@ class ChargesController < ApplicationController
 	    currency: 'eur',
 	  })
 
-	rescue Stripe::CardError => e
-	  flash[:error] = e.message
-	  redirect_to new_charge_path
-
 	  # Create new delivery for the considered convoy, with the selected skipper
-		@delivery = Delivery.new.create_after_checkout(@convoy, @skipper, params[:stripeToken])
-
-		## A TESTER Avec des cas défaillants
-	  if @delivery.save
-      flash[:success] = "Votre convoyage est maintenant entièrement validé"
-      redirect_to request.referrer
-    else
-      flash[:errors] = @delivery.errors.full_messages
-      render 'my_convoys/show'
-    end
+		Delivery.new.create_after_checkout(@my_convoy, @skipper, params[:stripeToken])
 
     # For the considered convoy, pass all submissions status to false (rejected), except the one with the selected skipper
-	  @convoy.update_submissions_status_after_checkout(@skipper)
+	  @my_convoy.update_submissions_status_after_checkout(@skipper)
+	  redirect_to request.referrer
 	end
 
 end

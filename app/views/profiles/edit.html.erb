@@ -13,11 +13,7 @@
     <div class="col-md-3">
       <div class="text-center">
           <figure style="margin: 0">
-            <%if @profile.avatar.attached?%>
-              <%= image_tag @profile.avatar, style:"height:350px;width:350px"%>
-            <%else%>
-              <%= image_tag('no-avatar.png', class:"card-img-top", style:"height:350px; width:350px") %>
-            <%end%> 
+            <%= image_tag(@profile.avatar_attachment_path, class:"w-05 mb-3 rounded-circle") %>
           </figure>     
         <%= form_tag profile_avatars_path(@profile), multipart: true do %>
           <div>
