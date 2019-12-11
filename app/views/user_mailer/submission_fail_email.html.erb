@@ -1,11 +1,11 @@
 <div class="container">
 
-  <h1 class="form-label text-black">Nouvelle souscription pour un convoyage !</h1>
+  <h1 class="form-label text-black"> Votre candidature n'a pas été retenue pour ce convoi </h1>
   <br>
-  <p> Résumé du convoyage : </p>
+  <p> Rappel du convoyage : </p>
 
   <table>
-    <tr> <th> Résumé du convoyage : <%= @submission.convoy.title %></th> </tr>
+    <tr> <th><%= @submission.convoy.title %></th> </tr>
     <tr> <td><%= @submission.convoy.description %> </td> </tr>
     <tr> <td>Type de bateau : <%= @submission.convoy.boat_type %> </td> </tr>
     <tr> <td>Date de départ : <%= @submission.convoy.date_of_departure.strftime("%d/%m/%Y") %> </td> </tr>

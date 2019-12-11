@@ -1,76 +1,41 @@
-<!DOCTYPE html>
+<div class="container">
 
-<html>
+  <h1 class="form-label text-black">Nouvelle commande sur BoBato !</h1>
+  <br>
+  <p> Résumé du convoyage : </p>
 
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900|Oswald:300,400,700" rel="stylesheet">
+  <table>
+    <tr> <th><%= @delivery.convoy.title %></th> </tr>
+    <tr> <td><%= @delivery.convoy.description %> </td> </tr>
+    <tr> <td>Type de bateau : <%= @delivery.convoy.boat_type %> </td> </tr>
+    <tr> <td>Date de départ :<%= @delivery.convoy.date_of_departure.strftime("%d/%m/%Y") %> </td> </tr>
+    <tr> <td>Date d'arrivée :<%= @delivery.convoy.date_of_arrival.strftime("%d/%m/%Y") %> </td> </tr>
+    <tr> <td>Port de départ : <%= @delivery.convoy.departure_port %> </td> </tr>
+    <tr> <td>Port d'arrivée : <%= @delivery.convoy.arrival_port %> </td> </tr>
+    <tr> <td>Durée du convoi : <%= @delivery.convoy.duration %> </td> </tr>
+    <tr> <td>Prix : <%= @delivery.convoy.convoy_price %> €</td> </tr>
+  </table>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', async: true, defer: true %>
+  Voici les coordonnées des personnes qui organisent le convoyage:
 
-  </head>
+  <table>
+    <tr> <th>Propriétaire du convoi : </th> </tr>
+    <tr> <td><%= @delivery.convoy.boat_owner_id %></td> </tr>
+    <tr> <td><%= @delivery.convoy.boat_owner.email %></td> </tr>
+    <tr> <td>Prénom : <%= @delivery.convoy.boat_owner.profile.first_name %> </td> </tr>
+    <tr> <td>Nom : <%= @delivery.convoy.boat_owner.profile.last_name %> </td> </tr>
+  </table>
 
-  <body>
+  <br>
+  
+  <table>
+    <tr> <th>Skipper du convoi : </th> </tr>
+    <tr> <td><%= @delivery.skipper_id %></td> </tr>
+    <tr> <td><%= @delivery.skipper.email %></td> </tr>
+    <tr> <td>Prénom : <%= @delivery.skipper.profile.first_name %> </td> </tr>
+    <tr> <td>Nom : <%= @delivery.skipper.profile.last_name %> </td> </tr>
+  </table>
 
-    <div class="container">
-
-      <div class="w-25 p-3 float-center">
-        <%= image_tag attachments['logo-bobato-dark.png'].url %>
-      </div>
-
-      <h1 class="form-label text-black">Nouvelle commande sur BoBato !</h1>
-      <br>
-      <p> Résumé du convoyage : </p>
-
-      <table>
-        <tr> <th> Résumé du convoyage : </th> </tr>
-        <tr> <td><%= @delivery.convoy.title %></td> </tr>
-        <tr> <td><%= @delivery.convoy.description %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.boat_type %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.date_of_departure %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.date_of_arrival %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.departure_port %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.arrival_port %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.duration %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.convoy_price %> </td> </tr>
-      </table>
-
-      Voici les coordonnées des personnes qui organisent le convoyage:
-
-      <table>
-        <tr> <th> Propriétaire du convoi : </th> </tr>
-        <tr> <td><%= @delivery.convoy.boat_owner_id %></td> </tr>
-        <tr> <td><%= @delivery.convoy.boat_owner.email %></td> </tr>
-        <tr> <td><%= @delivery.convoy.boat_owner.profile.first_name %> </td> </tr>
-        <tr> <td><%= @delivery.convoy.boat_owner.profile.last_name %> </td> </tr>
-      </table>
-
-      <br>
-      
-      <table>
-        <tr> <th> Skipper du convoi : </th> </tr>
-        <tr> <td><%= @delivery.skipper_id %></td> </tr>
-        <tr> <td><%= @delivery.skipper.email %></td> </tr>
-        <tr> <td><%= @delivery.skipper.profile.first_name %> </td> </tr>
-        <tr> <td><%= @delivery.skipper.profile.last_name %> </td> </tr>
-      </table>
-
-      <p>
-        Pour accéder à ton espace client, connecte-toi sur : <a href="https://bobato.herokuapp.com/">Bobato</a>.
-      </p>
-
-      <p> À très vite !</p><br>
-
-      <div  style="font-size: 12px;" >
-        Vous recevez ce mail car vous venez de vous inscrire sur BoBato.com. 
-        <br>Le site qui a de beaux bateaux avec de beaux skippers.
-      </div>
-
-    </div>
+</div>
 
 
-
-  </body>
-
-</html>

@@ -1,0 +1,33 @@
+<% if flash[:errors] %>
+
+	<div class = "alert alert-warning alert-dismissible fade show" role="alert">
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		Cette étape a rencontré <%= pluralize(flash[:errors].length, "erreur") %> :
+		<ul>
+		  <% flash[:errors].each do |message| %>
+		      <li><%= message %></li>
+		  <% end %>
+		</ul>
+	</div>
+
+<% elsif flash[:success] %>
+
+  	<div class = "alert alert-success alert-dismissible fade show" role="alert">
+  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<%= flash[:success] %>
+  	</div>
+
+<% end %>
+
+
+<script type="text/javascript">
+window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove(); 
+    });
+}, 5000);
+</script>

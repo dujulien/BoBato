@@ -15,19 +15,22 @@ require 'faker'
 							)
 	puts "User #{i+1} seeded"
 
-	Profile.find(i+1).update(
-													first_name: Faker::Name.first_name,
-													last_name: Faker::Name.last_name,
-													birthdate: DateTime.new(rand(1974..2000), rand(1..12), rand(1..28)),
-													city: ["Toulouse", "Lorient", "Nice", "Paris", "Bordeaux", "Lyon"].sample,
-													description: Faker::Lorem.paragraph,
-													)
+	p = Profile.find(i+1)
+	p.update(
+					first_name: Faker::Name.first_name,
+					last_name: Faker::Name.last_name,
+					birthdate: DateTime.new(rand(1974..2000), rand(1..12), rand(1..28)),
+					city: ["Toulouse", "Lorient", "Nice", "Paris", "Bordeaux", "Lyon"].sample,
+					description: Faker::Lorem.paragraph,
+					)
+	p.avatar.attach(io: File.open(Rails.root.join("app", "assets", "images", "person_#{(i%3)+1}.jpg")), filename: "person_#{(i%3)+1}.jpg")
 	puts "Profile #{i+1} seeded"
 end
 
 
 30.times do |i|
 	Convoy.create(
+
 								boat_owner: User.find(i+1), 
 								title: Faker::Movies::HitchhikersGuideToTheGalaxy.starship, 
 								description: Faker::Lorem.paragraph,
@@ -39,6 +42,7 @@ end
 								date_of_arrival: DateTime.new(2020, rand(5..9), rand(1..28)), 
 								convoy_price: rand(2000..10000)
 								)
+	c.pictures.attach(io: File.open(Rails.root.join("app", "assets", "images", "convoy_#{(i%6)+1}.png")), filename: "convoy_#{(i%6)+1}.png")
 	puts "Convoy #{i+1} seeded"
 end
 

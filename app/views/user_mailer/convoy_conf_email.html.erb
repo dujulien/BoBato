@@ -1,53 +1,17 @@
-<!DOCTYPE html>
+<div class="container">
 
-<html>
+  <h1 class="form-label text-black">Merci d'avoir proposé un nouveau convoyage !</h1>
+  <br>
+  <p> Résumé du convoyage : </p>
 
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,900|Oswald:300,400,700" rel="stylesheet">
+  <table>
+    <tr> <th><%= @convoy.title %></th> </tr>
+    <tr> <td><%= @convoy.description %> </td> </tr>
+    <tr> <td>Type de bateau : <%= @convoy.boat_type %> </td> </tr>
+    <tr> <td>Date de départ :<%= @convoy.date_of_departure.strftime("%d/%m/%Y") %> </td> </tr>
+    <tr> <td>Date d'arrivée :<%= @convoy.date_of_arrival.strftime("%d/%m/%Y") %> </td> </tr>
+    <tr> <td>Port de départ : <%= @convoy.departure_port %> </td> </tr>
+    <tr> <td>Port d'arrivée : <%= @convoy.arrival_port %> </td> </tr>
+  </table>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag 'application', async: true, defer: true %>
-
-  </head>
-
-  <body>
-
-    <div class="container">
-
-      <div class="w-25 p-3 float-center">
-        <%= image_tag attachments['logo-bobato-dark.png'].url %>
-      </div>
-
-      <h1 class="form-label text-black">Merci d'avoir proposé un nouveau convoyage !</h1>
-      <br>
-
-      <table>
-        <tr> <th> Résumé du convoyage : </th> </tr>
-        <tr> <td><%= @convoy.title %></td> </tr>
-        <tr> <td><%= @convoy.description %> </td> </tr>
-        <tr> <td><%= @convoy.boat_type %> </td> </tr>
-        <tr> <td><%= @convoy.date_of_departure %> </td> </tr>
-        <tr> <td><%= @convoy.date_of_arrival %> </td> </tr>
-        <tr> <td><%= @convoy.departure_port %> </td> </tr>
-        <tr> <td><%= @convoy.arrival_port %> </td> </tr>
-      </table>
-
-      <p>
-        Pour accéder à ton espace client, connecte-toi sur : <a href="https://bobato.herokuapp.com/">Bobato</a>.
-      </p>
-
-      <p> À très vite !</p><br>
-
-      <div  style="font-size: 12px;" >
-        Vous recevez ce mail car vous venez de vous inscrire sur BoBato.com. 
-        <br>Le site qui a de beaux bateaux avec de beaux skippers.
-      </div>
-
-    </div>
-
-
-
-  </body>
-
-</html>
+</div>

@@ -1,83 +1,102 @@
+<%= content_for :title, "Modifier mon profil" %>
+
 <!------------------------ BANNER ----------------------------------------------------->
 <%= render 'edit_profile_banner' %>
 <!------------------------ END BANNER ----------------------------------------------------->
 <!------------------------ EDIT USER ACCOUNT FORM ----------------------------------------------------->
-<br>
-<div class="container" id="edit_profile">
-	<div class="row">
-    
-    <!-- left column -------------------------------->
-    
+
+<!------------------------ EDIT USER ACCOUNT FORM ----------------------------------------------------->
+
+<section class="site-section bg-light bg-image" id="edit_profile">
+  <div class="row d-flex justify-content-center">
+    <!-- left column --------------------------------> 
     <div class="col-md-3">
       <div class="text-center">
-        <%if @profile.avatar.attached?%>
-      	<%= image_tag @profile.avatar,style:"height:170px;width:170px",class:"rounded-circle"%>
-  	  <%else%>
-     		<img src="https://images.assetsdelivery.com/compings_v2/kritchanut/kritchanut1406/kritchanut140600088.jpg"class="card-img-top" alt="Cinque Terre" style="height:170px;width:170px" class="rounded-circle">
-  	  <%end%>    		
+          <figure style="margin: 0">
+            <%if @profile.avatar.attached?%>
+              <%= image_tag @profile.avatar, style:"height:350px;width:350px"%>
+            <%else%>
+              <%= image_tag('no-avatar.png', class:"card-img-top", style:"height:350px; width:350px") %>
+            <%end%> 
+          </figure>     
         <%= form_tag profile_avatars_path(@profile), multipart: true do %>
-        <div>
-          <%= file_field_tag :avatar%>
-        </div>
+          <div>
+            <%= file_field_tag :avatar%>
+          </div>
           <br>
-          <%= submit_tag "Update",class:"btn btn-primary btn-block" %>
+          <%= submit_tag "Mettre à jour",class:"btn btn-primary btn-block" %>
         <% end %>
       </div>
-    </div>
-      
+    </div>  
+
     <!-- edit form column ----------------------------->
- 
-    <div class="col-md-7 personal-info">       
-      <div class="card">
-        <%=form_tag profile_path(@profile), method: :put do %>
-          <div class="form-group">
-            <br>
-            <h3 class="col-lg-12 text-center">Personal info</h3>
-            <label class="col-md-3 control-label">First name:</label>
-            <div class="col-lg-12">
-              <%= text_field_tag 'first_name', value = @profile.first_name,class:"col-lg-12"%>        
+
+    <div class="col-md-6 personal-info"> 
+      <div class="p-5 bg-white">
+        <div class="card">
+          <%=form_tag profile_path(@profile), method: :put do %>
+            <div class="col-12">
+              <h4 class="modal-title text-black text-center" id="exampleModalCenterTitle">Informations personnelles</h4>
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">Last name:</label>
-            <div class="col-lg-12">
-              <%= text_field_tag 'last_name', value = @profile.last_name,class:"col-lg-12"%>          
+            <br/>
+            
+            <div class="col-12">
+              <label class="text-black form-label">Nom:</label>
+              <div class="input-group mb-2 mr-sm-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text" style="width:2.3rem;"></div>
+                  </div>
+                  <%= text_field_tag 'last_name', value = @profile.last_name,class:"form-control"%>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-           <label class="col-md-3 control-label">Birthdate:</label>
-            <div class="col-lg-12">
-             <%= text_field_tag 'birthdate', value = @profile.birthdate,class:"col-lg-12"%>          
+
+            <div class="col-12">
+              <label class="text-black form-label">Prènom:</label>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text" style="width:2.3rem;"></div>
+                </div>
+                <%= text_field_tag 'first_name',value = @profile.first_name,class:"form-control"%>
+              </div>      
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label">City:</label>
-            <div class="col-lg-12">
-              <%= text_field_tag 'city', value = @profile.city,class:"col-lg-12"%>
-            </div>   
-          </div>
-          
-          <div class="form-group">
-            <label class="col-lg-3 control-label">Description:</label>
-            <div class="col-lg-12">
-              <%= text_area_tag 'description', value = @profile.description,size: "15x5",class:"col-lg-12"%>  
+           
+            <div class="col-12">
+              <label class="text-black form-label">Date de naissance :</label>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text" style="width:2.3rem;"></div>
+                </div>
+                <%= text_field_tag 'birthdate',value = @profile.birthdate,class:"form-control",placeholder:"JJ-MM-AAAA"%>
+              </div>
             </div>
-          </div>
-          <div class="form-group">
-            <label class="col-md-3 control-label"></label>
+
+            <div class="col-12">
+              <label class="text-black form-label">Ville:</label>
+              <div class="input-group mb-2 mr-sm-2">
+                <div class="input-group-prepend">
+                  <div class="input-group-text" style="width:2.3rem;"></div>
+                </div>
+                <%= text_field_tag 'city',value = @profile.city,class:"form-control"%>
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label class="text-black form-label">Description:</label>
+              <div class="input-group mb-2 mr-sm-2">
+                  <div class="input-group-prepend">
+                    <div class="input-group-text" style="width:2.3rem;"></div>
+                  </div>
+                  <%= text_area_tag 'description',value = @profile.description,class:"form-control",size: "15x5"%>
+              </div>
+            </div>
+             
             <div class="col-md-12">
-              <%= submit_tag "Save Changes",class:"btn btn-primary btn-block"%>
+              <%= submit_tag "Sauvegarder", class:"btn btn-primary btn-lg btn-block text-white form-label", style:"margin-top:1rem; margin-bottom:1rem;" %>
             </div>
-          </div>
-        <%end%>
-        </form>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
-<br>
+</section>
 <!------------------------ EDIT USER ACCOUNT FORM ----------------------------------------------------->
-
-
-
-

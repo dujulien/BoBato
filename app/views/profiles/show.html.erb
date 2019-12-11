@@ -1,66 +1,14 @@
-    <!------------------------ BANNER ----------------------------------------------------->
+<% if @profile.first_name %>
+	<%= content_for :title, "Profil de #{@profile.first_name}"%>
+<% else %>
+	<%= content_for :title, "Profil" %>
+<% end %>
+
+<!------------------------ BANNER ----------------------------------------------------->
 <%= render 'show_profile_banner' %>
 <!------------------------ END BANNER ----------------------------------------------------->
-<!------------------------ EDIT USER ACCOUNT FORM ----------------------------------------------------->
-<br>
-<div class="container" id="show_profile">
-  <div class="row"> 
-    <div class="col-sm-9 col-md-7 col-lg-7 mx-auto">      
-      <div class="card">
-        <div>
-          <div class="form-group">
-          <br>
-            <div class="text-center">
-              <%if @profile.avatar.attached?%>
-                 <%= image_tag @profile.avatar,style:"height:170px;width:170px",class:"rounded-circle"%>
-              <%else%>
-                <img src="https://images.assetsdelivery.com/compings_v2/kritchanut/kritchanut1406/kritchanut140600088.jpg"class="card-img-top" alt="Cinque Terre"style="height:170px;width:170px" class="rounded-circle">
-              <%end%>       
-            </div>
-            <br>
-            <div class="form-group">
-              <label class="col-md-5 control-label">First name:</label>
-              <div class="col-lg-12">
-                <%= text_field_tag 'first_name', value = @profile.first_name,class:"col-lg-12"%>        
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-5 control-label">Last name:</label>
-              <div class="col-lg-12">
-                <%= text_field_tag 'last_name', value = @profile.last_name,class:"col-lg-12"%>       
-              </div>
-            </div>
-            <div class="form-group">
-             <label class="col-md-5 control-label">Birthdate:</label>
-              <div class="col-lg-12">
-               <%= text_field_tag 'birthdate', value = @profile.birthdate,class:"col-lg-12",placeholder:"DD-MM-YYYY"%>          
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-5 control-label">City:</label>
-              <div class="col-lg-12">
-                <%= text_field_tag 'city', value = @profile.city,class:"col-lg-12"%>
-              </div>   
-            </div>      
-            <div class="form-group">
-              <label class="col-lg-5 control-label">Description:</label>
-              <div class="col-lg-12">
-                 <%= text_area_tag 'description', value = @profile.description,size: "15x5",class:"col-lg-12"%>  
-              </div>
-            </div>
-            <div class="text-center">
-              <div class="col-lg-12">
-                <div class="text-center">   
-                  <div class="form-group">
-                    <%= link_to "Edit mon profil",edit_profile_path(@profile), class: "btn btn-primary btn-block" %>
-                  </div>
-                </div>
-              </div>                           
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>  
-<br>
+
+
+<!------------------------ USER PROFILE ----------------------------------------------------->
+<%= render 'show', profile: @profile %> 
+<!------------------------ END USER PROFILE ----------------------------------------------------->

@@ -1,102 +1,112 @@
 <%= content_for :title, "Créer un convoyage" %>
 
-
-<!------------------------------- BANNER ------------------------> 
+<!------------------------------- BANNER ------------------------>
 <%= render 'banner_new_convoy' %>
 <!------------------------------- END BANNER ------------------------>
-<!----------------------------------- ERRORS MESSAGES --------------------------------------->
-<%= render 'errors_convoy' %>
-<!------------------------------------------------------------------------------------------->
 
-<br>
+<%= render :partial => "shared/errors" %>
 
-<div class="container" id="new_convoy">
-  <div class="row"> 
-    <div class="col-sm-9 col-md-7 col-lg-7 mx-auto">      
-      <div class="card">
-        <div class="form-group">
-          <%=form_tag convoys_path do %>
-            <div class="form-group">
-              <br>
-              <h3 class="col-lg-12 text-center">Informations sur le convoi</h3>
-              <label class="col-md-5 control-label">Titre:</label>
-              <div class="col-lg-12">
-                <%= text_field_tag 'title',value = params[:title],class:"col-lg-12"%>
-              </div>        
-            </div>
-            <div class="form-group">
-              <label class="col-md-5 control-label">Type de bateau:</label>
-              <div class="col-lg-12">
-                <%= text_field_tag 'boat_type',value = params[:boat_type],class:"col-lg-12"%>       
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-md-5 control-label">Licence requise :</label>
-              <div class="col-lg-12">
-                <%= text_field_tag 'required_license',value = params[:required_license],class:"col-lg-12"%>
-              </div>   
-            </div>      
-            <div class="form-group">
-              <label class="col-lg-5 control-label">Description:</label>
-              <div class="col-lg-12">
-                 <%= text_area_tag 'description',value = params[:description],class:"col-lg-12",size: "15x5"%>  
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-5 control-label">Port de départ:</label>
-              <div class="col-lg-12">
-                 <%= text_field_tag 'departure_port',value = params[:departure_port],class:"col-lg-12"%>  
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-5 control-label">Port d’arrivée:</label>
-              <div class="col-lg-12">
-                 <%= text_field_tag 'arrival_port',value = params[:arrival_port],class:"col-lg-12"%>  
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-5 control-label">Date de départ :</label>
-              <div class="col-lg-12">
-                 <%= date_field_tag 'date_of_departure',value = params[:date_of_departure],class:"col-lg-12"%>  
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-5 control-label">Date d’arrivée:</label>
-              <div class="col-lg-12">
-                 <%= date_field_tag 'date_of_arrival',value = params[:date_of_arrival],class:"col-lg-12"%>  
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-lg-5 control-label">Rémunération du convoi:</label>
-              <div class="col-lg-12">
-                 <%= number_field_tag 'convoy_price',value = params[:convoy_price],class:"col-lg-12"%>  
-              </div>
-            </div>
-            <div class="text-center"> 
-              <div class="col-lg-12">
-                <div class="text-center">   
-                  <div class="form-group">
-                    <%= submit_tag "Créer", class: "btn btn-primary btn-block" %>
-                  </div>
-                </div>
-              </div>                           
-            </div>
-          <%end%>                
-        </div>
-      </div>
-    </div>
-  </div>
-</div>  
-<br>
+<section class="site-section bg-light bg-image" id="new_convoy">
+  	<div class="row d-flex justify-content-center">
+    	<div class="col-md-9">
+      		<div class="p-5 bg-white">
+        		<div class="col-md-12">
 
-   <%= form_with model: @convoy, local: true  do |form| %>
-    <%= form.file_field :pictures, multiple: true %><br>
-    <%= form.submit %>
-  <% end %>
- 
+        			<%=form_tag convoys_path, multipart: true, method: :post do %>
+						<div class="row form-group">
+							<div class="col-3">
+								<span class="custom-icon flaticon-boat text-black"></span>
+			          		</div>
+			          		<div class="col-9 my-auto">
+			            		<h4 class="modal-title text-black text-right" id="exampleModalCenterTitle">Soumettre une proposition de convoyage</h4>
+			          		</div>
+						</div>
 
+		          		<div class="row form-group">
+			          		<div class="col-md-6 mb-3 mb-md-0">
+			          			<label class="text-black form-label">Titre</label>
+			            		<div class="input-group mb-2 mr-sm-2">
+			               			<%= text_field_tag 'title', value = params[:title], class:"form-control", placeholder:"Traversée à bord du Vogue Merry"%>
+			            		</div>
+			          		</div>
+			          		<div class="col-md-6 mb-3 mb-md-0">
+			          			<label class="text-black form-label">Type de bateau</label>
+			             		<div class="input-group mb-2 mr-sm-2">
+			               			<%= text_field_tag 'boat_type', value = params[:boat_type], class:"form-control", placeholder:"ex: Voilier, Catamaran, Yacht etc."%>
+			               		</div>
+			                </div>
+						</div>
+						
+						<div class="row form-group">
+				            <div class="col-md-6 mb-3 mb-md-0">
+				             	<label class="text-black form-label">Port de départ</label>
+				            	<div class="input-group mb-2 mr-sm-2">
+				              		<%= text_field_tag 'departure_port', value = params[:departure_port], class:"form-control", placeholder:"ex: Marseille"%>
+				            	</div>
+				          	</div>
+				          	<div class="col-md-6 mb-3 mb-md-0">
+				             	<label class="text-black form-label">Port d’arrivée</label>
+				            	<div class="input-group mb-2 mr-sm-2">
+				              		<%= text_field_tag 'arrival_port', value = params[:arrival_port], class:"form-control", placeholder:"ex: Le Pirée"%>
+				            	</div>
+				          	</div>
+						</div>
 
+						<div class="row form-group">
+				          	<div class="col-md-6 mb-3 mb-md-0">
+				             	<label class="text-black form-label">Date de départ</label>
+				            	<div class="input-group mb-2 mr-sm-2">
+				              		<%= text_field_tag 'date_of_departure',value = params[:date_of_departure],class:"form-control",placeholder:"JJ-MM-AAAA"%>
+				            	</div>
+				          	</div>
+				          	<div class="col-md-6 mb-3 mb-md-0">
+				             	<label class="text-black form-label">Date d’arrivée</label>
+				            	<div class="input-group mb-2 mr-sm-2">
+				              		<%= text_field_tag 'date_of_arrival',value = params[:date_of_arrival],class:"form-control", placeholder:"JJ-MM-AAAA" %>
+				            	</div>
+				          	</div>
+				         </div>
 
+						<div class="row form-group">
+					        <div class="col-md-6 mb-3 mb-md-0">
+					            <label class="text-black form-label">Licence requise</label>
+					            <div class="input-group mb-2 mr-sm-2">
+					              	<%= text_field_tag 'required_license',value = params[:required_license],class:"form-control", placeholder:"Permis côtier, hauturier..."%>
+					            </div>
+					        </div>
+					        <div class="col-md-6 mb-3 mb-md-0">
+				             	<label class="text-black form-label">Rémunération du convoyage</label>
+				            	<div class="input-group mb-2 mr-sm-2">
+				               		<%= number_field_tag 'convoy_price',value = params[:convoy_price], class:"form-control", placeholder:"€" %>
+				            	</div>
+				          	</div>
+						</div>
 
+						<div class="row form-group">
+				            <div class="col-md-12 mb-3 mb-md-0">
+				             	<label class="text-black form-label">Description</label>
+				            	<div class="input-group mb-2 mr-sm-2">
+				              		<%= text_area_tag 'description', value = params[:description], class:"form-control", rows:"5", placeholder:"Décrivez votre besoin en quelques lignes" %>
+				            	</div>
+				          	</div>
+				         </div>
+						
+						<div class="row form-group">
+				          	<div class="col-12">
+			            		<span class="addimage form-label">
+			            			Ajouter des images : 
+			               			<%= file_field_tag 'pictures[]', multiple:true %>
+			  					</span>
+			  				</div>
 
+				         	<div class="col-md-12">
+				            	<%= submit_tag "Valider ma demande", class:"btn btn-primary btn-lg btn-block text-white form-label", style:"margin-top:1rem; margin-bottom:1rem;" %>
+				          	</div>
+				        </div>
+        			<% end %>
 
+		        </div>
+		    </div>
+		</div>
+	</div>
+</section>

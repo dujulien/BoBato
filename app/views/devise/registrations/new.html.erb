@@ -1,7 +1,10 @@
+<%= content_for :title, "S'inscrire" %>
+
 <!------------------------ BANNER ----------------------------------------------------->
 <%= render 'signup_banner' %>
 <!------------------------ END BANNER ----------------------------------------------------->
 
+<%= devise_error_messages! %>
 
 <!------------------------ SIGNUP FORM ----------------------------------------------------->
 <section class="site-section bg-light bg-image", id="login">

@@ -13,7 +13,11 @@
       <div class="card mb-6" style="max-width: 900px; margin-bottom: 2rem">
           <div class="row no-gutters">
             <div class="col-md-2">
-              <%= image_tag("convoy_#{1}.png", class:'card-img') %>
+              <% if submission.convoy.pictures.attached? %>
+                <%= image_tag(submission.convoy.pictures[0], class:'card-img') %>
+              <% else %>
+                <%= image_tag("no-picture.png", class:'card-img') %>
+              <% end %>
             </div>
           <div class="col-md-10">
             <div class="card-body", style="padding-bottom: 0;">
