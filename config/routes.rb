@@ -23,4 +23,11 @@ Rails.application.routes.draw do
     resources :avatars, only: [:create]
   end
 
+
+  namespace :admin do
+  resources :articles, :comments
+  end
+
 end
+
+

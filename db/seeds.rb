@@ -42,8 +42,7 @@ end
 								date_of_arrival: DateTime.new(2020, rand(5..9), rand(1..28)), 
 								convoy_price: rand(2000..10000)
 								)
-	c.pictures.attach(io: File.open(Rails.root.join("app", "assets", "images", "convoy_#{(i%6)+1}.png")), filename: "convoy_#{(i%6)+1}.png")
-	puts "Convoy #{i+1} seeded"
+
 end
 
 

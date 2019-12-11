@@ -1,4 +1,4 @@
-’class ConvoysController < ApplicationController
+class ConvoysController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create]
 
