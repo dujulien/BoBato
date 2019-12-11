@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
 
+
   devise_for :users
   resources :user do
     resources :my_convoys, only: [:index, :show]
@@ -22,5 +23,9 @@ Rails.application.routes.draw do
   resources :profiles do
     resources :avatars, only: [:create]
   end
+
+  resources :profiles do
+  resources :userfeedbacks
+end
 
 end

@@ -1,8 +1,8 @@
 class ProfilesController < ApplicationController
- 
+
   def show
   	@profile = Profile.find(params[:id])
-    @deliveries = @profile.user.deliveries
+    @userfeedback = Userfeedback.where(profile_id: 	@profile.id)
   end
 
   def edit
@@ -12,12 +12,12 @@ class ProfilesController < ApplicationController
   def update
   	@profile = Profile.find(params[:id])
     if @profile.update(first_name: params[:first_name],last_name: params[:last_name],birthdate: params[:birthdate], description: params[:description],city: params[:city])
-      flash[:success] = 'Modifications enregistrées' 
+      flash[:success] = 'The item was updated'
         redirect_to @profile
     else
-      flash[:errors] = ["Les modifications n'ont pas pu être enregistrées"]
+      flash[:error] = 'Erreur'
         render :edit
     end
 
-  end	
+  end
 end
