@@ -49,13 +49,13 @@
                     <div class="col-md-6 mb-3 mb-md-0">
                       <label class="text-black form-label">Date de départ</label>
                       <div class="input-group mb-2 mr-sm-2">
-                        <%= date_field_tag 'date_of_departure', value = convoy.date_of_departure,class:"form-control", value: Date.today + 1.day, required: true %>
+                        <%= date_field_tag 'date_of_departure', value = convoy.date_of_departure,class:"form-control", value: convoy.date_of_departure, required: true %>
                       </div>
                     </div>
                     <div class="col-md-6 mb-3 mb-md-0">
                       <label class="text-black form-label">Date d’arrivée</label>
                       <div class="input-group mb-2 mr-sm-2">
-                        <%= date_field_tag 'date_of_arrival', value = convoy.date_of_departure, class:"form-control", value: Date.today + 2.day, required: true %>
+                        <%= date_field_tag 'date_of_arrival', value = convoy.date_of_arrival, class:"form-control", value: convoy.date_of_arrival, required: true %>
                       </div>
                     </div>
                   </div>
