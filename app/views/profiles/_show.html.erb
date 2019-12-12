@@ -67,7 +67,7 @@
 
         <!------------------ COMMENT BLOCK (to loop) --------------------->
 
-
+        
         <h1>Ajouter un commentaire</h1>
         <%= form_tag profile_userfeedbacks_path(@profile) do %>
 
@@ -78,6 +78,8 @@
         <p><%= label_tag :comment %>
         <%= text_area_tag :comment %></p>
         <p><%= submit_tag "Soumettre" %></p>
+        <% end %>
+
         <% end %>
 
         <% @userfeedback.each do |feedback| %>

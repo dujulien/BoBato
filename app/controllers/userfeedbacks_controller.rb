@@ -1,4 +1,7 @@
 class UserfeedbacksController < ApplicationController
+
+  before_action :current_user, only: [:create]
+
   def create
    @profile= Profile.find(params[:profile_id])
    @userfeedback = Userfeedback.create(userfeedback_params)
