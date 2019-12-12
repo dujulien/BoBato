@@ -1,10 +1,3 @@
-<%= content_for :title, "Créer un convoyage" %>
-
-<!------------------------------- BANNER ------------------------>
-<%= render 'banner_new_convoy' %>
-<!------------------------------- END BANNER ------------------------>
-
-<%= render :partial => "shared/errors" %>
 
 <section class="site-section bg-light bg-image" id="new_convoy">
   	<div class="row d-flex justify-content-center">
@@ -12,7 +5,7 @@
       		<div class="p-5 bg-white">
         		<div class="col-md-12">
 
-        			<%=form_tag convoys_path, multipart: true, method: :post do %>
+        			<%=form_for(convoy, multipart: true) do |f|%>
 						<div class="row form-group">
 							<div class="col-3">
 								<span class="custom-icon flaticon-boat text-black"></span>
@@ -26,13 +19,13 @@
 			          		<div class="col-md-6 mb-3 mb-md-0">
 			          			<label class="text-black form-label">Titre</label>
 			            		<div class="input-group mb-2 mr-sm-2">
-			               			<%= text_field_tag 'title', value = params[:title], class:"form-control", placeholder:"Traversée à bord du Vogue Merry", required: true%>
+			               			<%= f.text_field('title', value = convoy.title, class:"form-control", placeholder:"Traversée à bord du Vogue Merry", required: true)%>
 			            		</div>
 			          		</div>
 			          		<div class="col-md-6 mb-3 mb-md-0">
 			          			<label class="text-black form-label">Type de bateau</label>
 			             		<div class="input-group mb-2 mr-sm-2">
-			               			<%= text_field_tag 'boat_type', value = params[:boat_type], class:"form-control", placeholder:"ex: Voilier, Catamaran, Yacht etc.", required: true%>
+			               			<%= f.text_field('boat_type', value = convoy.boat_type, class:"form-control", placeholder:"ex: Voilier, Catamaran, Yacht etc.", required: true)%>
 			               		</div>
 			                </div>
 						</div>
@@ -41,13 +34,13 @@
 				            <div class="col-md-6 mb-3 mb-md-0">
 				             	<label class="text-black form-label">Port de départ</label>
 				            	<div class="input-group mb-2 mr-sm-2">
-				              		<%= text_field_tag 'departure_port', value = params[:departure_port], class:"form-control", placeholder:"ex: Marseille", required: true%>
+				              		<%= f.text_field('departure_port', value = convoy.departure_port, class:"form-control", placeholder:"ex: Marseille", required: true)%>
 				            	</div>
 				          	</div>
 				          	<div class="col-md-6 mb-3 mb-md-0">
 				             	<label class="text-black form-label">Port d’arrivée</label>
 				            	<div class="input-group mb-2 mr-sm-2">
-				              		<%= text_field_tag 'arrival_port', value = params[:arrival_port], class:"form-control", placeholder:"ex: Le Pirée", required: true%>
+				              		<%= f.text_field('arrival_port', value = convoy.arrival_port, class:"form-control", placeholder:"ex: Le Pirée", required: true)%>
 				            	</div>
 				          	</div>
 						</div>
@@ -56,13 +49,13 @@
 				          	<div class="col-md-6 mb-3 mb-md-0">
 				             	<label class="text-black form-label">Date de départ</label>
 				            	<div class="input-group mb-2 mr-sm-2">
-				              		<%= date_field_tag 'date_of_departure', value = params[:date_of_departure],class:"form-control", value: Date.today + 1.day, required: true %>
+				              		<%= f.date_field('date_of_departure', value = convoy.date_of_departure,class:"form-control", value: Date.today + 1.day, required: true)%>
 				            	</div>
 				          	</div>
 				          	<div class="col-md-6 mb-3 mb-md-0">
 				             	<label class="text-black form-label">Date d’arrivée</label>
 				            	<div class="input-group mb-2 mr-sm-2">
-				              		<%= date_field_tag 'date_of_arrival', value = params[:date_of_departure], class:"form-control", value: Date.today + 2.day, required: true %>
+				              		<%= f.date_field('date_of_arrival', value = convoy.date_of_departure, class:"form-control", value: Date.today + 2.day, required: true)%>
 				            	</div>
 				          	</div>
 				         </div>
@@ -71,13 +64,13 @@
 					        <div class="col-md-6 mb-3 mb-md-0">
 					            <label class="text-black form-label">Licence requise</label>
 					            <div class="input-group mb-2 mr-sm-2">
-					              	<%= text_field_tag 'required_license', value = params[:required_license], class:"form-control", placeholder:"Permis côtier, hauturier...", required: true%>
+					              	<%= f.text_field('required_license', value = convoy.required_license, class:"form-control", placeholder:"Permis côtier, hauturier...", required: true)%>
 					            </div>
 					        </div>
 					        <div class="col-md-6 mb-3 mb-md-0">
 				             	<label class="text-black form-label">Rémunération du convoyage</label>
 				            	<div class="input-group mb-2 mr-sm-2">
-				               		<%= number_field_tag 'convoy_price',value = params[:convoy_price], min:"0", class:"form-control", placeholder:"€", required: true %>
+				               		<%= f.number_field('convoy_price',value = convoy.convoy_price, min:"0", class:"form-control", placeholder:"€", required: true) %>
 				            	</div>
 				          	</div>
 						</div>
@@ -86,7 +79,7 @@
 				            <div class="col-md-12 mb-3 mb-md-0">
 				             	<label class="text-black form-label">Description</label>
 				            	<div class="input-group mb-2 mr-sm-2">
-				              		<%= text_area_tag 'description', value = params[:description], class:"form-control", rows:"5", placeholder:"Décrivez votre besoin en quelques lignes", required: true %>
+				              		<%= f.text_area('description', value = convoy.description, class:"form-control", rows:"5", placeholder:"Décrivez votre besoin en quelques lignes", required: true) %>
 				            	</div>
 				          	</div>
 				         </div>
@@ -95,12 +88,12 @@
 				          	<div class="col-12">
 			            		<span class="form-label">
 			            			Ajouter des images : 
-			               			<%= file_field_tag 'picture[]', multiple:true %>
+			               			<%= f.file_field('pictures[]', multiple:true) %>
 			  					</span>
 			  				</div>
 
 				         	<div class="col-md-12">
-				            	<%= submit_tag "Valider ma demande", class:"btn btn-primary btn-lg btn-block text-white form-label", style:"margin-top:1rem; margin-bottom:1rem;" %>
+				            	<%= f.submit("Valider ma demande", class:"btn btn-primary btn-lg btn-block text-white form-label", style:"margin-top:1rem; margin-bottom:1rem;") %>
 				          	</div>
 				        </div>
         			<% end %>

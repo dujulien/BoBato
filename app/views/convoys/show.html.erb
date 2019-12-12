@@ -61,7 +61,7 @@
                  <%= link_to "Annuler ma candidature", {:controller => "submissions", :action => "destroy", :convoy_id => @convoy.id, :skipper_id => current_user.id}, method: :delete, class: "btn btn-danger" %>
               </p>
             <% elsif current_user == @convoy.boat_owner %>
-              <p><%= link_to "Modifier les informations", edit_convoy_path(@convoy.id), class:"btn btn-warning", style:"width:250px;" %></p>
+              <p><a href="#editConvoy" class="btn btn-warning" style="width:250px" data-toggle="modal" data-target="#editConvoy">Modifier les informations</a></p>
               <p><%= link_to "Supprimer le convoyage", convoy_path(@convoy.id), :method => 'delete', class:"btn btn-danger", style:"width:250px;" %></p>
             <% else %>
               <p>
@@ -111,6 +111,11 @@
 </div>
 <!----------------- SHOW CONVOY ----------------->
 
+<!-------------- EDIT CONVOY MODAL --------------------->
+<div class="modal fade" id="editConvoy" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <%= render 'convoys/edit_convoy_modal', convoy: @convoy %>
+</div>
+<!-------------- EDIT CONVOY MODAL --------------------->
 
 <!--------------- SUBMISSION MODAL -------------->
 <% if current_user %>

@@ -10,23 +10,23 @@
           </figure>
           <% if current_user && current_user.id == profile.id %>
             <div class="card-body form-label-sm" style="padding:0.3rem 0rem 0.5rem 0rem; text-align: center;">
-              <%= link_to "Mettre à jour la photo" %>
+              <a href="#editAvatar" data-toggle="modal" data-target="#editAvatar">Mettre à jour sa photo</a>
             </div>
           <% end %>
 
           <ul class="list-group list-group-flush">
             <li class="list-group-item"><i class="fas fa-home" style="margin-right:1rem;"></i> Habite à <%= profile.city %></li>
-            <li class="list-group-item"><i class="fas fa-birthday-cake" style="margin:0rem 1.3rem 0rem 0.2rem;"></i>Né(e) le <% profile.birthdate ? profile.birthdate.strftime("%d/%m/%Y") : "" %></li>
+            <li class="list-group-item"><i class="fas fa-birthday-cake" style="margin:0rem 1.3rem 0rem 0.2rem;"></i>Né(e) le <%= profile.birthdate ? profile.birthdate.strftime("%d/%m/%Y") : "" %></li>
             <li class="list-group-item"><i class="far fa-id-badge" style="margin:0rem 1.3rem 0rem 0.3rem;"></i>Tous permis</li>
           </ul>
         </div>
       </div>
 
       <div class="col-md-5 col-lg-6 mb-4 pl-lg-5">
-        <h4 class="text-black">Profile de <%= profile.first_name %> <%= profile.last_name %></h4>
+        <h4 class="text-black">Profil de <%= profile.first_name %> <%= profile.last_name %></h4>
         <p class="text-black">Membre depuis <%= profile.user.created_at.strftime("%Y") %>  
           <% if current_user && current_user.id == profile.id %>
-             · <%= link_to "Modifier le profil", edit_profile_path(current_user.id), class: "form-label-sm"%>
+             · <a href="#editProfile" class= "form-label-sm" data-toggle="modal" data-target="#editProfile">Modifier le profil</a>
           <% end %>
         </p>
         <p><%= profile.description %></p>
@@ -98,4 +98,17 @@
     </div>
   </div>
 </div>
+
+<!------------------------ EDIT AVATAR MODAL ---------------------------------->
+<div class="modal fade" id="editAvatar" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> 
+  <%= render 'edit_avatar', profile: @profile %>
+</div>
+<!------------------------ END EDIT AVATAR MODAL ------------------------------>
+
+<!------------------------ EDIT PROFILE MODAL ---------------------------------->
+<div class="modal fade" id="editProfile" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true"> 
+  <%= render 'edit', profile: @profile %>
+</div>
+<!------------------------ END PROFILE AVATAR MODAL ------------------------------>
+
 <!------------------------ END USER PROFILE ----------------------------------------------------->

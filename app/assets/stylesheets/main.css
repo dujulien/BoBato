@@ -66,6 +66,10 @@ p span {
     max-width: 70rem;
 }
 
+.md-modal {
+    max-width: 50rem;
+}
+
 @-webkit-keyframes swing
 {
     15%

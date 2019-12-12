@@ -12,10 +12,10 @@ class ProfilesController < ApplicationController
   def update
   	@profile = Profile.find(params[:id])
     if @profile.update(first_name: params[:first_name],last_name: params[:last_name],birthdate: params[:birthdate], description: params[:description],city: params[:city])
-      flash[:success] = 'The item was updated'
+      flash[:success] = 'Votre profil a bien été modifié'
         redirect_to @profile
     else
-      flash[:error] = 'Erreur'
+      flash[:error] = ["Erreur, votre profil n'a pas pu être modifié"]
         render :edit
     end
 

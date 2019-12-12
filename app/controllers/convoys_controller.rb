@@ -23,10 +23,7 @@ class ConvoysController < ApplicationController
     @user = current_user
     @convoy = Convoy.new(convoy_params)
     @convoy.boat_owner_id=current_user.id
-    # @convoy.pictures.attach(params[pictures:[]])
-    # @convoy.update(boat_owner: @user)
-    # title: params[:title],boat_type: params[:boat_type],required_license: params[:required_license],description: params[:description],departure_port: params[:departure_port],arrival_port:params[:arrival_port],date_of_departure: params[:date_of_departure],date_of_arrival: params[:date_of_arrival],convoy_price: params[:convoy_price])
-
+    
     if @convoy.save
       flash[:success] = "Votre proposition de convoyage est enregistrée avec succés"
       redirect_to @convoy   
