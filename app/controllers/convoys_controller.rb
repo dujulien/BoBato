@@ -37,9 +37,9 @@ class ConvoysController < ApplicationController
     @convoy = Convoy.find(params[:id])
     if @convoy.update(convoy_params)
       flash[:success] = "La mise à jour de votre convoyage est bien enregistrée"
-      redirect_to @convoy
+      redirect_to request.referrer
     else
-      render 'edit'
+      redirect_to request.referrer
     end
   end
 
