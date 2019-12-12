@@ -24,12 +24,11 @@ class Convoy < ApplicationRecord
 
 
   def outdated_convoy
-    return true if self.date_of_departure < Time.now
-  end
-
-
-  def good_convoy
-    return true if self.date_of_departure > Time.now
+    if self.date_of_departure < Time.now
+      return true 
+    else
+      return false
+    end
   end
 
 
