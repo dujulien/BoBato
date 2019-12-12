@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_11_124357) do
+ActiveRecord::Schema.define(version: 2019_12_12_150138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,17 @@ ActiveRecord::Schema.define(version: 2019_12_11_124357) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "recipient_id"
+    t.integer "rating"
+    t.text "review"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipient_id"], name: "index_comments_on_recipient_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "convoys", force: :cascade do |t|
@@ -85,17 +96,6 @@ ActiveRecord::Schema.define(version: 2019_12_11_124357) do
     t.index ["skipper_id"], name: "index_submissions_on_skipper_id"
   end
 
-  create_table "userfeedbacks", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "profile_id"
-    t.integer "rating"
-    t.text "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["profile_id"], name: "index_userfeedbacks_on_profile_id"
-    t.index ["user_id"], name: "index_userfeedbacks_on_user_id"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -109,6 +109,4 @@ ActiveRecord::Schema.define(version: 2019_12_11_124357) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "userfeedbacks", "profiles"
-  add_foreign_key "userfeedbacks", "users"
 end

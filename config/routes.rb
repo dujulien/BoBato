@@ -1,16 +1,15 @@
 Rails.application.routes.draw do
-
-
-
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
+  root 'home#index'
   devise_for :users
+  
   resources :user do
     resources :my_convoys, only: [:index, :show]
     resources :submissions, only: [:index]
   end
 
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  root 'demo#index'
-  resources :demo, only: [:index]
+  resources :home, only: [:index]
 
   resources :convoys do
   	resources :pictures
@@ -24,8 +23,6 @@ Rails.application.routes.draw do
     resources :avatars, only: [:create]
   end
 
-  resources :profiles do
-  resources :userfeedbacks
-end
+  resources :comments
 
 end

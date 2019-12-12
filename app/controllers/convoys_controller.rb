@@ -3,7 +3,7 @@ class ConvoysController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
 
   def index
-    @convoys = Convoy.where("date_of_departure >= ?", Time.current).page(params[:page]).per(5)
+    @convoys = Convoy.where("date_of_departure >= ?", Time.current).order(created_at: :desc).page(params[:page]).per(6)
   end
 
   def show
@@ -22,7 +22,7 @@ class ConvoysController < ApplicationController
   def create
     @user = current_user
     @convoy = Convoy.new(convoy_params)
-    @convoy.boat_owner_id=current_user.id
+    @convoy.boat_owner = current_user
     
     if @convoy.save
       flash[:success] = "Votre proposition de convoyage est enregistrée avec succés"
