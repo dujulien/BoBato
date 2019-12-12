@@ -1,4 +1,4 @@
-<% if flash[:errors] %>
+<% if flash[:errors] || flash[:error] %>
 
 	<div class = "alert alert-warning alert-dismissible fade show" role="alert">
 		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -7,6 +7,9 @@
 		Cette étape a rencontré <%= pluralize(flash[:errors].length, "erreur") %> :
 		<ul>
 		  <% flash[:errors].each do |message| %>
+		      <li><%= message %></li>
+		  <% end %>
+		  <% flash[:error].each do |message| %>
 		      <li><%= message %></li>
 		  <% end %>
 		</ul>

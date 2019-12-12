@@ -15,7 +15,7 @@ class ProfilesController < ApplicationController
       flash[:success] = 'Votre profil a bien été modifié'
       redirect_to request.referrer
     else
-      flash[:error] = ["Erreur, votre profil n'a pas pu être modifié"]
+      flash[:errors] = ["Erreur, votre profil n'a pas pu être modifié"]
       redirect_to request.referrer
     end
 
