@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
 
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   resources :user do
     resources :my_convoys, only: [:index, :show]
-    resources :submissions, only: [:index]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -22,12 +22,6 @@ Rails.application.routes.draw do
   resources :profiles do
     resources :avatars, only: [:create]
   end
-
-
-  namespace :admin do
-  resources :articles, :comments
-  end
-
 end
 
 
