@@ -54,6 +54,7 @@ class ConvoysController < ApplicationController
       flash[:success] = "La mise à jour de votre convoyage est bien enregistrée"
       redirect_to request.referrer
     else
+      flash[:errors] = @convoy.errors.full_messages
       redirect_to request.referrer
     end
   end
