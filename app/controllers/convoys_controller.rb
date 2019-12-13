@@ -2,9 +2,24 @@ class ConvoysController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create]
 
+  # def index
+  #   @convoys = Convoy.where("date_of_departure >= ?", Time.current).order(created_at: :desc).page(params[:page]).per(6)
+  # end
+
   def index
-    @convoys = Convoy.where("date_of_departure >= ?", Time.current).order(created_at: :desc).page(params[:page]).per(6)
+    if params["search"]
+      @filter = params["search"]["port"].concat(params["search"]["type"]).flatten.reject(&:blank?)
+      puts "$"*40
+      puts @filter
+      puts "$"*40
+      @convoys = @filter.empty? ? Convoy.all : Convoy.all.tagged_with(@filter, any: true).page(params[:page]).per(6)
+    else
+      @convoys = Convoy.where("date_of_departure >= ?", Time.current).order(created_at: :desc).page(params[:page]).per(6)
+    end
   end
+
+
+
 
   def show
     @convoy = Convoy.find(params[:id])
