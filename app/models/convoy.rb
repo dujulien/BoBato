@@ -2,7 +2,7 @@ class Convoy < ApplicationRecord
   has_many_attached :pictures
 	belongs_to :boat_owner, class_name: 'User'
 	has_one :delivery
-	has_many :submissions
+	has_many :submissions, dependent: :destroy
 	has_many :applicants, through: :submissions, :source => :skipper
 
 	validates :date_of_departure, presence: { message: "Il n'y a pas de date de départ"}
@@ -32,7 +32,6 @@ class Convoy < ApplicationRecord
   def convoy_conf_email_send
     UserMailer.convoy_conf_email(self).deliver_now
   end
-
 
 
   def update_submissions_status_after_checkout(skipper)
