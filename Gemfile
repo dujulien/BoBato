@@ -16,6 +16,7 @@ gem 'mailjet'
 gem 'acts-as-taggable-on', '~> 6.0'
 gem 'dotenv'
 gem 'simple_form'
+gem 'rails_admin'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
