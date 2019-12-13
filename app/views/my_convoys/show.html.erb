@@ -62,7 +62,7 @@
           <div class="col-lg-7 pl-lg-7">
             <div class="mb-5">
               <p class="text-label">Description</p>
-              	<p>Ipsa tempore repudiandae optio aliquam perspiciatis est quae enim quaerat eos hic dolorem accusamus molestias repellat consequatur velit, officiis nihil magnam placeat!
+              	<p><%= @my_convoy.description %>
               	</p>
               <p class="text-label">Rémunération</p>
                 <p class="mb-4"><%=  number_with_delimiter(@my_convoy.convoy_price.round(0), delimiter: " ") %> €

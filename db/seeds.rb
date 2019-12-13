@@ -9,7 +9,7 @@
 require 'faker'
 cities = ["Toulouse", "Lorient", "Nice", "Paris", "Bordeaux", "Lyon", "Bastia", "Biarritz", "Gap", "Clermont-Ferrand", "Strasbourg", "Saint-Malo", "Dinard", "La Rochelle", "Honfleur", "Deauville", "Rennes", "Nantes", "Cannes"]
 boats = ["Yacht", "Catamaran", "Voilier", "Chalutier", "Péniche", "Bateau-corsaire", "Deux-mâts", "Trois-mâts", "Bâteau cabine", "Croiseur", "Hors-Bord", "Bateau maison"]
-departure_ports = ["Marseille", "Mykonos", "Barcelone", "Athènes", "Tanger", "Genes", "Hambourg", "Rotterdam", "Amsterdam", "Saint-Nazaire", "Le Havre", "Bizerte", "Brighton" ]
+departure_ports = ["Marseille", "Mykonos", "Barcelone", "Athènes", "Tanger", "Genes", "Hambourg", "Rotterdam", "Amsterdam", "Saint-Nazaire", "Le Havre", "Bizerte", "Brighton"]
 arrival_ports = ["Toulon", "Ajaccio", "Bonifacio", "Split", "Palerme", "Dubrovnik", "Le Pirée", "Malaga", "Ibiza", "Hyères", "Naples", "Syracuse", "Trapani", "Lipari", "Cagliari"]
 
 35.times do |i|
@@ -23,7 +23,7 @@ arrival_ports = ["Toulon", "Ajaccio", "Bonifacio", "Split", "Palerme", "Dubrovni
 	p.update(
 					first_name: Faker::Name.first_name,
 					last_name: Faker::Name.last_name,
-					birthdate: DateTime.new(rand(1974..2000), rand(1..12), rand(1..28)),
+					birthdate: Date.new(rand(1974..2000), rand(1..12), rand(1..28)),
 					city: cities.sample,
 					description: Faker::Lorem.paragraph(sentence_count: 5),
 					)
@@ -44,8 +44,8 @@ j = 0
 										required_license: "Tous permis",
 										departure_port: departure_ports.sample,
 										arrival_port: arrival_ports.sample, 
-										date_of_departure: DateTime.new(2020, rand(1..4), rand(1..28)), 
-										date_of_arrival: DateTime.new(2020, rand(5..9), rand(1..28)), 
+										date_of_departure: Date.new(2020, rand(1..4), rand(1..28)), 
+										date_of_arrival: Date.new(2020, rand(5..9), rand(1..28)), 
 										convoy_price: rand(2000..10000)
 										)
 	#Attachment of the picture
@@ -96,8 +96,8 @@ j = 0
 										required_license: "Tous permis",
 										departure_port: departure_ports.sample,
 										arrival_port: arrival_ports.sample, 
-										date_of_departure: DateTime.new(2020, rand(1..4), rand(1..28)), 
-										date_of_arrival: DateTime.new(2020, rand(5..9), rand(1..28)), 
+										date_of_departure: Date.new(2020, rand(1..4), rand(1..28)), 
+										date_of_arrival: Date.new(2020, rand(5..9), rand(1..28)), 
 										convoy_price: rand(2000..10000)
 										)
 	#Attachment of the picture

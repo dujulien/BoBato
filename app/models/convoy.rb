@@ -14,7 +14,6 @@ class Convoy < ApplicationRecord
   validate :departure_must_be_before_arrival
   after_create :convoy_conf_email_send,
 
-
   def duration
   	(self.date_of_arrival - self.date_of_departure)/(60*60*24).round(0)
   end
