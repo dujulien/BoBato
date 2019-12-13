@@ -2,8 +2,8 @@ Rails.application.routes.draw do
 
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users
-  resources :user do
+  devise_for :users 
+   resources :user do
     resources :my_convoys, only: [:index, :show]
   end
 
