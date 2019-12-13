@@ -33,7 +33,7 @@
 			          		<div class="col-md-6 mb-3 mb-md-0">
 			          			<label class="text-black form-label">Type de bateau *</label>
 			             		<div class="input-group mb-2 mr-sm-2">
-			               			<%= text_field_tag 'boat_type', value = params[:boat_type], class:"form-control", placeholder:"ex: Voilier, Catamaran, Yacht etc.", required: true%>
+			               			<%= select_tag 'boat_type', options_for_select($boat_types), class:"form-control", value: params[:boat_type], required: true%>
 			               		</div>
 			                </div>
 						</div>
@@ -42,13 +42,13 @@
 				            <div class="col-md-6 mb-3 mb-md-0">
 				             	<label class="text-black form-label">Port de départ *</label>
 				            	<div class="input-group mb-2 mr-sm-2">
-				              		<%= text_field_tag 'departure_port', value = params[:departure_port], class:"form-control", placeholder:"ex: Marseille", required: true%>
+				              		<%= select_tag 'departure_port', options_for_select($departure_ports), class:"form-control", value: params[:departure_port], required: true%>
 				            	</div>
 				          	</div>
 				          	<div class="col-md-6 mb-3 mb-md-0">
 				             	<label class="text-black form-label">Port d’arrivée *</label>
 				            	<div class="input-group mb-2 mr-sm-2">
-				              		<%= text_field_tag 'arrival_port', value = params[:arrival_port], class:"form-control", placeholder:"ex: Le Pirée", required: true%>
+				              		<%= select_tag 'arrival_port', options_for_select($arrival_ports), class:"form-control", value: params[:arrival_port], required: true%>
 				            	</div>
 				          	</div>
 						</div>

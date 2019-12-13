@@ -14,10 +14,24 @@ class Convoy < ApplicationRecord
   validate :departure_must_be_before_arrival
   $boat_types = ["Yacht", "Catamaran", "Voilier", "Chalutier", "Péniche", "Bateau-corsaire", "Deux-mâts", "Trois-mâts", "Bâteau cabine", "Croiseur", "Hors-Bord", "Bateau maison"]
   $departure_ports = ["Marseille", "Mykonos", "Barcelone", "Athènes", "Tanger", "Genes", "Hambourg", "Rotterdam", "Amsterdam", "Saint-Nazaire", "Le Havre", "Bizerte", "Brighton"]
+  $arrival_ports = ["Toulon", "Ajaccio", "Bonifacio", "Split", "Palerme", "Dubrovnik", "Le Pirée", "Malaga", "Ibiza", "Hyères", "Naples", "Syracuse", "Trapani", "Lipari", "Cagliari"]
   acts_as_taggable_on :departure_ports
   acts_as_taggable_on :boat_types
   after_create :convoy_conf_email_send
   after_create :create_tag
+
+  include PgSearch::Model 
+
+
+  pg_search_scope :global_search,
+    against: [:title, :description],
+    associated_against: {
+      departure_ports: [:name],
+      boat_types: [:name]
+    },
+    using: {
+      tsearch: {prefix: true}
+    }
 
   def create_tag
     self.update(departure_port_list: self.departure_port)
@@ -25,7 +39,7 @@ class Convoy < ApplicationRecord
   end
 
   def duration
-  	(self.date_of_arrival - self.date_of_departure)/(60*60*24).round(0)
+  	(self.date_of_arrival - self.date_of_departure).to_i
   end
 
 

@@ -134,22 +134,10 @@ arrival_ports = ["Toulon", "Ajaccio", "Bonifacio", "Split", "Palerme", "Dubrovni
 # end
 
 
-5.times do |i|
+Convoy.all.each do |c|
 	#Creation of the convoy
-	c = Convoy.create!(
-										boat_owner: User.find(i+1), 
-										title: Faker::Movies::HitchhikersGuideToTheGalaxy.starship, 
-										description: Faker::Lorem.paragraph,
-										boat_type: boats.sample, 
-										required_license: "Tous permis",
-										departure_port: departure_ports.sample,
-										arrival_port: arrival_ports.sample, 
-										date_of_departure: Date.new(2020, rand(1..4), rand(1..28)), 
-										date_of_arrival: Date.new(2020, rand(5..9), rand(1..28)), 
-										convoy_price: rand(2000..10000),
-										)
-	c.update(departure_port_list: "Mykonos")
-	c.update(boat_type_list: "Hors-Bord")
+	c.update(departure_port_list: c.departure_port)
+	c.update(boat_type_list: c.boat_type)
 end
 
 

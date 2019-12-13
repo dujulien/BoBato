@@ -2,27 +2,20 @@ class ConvoysController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :create]
 
-  # def index
-  #   @convoys = Convoy.where("date_of_departure >= ?", Time.current).order(created_at: :desc).page(params[:page]).per(6)
-  # end
-
   def index
     if params["search"]
       @filter = params["search"]["ports"].concat(params["search"]["boats"]).flatten.reject(&:blank?)
-      @convoys = @filter.empty? ? Convoy.where("date_of_departure >= ?", Time.current).order(created_at: :desc).page(params[:page]).per(6) : Convoy.where("date_of_departure >= ?", Time.current).order(created_at: :desc).tagged_with(@filter, any: true).page(params[:page]).per(6)
+      @convoys = Convoy.all.global_search("#{@filter}").page(params[:page]).per(6)
     else
       @convoys = Convoy.where("date_of_departure >= ?", Time.current).order(created_at: :desc).page(params[:page]).per(6)
     end
-    puts "$"*50
-    puts @convoys.inspect
-    puts @convoys.inspect.size
-    puts "$"*50
 
     respond_to do |format|
       format.html {}
       format.js {}
     end 
   end
+
 
   def show
     @convoy = Convoy.find(params[:id])
