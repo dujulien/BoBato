@@ -12,7 +12,17 @@ class Convoy < ApplicationRecord
   validates :boat_type, presence: { message: "Il faut spécifier le type de votre bateau"}
   validate :departure_must_be_in_future
   validate :departure_must_be_before_arrival
-  after_create :convoy_conf_email_send,
+  $boat_types = ["Yacht", "Catamaran", "Voilier", "Chalutier", "Péniche", "Bateau-corsaire", "Deux-mâts", "Trois-mâts", "Bâteau cabine", "Croiseur", "Hors-Bord", "Bateau maison"]
+  $departure_ports = ["Marseille", "Mykonos", "Barcelone", "Athènes", "Tanger", "Genes", "Hambourg", "Rotterdam", "Amsterdam", "Saint-Nazaire", "Le Havre", "Bizerte", "Brighton"]
+  acts_as_taggable_on :departure_ports
+  acts_as_taggable_on :boat_types
+  after_create :convoy_conf_email_send
+  after_create :create_tag
+
+  def create_tag
+    self.update(departure_port_list: self.departure_port)
+    self.update(boat_type_list: self.boat_type)
+  end
 
   def duration
   	(self.date_of_arrival - self.date_of_departure)/(60*60*24).round(0)

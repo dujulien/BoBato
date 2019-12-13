@@ -8,18 +8,21 @@ class ConvoysController < ApplicationController
 
   def index
     if params["search"]
-      @filter = params["search"]["port"].concat(params["search"]["type"]).flatten.reject(&:blank?)
-      puts "$"*40
-      puts @filter
-      puts "$"*40
-      @convoys = @filter.empty? ? Convoy.all : Convoy.all.tagged_with(@filter, any: true).page(params[:page]).per(6)
+      @filter = params["search"]["ports"].concat(params["search"]["boats"]).flatten.reject(&:blank?)
+      @convoys = @filter.empty? ? Convoy.where("date_of_departure >= ?", Time.current).order(created_at: :desc).page(params[:page]).per(6) : Convoy.where("date_of_departure >= ?", Time.current).order(created_at: :desc).tagged_with(@filter, any: true).page(params[:page]).per(6)
     else
       @convoys = Convoy.where("date_of_departure >= ?", Time.current).order(created_at: :desc).page(params[:page]).per(6)
     end
+    puts "$"*50
+    puts @convoys.inspect
+    puts @convoys.inspect.size
+    puts "$"*50
+
+    respond_to do |format|
+      format.html {}
+      format.js {}
+    end 
   end
-
-
-
 
   def show
     @convoy = Convoy.find(params[:id])
