@@ -20,6 +20,9 @@
             <li class="list-group-item"><i class="far fa-id-badge" style="margin:0rem 1.3rem 0rem 0.3rem;"></i>Tous permis</li>
           </ul>
         </div>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal", style="margin-top:1rem; width: 22rem;">
+          Commenter le profil
+        </button>
       </div>
 
       <div class="col-md-5 col-lg-6 mb-4 pl-lg-5">
@@ -198,5 +201,32 @@
   <!------------------------ EDIT USER PROFILE FORM -------------------------------------------->
 </div>
 <!------------------------ END PROFILE AVATAR MODAL ------------------------------>
+
+<!--------------- WRITE A COMMENT MODAL -------------->
+<% if current_user %>
+  <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Ecrivez un commentaire</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <%= form_tag comments_path, method: "post" do %>
+            <%= hidden_field_tag :user_id , current_user.id %>
+            <%= hidden_field_tag :recipient_id , profile.id %>
+            <%= text_area_tag 'review', nil, class: "form-control", rows:"5", placeholder: "Laissez un commentaire concernant ce profil" %>
+        </div>
+        <div class="modal-footer">
+          <%= submit_tag "Publier", class: "btn btn-primary btn-lg btn-block" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+<!--------------- END WRITE A COMMENT MODAL -------------->
 
 <!------------------------ END USER PROFILE ----------------------------------------------------->
