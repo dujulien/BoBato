@@ -1,7 +1,7 @@
 class Convoy < ApplicationRecord
   has_many_attached :pictures
 	belongs_to :boat_owner, class_name: 'User'
-	has_one :delivery
+	has_one :delivery, dependent: :destroy
 	has_many :submissions, dependent: :destroy
 	has_many :applicants, through: :submissions, :source => :skipper
 
