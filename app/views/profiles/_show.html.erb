@@ -20,9 +20,11 @@
             <li class="list-group-item"><i class="far fa-id-badge" style="margin:0rem 1.3rem 0rem 0.3rem;"></i>Tous permis</li>
           </ul>
         </div>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal", style="margin-top:1rem; width: 22rem;">
-          Commenter le profil
-        </button>
+        <% if current_user && profile.id != current_user.id %>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#commentModal", style="margin-top:1rem; width: 22rem;">
+            Commenter le profil
+          </button>
+        <% end %>
       </div>
 
       <div class="col-md-5 col-lg-6 mb-4 pl-lg-5">
